@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Rule\uppercase;
 use App\Http\Controllers\Controller;
+use App\Models\regimen;
 use App\Models\State;
 use Illuminate\Http\Request;
 use App\Models\Requestoring;
@@ -37,7 +38,7 @@ class RequestoringController extends Controller
         /* $estados = estado::all()->sortBy('DES_STATE'); */
         $states = state::orderby('ID_STATE')->pluck('DES_STATE', 'ID_STATE');
         $towns = town::orderby('name')->pluck('name', 'id');
-        $regimens = ['simplified', 'common' ];
+        $regimens = regimen::orderby('id')->pluck('name');
         $digits = ['0','1','2','3','4','5','6','7','8','9'];
         return view('admin.requestorings.create', compact('states', 'towns','regimens','digits'));
     }
@@ -54,13 +55,15 @@ class RequestoringController extends Controller
     {
         $request->validate([
             'NIT' => 'required|unique:requestoring',
+            'CHECK_DIGITAL' => 'required|unique:requestoring',
+            'regimens' => 'required|unique:requestoring',
             'correo' => 'required|email|unique:requestoring',
             'DES_REQUESTORIG' => 'required',
-            'persona_encargada' => 'required',
+            'Person_in_charge' => 'required',
             'CITIZENSHIP_CARD' => 'required',
             'LANDLINE' => 'required',
             'MOBILE' => 'required',
-            'ID_STATE' => 'required',
+            'DES_STATE' => 'required',
             'DES_AREA' => 'required'
 
         ]);
