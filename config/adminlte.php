@@ -245,9 +245,18 @@ return [
         ['header' => 'Account_settings'],
        
         [
-            'text' => 'Donor',
-            'route'  => 'admin.persons.index',
-            'icon' => 'fas fa-people-arrows fa-fw'
+            'text' => 'Donors',
+            'icon' => 'fas fa-people-arrows fa-fw',
+            'submenu'=>
+            [
+                [
+                    'text'=> 'Consult',
+                    'route'=> 'donor.donors.index',
+                    'icon' => 'fas fa-users fa-fw',
+                    'active'=>['admin/Donor*']
+                    
+                ],
+            ],
         ],
         [
             'text'    => 'Management',

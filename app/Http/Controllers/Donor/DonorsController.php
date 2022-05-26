@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\donor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Person;
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class DonorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $donors = Person::all();
-        return view('admin.persons.index');
+        return view('donor.donors.index');
     }
 
     /**
@@ -26,7 +24,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('admin.persons.create');
+        //
     }
 
     /**
@@ -46,9 +44,9 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
+    public function show($id)
     {
-        return view('admin.persons.show', compact('Person'));
+        //
     }
 
     /**
@@ -57,9 +55,9 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Person $person)
+    public function edit($id)
     {
-        return view('admin.persons.edit', compact('person'));
+        //
     }
 
     /**
@@ -69,7 +67,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Person $person)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -80,7 +78,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Person $person)
+    public function destroy($id)
     {
         //
     }

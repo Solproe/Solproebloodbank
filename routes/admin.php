@@ -10,16 +10,18 @@ use App\Http\Controllers\admin\ProveedorController;
 use App\Models\Proveedor;
 use App\Http\Controllers\StateController;
 use Illuminate\Routing\RouteUri;
+use App\Http\Controllers\donor\DonorsController;
 
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
 
 Route::resource('requestorings', RequestoringController::class)->names('admin.requestorings');
 
-Route::resource('persons', PersonController::class)->names('admin.persons');
-
 Route::resource('providers',ProveedorController::class)->names('admin.providers');
 
 Route::resource('states',StateController::class)->names('admin.states');
+
+Route::resource('donors', DonorsController::class)->names('donor.donors');
+
 
 /*Route::get('/towns/{id}', [StateController::class, 'getTowns']);*/
 
