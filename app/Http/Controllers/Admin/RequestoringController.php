@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Requestoring;
 use App\Rules\UpperCase as RulesUpperCase;
 use App\Models\town;
+use App\Http\Livewire\ClickEvent;
 
 class RequestoringController extends Controller
 {

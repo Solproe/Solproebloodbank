@@ -251,7 +251,7 @@ return [
             [
                 [
                     'text'=> 'Consult',
-                    'route'=> 'donor.donors.index',
+                    'route'  => 'sihevi.consults.index',
                     'icon' => 'fas fa-users fa-fw',
                     'active'=>['admin/Donor*']
                     

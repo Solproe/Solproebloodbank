@@ -5,6 +5,7 @@ namespace App\Http\Controllers\donor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class DonorsController extends Controller
 {
     /**
@@ -44,9 +45,8 @@ class DonorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
     }
 
     /**
@@ -55,9 +55,9 @@ class DonorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('donor.donors.edit');
     }
 
     /**

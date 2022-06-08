@@ -8,9 +8,8 @@
                {{-- <button class="btn btn-outline-info btn-sm float-right mr-4">Create</button>--}}
             </div>
           </div>
-        
-        
     </div>
+    
     @if ($requestorings->count())
     
         <div class="card-body">

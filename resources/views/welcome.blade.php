@@ -418,7 +418,7 @@
 
                 <a href="{{ route('dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Login</a>
 
-                <!--<a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>-->
+                <!--<a href="{{ route('home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>-->
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}"

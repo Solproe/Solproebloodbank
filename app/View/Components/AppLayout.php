@@ -4,8 +4,6 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-use App\Http\Controllers\Admin\HomeController;
-
 class AppLayout extends Component
 {
     /**
