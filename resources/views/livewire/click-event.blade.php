@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label><i class="text-danger">*</i> Tipo de documento</label>
                     <select wire:model="documenttype" class="form-control">
-                        <option value="">Choose documenttype </option>
+                        <option value="">Choosse documenttype </option>
                         <option value="CC">CC - CEDULA DE CIUDADANÍA</option>
                         <option value="CE">CE - CEDULA DE EXTRANJERÍA</option>
                         <option value="PA">PA - PASAPORTE</option>
@@ -40,7 +40,7 @@
                 {{-- BUTTON --}}
                 <section class="row">
                     {{-- <div class="col-6">
-                            <button v-on:click="ConsultarDonanteEnHuav($identification)" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
+                            <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
                     <div class="card-header text-center">
                         <button wire:click="callFunction()" class="btn btn-block btn-danger"><i
