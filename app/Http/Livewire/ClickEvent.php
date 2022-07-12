@@ -4,11 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Http\Requests\ConsultarDonante;
 use Livewire\Component;
+use Illuminate\Http\Request;
 
 class ClickEvent extends Component
 {
-    public $message = '';
-    public $r = 77026634;
+
+    public $identification;
+    public $documenttype;
+
 
     /**
      * Write code on Method
@@ -25,36 +28,37 @@ class ClickEvent extends Component
      *
      * @return response()
      */
-    public function callFunction()
+
+    public function VerConsulta(Request $id)
+    {
+        return view('consulta/Consulta');
+    }
+
+    public function callFunction($identification, $documenttype)
+
     {
 
+        /* $this->identification=$identification; */
 
-        // Crear un nuevo recurso cURL
+       /*  $documenttype = "CC"; */
+        /* $identification = "77026634";
+ */
+        /*  $url = 'www.your-domain.com/api.php?to=' . $mobile . '&text=' . $message; */
+
+
         $ch = curl_init();
-
         // Configurar URL y otras opciones apropiadas
         $headers = array(
             'Content-Type:application/json',
             'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
         );
-        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=");
+        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc="  . $identification . "&tipo_doc=" . $documenttype);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        $respuesta = json_decode(curl_exec($ch));
+        $sihevi = json_decode(curl_exec($ch));
+        @dd($sihevi);
         $info = curl_getinfo($ch);
         curl_close($ch);
-        /*  // Capturar la URL y pasarla al navegador
-       curl_exec($ch); */
-
-        /*  // Cerrar el recurso cURL y liberar recursos del sistema
-       curl_close($ch); */
-        $this->message = "You clicked on button";
     }
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
 }

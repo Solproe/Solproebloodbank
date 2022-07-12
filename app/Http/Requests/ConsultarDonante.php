@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ConsultarDonante extends FormRequest
 {
+    /* public $identification; */
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,10 +24,10 @@ class ConsultarDonante extends FormRequest
      */
     public function rules()
     {
-
+    
         return [
-            'identificacion' => 'required|numeric',
-            'tipo_documento' => 'required|alpha|in:CC,CE,PA,NUIP,PE'
+            'identification' => 'required|numeric',
+            'documenttype' => 'required|alpha|in:CC,CE,PA,NUIP,PE'
         ];
     }
 }
