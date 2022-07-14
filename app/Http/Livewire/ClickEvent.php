@@ -11,6 +11,16 @@ class ClickEvent extends Component
 
     public $identification;
     public $documenttype;
+    public $open = false;
+    public $historico;
+    public $diferido;
+    public $sihevi;
+
+    /* public function ClickEvent(){
+
+        $this->identifcation;
+        $this->documenttype;
+    } */
 
 
     /**
@@ -34,31 +44,28 @@ class ClickEvent extends Component
         return view('consulta/Consulta');
     }
 
-    public function callFunction($identification, $documenttype)
-
+    public function callFunction()
     {
-
-        /* $this->identification=$identification; */
-
-       /*  $documenttype = "CC"; */
-        /* $identification = "77026634";
- */
-        /*  $url = 'www.your-domain.com/api.php?to=' . $mobile . '&text=' . $message; */
-
-
         $ch = curl_init();
         // Configurar URL y otras opciones apropiadas
         $headers = array(
             'Content-Type:application/json',
             'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
         );
-        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc="  . $identification . "&tipo_doc=" . $documenttype);
+
+        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification . "&tipo_doc=" . $this->documenttype);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         $sihevi = json_decode(curl_exec($ch));
-        @dd($sihevi);
         $info = curl_getinfo($ch);
         curl_close($ch);
+
+        gettype($sihevi);
+        $this->historico = $sihevi->HistoricoDonaciones;
+        $this->diferido = $sihevi->InformacionDiferido;
+
+        $this->open = true;
+
     }
 }
