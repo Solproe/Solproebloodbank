@@ -12,10 +12,6 @@ class ResponseSihevi extends Component
     public function render()
     {
 
-        $event = new LivewireClickEvent();
-
-        $data = $event->sihevi;
-
-        return view('livewire.response-sihevi', compact('data'));
+        return view('livewire.response-sihevi');
     }
 }

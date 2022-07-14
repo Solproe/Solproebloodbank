@@ -12,25 +12,15 @@ class ClickEvent extends Component
     public $identification;
     public $documenttype;
     public $open = false;
-    public $historico;
-    public $diferido;
+    protected $diferido;
     public $sihevi;
-
-    /* public function ClickEvent(){
-
-        $this->identifcation;
-        $this->documenttype;
-    } */
-
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
+    
     public function render()
     {
-        return view('livewire.click-event');
+
+        $historico = "";
+
+        return view('livewire.click-event', compact('historico'));
     }
 
     /**
@@ -47,7 +37,6 @@ class ClickEvent extends Component
     public function callFunction()
     {
         $ch = curl_init();
-        // Configurar URL y otras opciones apropiadas
         $headers = array(
             'Content-Type:application/json',
             'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
