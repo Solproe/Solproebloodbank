@@ -12,15 +12,14 @@ class ClickEvent extends Component
     public $identification;
     public $documenttype;
     public $open = false;
+    public $historico;
     protected $diferido;
     public $sihevi;
+
     
     public function render()
     {
-
-        $historico = "";
-
-        return view('livewire.click-event', compact('historico'));
+        return view('livewire.click-event');
     }
 
     /**
