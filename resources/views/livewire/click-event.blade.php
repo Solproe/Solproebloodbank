@@ -1,12 +1,13 @@
 <div class="card">
-    <div class="container">
+    <div class="container d-flex flex-row">
+        @livewire('response-sihevi')
 
         {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
-            <i class="fa fa-home"></i>
-            MENÚ
+        <i class="fa fa-home"></i>
+        MENÚ
         </a> --}}
 
-        <div class="card">
+        <div class="card col-sm-3 mt-5 ml-4">
             <div class="card-header text-center">
                 <br>
                 SIHEVI CONSULT
@@ -30,10 +31,10 @@
 
                 <div class="form-group">
                     <label>Identificación</label>
-                    <input wire:model="identification" type="text" class="form-control"   placeholder="Enter identification">
+                    <input wire:model="identification" type="text" class="form-control" placeholder="Enter identification">
                     <h1>{{ $identification}}</h1>
 
-                   {{--  <input @keydown.tab.prevent="GestionarLectura($event.target.value)" v-model="identificacion"
+                    {{-- <input @keydown.tab.prevent="GestionarLectura($event.target.value)" v-model="identificacion"
                         type="text" class="form-control"> --}}
                 </div>
 
@@ -43,8 +44,7 @@
                             <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
                     <div class="card-header text-center">
-                        <button wire:click="callFunction()" class="btn btn-block btn-danger"><i
-                                class="fa fa-globe"></i>
+                        <button wire:click="callFunction()" class="btn btn-block btn-danger align-left" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
                             SIHEVI</button>
                         {{-- <p>{{ $message }}</p> --}}
                     </div>
@@ -60,6 +60,12 @@
                 </section> --}}
 
             </div>
+        </div>
+        <div class="card col-md-5 mt-5 ml-3">
+            <h1>data</h1>
+        </div>
+        <div class="card col-sm-3 mt-5 ml-3">
+            <h1>calculo</h1>
         </div>
     </div>
 </div>
