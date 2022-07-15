@@ -1,7 +1,10 @@
 <div class="card">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <div class="container-fluid d-flex flex-row fixed-width">
-        @livewire('response-sihevi')
+
+        @if($event == true)
+            @livewire('response-sihevi', ['identification' => $identification, 'documenttype' => $documenttype])
+        @endif
 
         {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
         <i class="fa fa-home"></i>
@@ -45,7 +48,7 @@
                             <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
                     <div class="card-header text-center">
-                        <button wire:click="callFunction()" class="btn btn-block btn-danger align-left" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
+                        <button wire:click="invoking" class="btn btn-block btn-danger align-left" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
                             SIHEVI</button>
                         {{-- <p>{{ $message }}</p> --}}
                     </div>
@@ -66,7 +69,7 @@
             <h1>data</h1>
         </div>
         <div class="card col-sm-3 mt-5 ml-3">
-            <h1></h1>
+            <h1>data 2</h1>
         </div>
     </div>
 </div>

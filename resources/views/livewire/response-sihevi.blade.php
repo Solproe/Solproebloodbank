@@ -1,6 +1,7 @@
 <div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" wire:model="open">
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -10,9 +11,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h1>
-                        
-                    </h1>
+                    @if($historico != null)
+                        @foreach($historico as $history)
+                            @foreach($history as $data)
+                                <p>
+                                    {{ $data }}
+                                </p>
+                            @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
