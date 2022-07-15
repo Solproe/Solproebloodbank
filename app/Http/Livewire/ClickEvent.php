@@ -34,13 +34,20 @@ class ClickEvent extends Component
         return view('consulta/Consulta');
     }
 
-    public function callFunction($identification, $documenttype)
+    public function callFunction(Request $data)
 
     {
-
+        gettype($data->all());
+        /* $variables = $data->all(); */
+        $id_var =  $data["serverMemo"];
+        $datas = $id_var["data"];
+        $documenttype = $datas["documenttype"];
+        $identification = $datas["identification"];
+        
+       /*  @dd($documenttype); */
         /* $this->identification=$identification; */
 
-       /*  $documenttype = "CC"; */
+        /*  $documenttype = "CC"; */
         /* $identification = "77026634";
  */
         /*  $url = 'www.your-domain.com/api.php?to=' . $mobile . '&text=' . $message; */
@@ -52,7 +59,7 @@ class ClickEvent extends Component
             'Content-Type:application/json',
             'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
         );
-        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc="  . $identification . "&tipo_doc=" . $documenttype);
+        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc="  .$identification . "&tipo_doc=" .$documenttype);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
