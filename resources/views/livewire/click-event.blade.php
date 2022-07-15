@@ -1,5 +1,6 @@
 <div class="card">
-    <div class="container d-flex flex-row">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <div class="container-fluid d-flex flex-row fixed-width">
         @livewire('response-sihevi')
 
         {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
@@ -65,7 +66,7 @@
             <h1>data</h1>
         </div>
         <div class="card col-sm-3 mt-5 ml-3">
-            <h1>calculo</h1>
+            <h1></h1>
         </div>
     </div>
 </div>

@@ -14,7 +14,6 @@ class ClickEvent extends Component
     public $open = false;
     public $historico;
     protected $diferido;
-    public $sihevi;
 
     
     public function render()
@@ -53,7 +52,7 @@ class ClickEvent extends Component
         $this->historico = $sihevi->HistoricoDonaciones;
         $this->diferido = $sihevi->InformacionDiferido;
 
-        $this->open = true;
+        $this->open = true; 
 
     }
 }
