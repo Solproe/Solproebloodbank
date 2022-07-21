@@ -12,8 +12,8 @@ class ClickEvent extends Component
     public $documenttype;
     public $historico;
     protected $diferido;
-    protected $sihevi;
-    public $date;
+    public $response_sihevi;
+    public $recording;
     
     public function render()
     {
@@ -31,6 +31,11 @@ class ClickEvent extends Component
         return view('consulta/Consulta');
     }
 
+    private static function ConvertirFormatoFecha($fecha)
+    {
+        return substr($fecha, 6) . "-" . substr($fecha, 3, 2) . "-" . substr($fecha, 0, 2);
+    }
+
     public function callFunction()
     {
 
@@ -44,14 +49,42 @@ class ClickEvent extends Component
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        $this->sihevi = json_decode(curl_exec($ch));
+        $sihevi = json_decode(curl_exec($ch));
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        $this->historico = $this->sihevi->HistoricoDonaciones;
-        $this->diferido = $this->sihevi->InformacionDiferido;
+        $this->historico = $sihevi->HistoricoDonaciones;
+        $this->diferido = $sihevi->InformacionDiferido;
 
-        /* $this->open = true; */
+        $counter = 0;
 
+        $last_date = "";
+
+        $this->recording = null;
+
+        foreach ($this->historico as $history) {
+
+            if ($counter == 1) {
+
+                $last_date = $history->FECHA_DONACION;
+            }
+            else {
+
+                if (strtotime(date($this->ConvertirFormatoFecha($last_date))) > strtotime(date($history->FECHA_DONACION))) {
+
+                    $this->recording = $counter;
+                }
+                else {
+
+                    $last_date = $history->FECHA_DONACION;
+                    
+                    $this->recording = $counter;
+                }
+            }
+
+            $counter += 1;
+        }
+
+        $this->response_sihevi = (array) $this->historico[intval($this->recording - 1)];
     }
 }
