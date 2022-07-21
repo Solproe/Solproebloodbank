@@ -57,7 +57,7 @@
                 {{$recording}}
                 <br>
                 @if($historico != null)
-                    @foreach($response_sihevi as $valor)
+                    @foreach($data as $valor)
                         <p>
                             {{$valor}}
                         </p>
