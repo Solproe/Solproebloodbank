@@ -13,6 +13,7 @@ class ClickEvent extends Component
     public $historico;
     protected $diferido;
     public $response_sihevi;
+    public $recording;
     
     public function render()
     {
@@ -32,7 +33,7 @@ class ClickEvent extends Component
 
     private static function ConvertirFormatoFecha($fecha)
     {
-        return substr($fecha, 0, 2) . "-" . substr($fecha, 3, 5) . substr($fecha, 6);
+        return substr($fecha, 6) . "-" . substr($fecha, 3, 2) . "-" . substr($fecha, 0, 2);
     }
 
     public function callFunction()
@@ -48,18 +49,18 @@ class ClickEvent extends Component
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        $this->sihevi = json_decode(curl_exec($ch));
+        $sihevi = json_decode(curl_exec($ch));
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        $this->historico = $this->sihevi->HistoricoDonaciones;
-        $this->diferido = $this->sihevi->InformacionDiferido;
+        $this->historico = $sihevi->HistoricoDonaciones;
+        $this->diferido = $sihevi->InformacionDiferido;
 
-        $counter = 1;
+        $counter = 0;
 
         $last_date = "";
 
-        $recording = null;
+        $this->recording = null;
 
         foreach ($this->historico as $history) {
 
@@ -69,23 +70,21 @@ class ClickEvent extends Component
             }
             else {
 
-                if (strtotime($this->ConvertirFormatoFecha($last_date)) > strtotime($history->FECHA_DONACION)) {
+                if (strtotime(date($this->ConvertirFormatoFecha($last_date))) > strtotime(date($history->FECHA_DONACION))) {
 
-                    $recording = $counter;
+                    $this->recording = $counter;
                 }
                 else {
 
                     $last_date = $history->FECHA_DONACION;
                     
-                    $recording = $counter;
+                    $this->recording = $counter;
                 }
             }
 
             $counter += 1;
         }
 
-        $recording;
-
-        $this->response_sihevi = $this->historico[intval($recording)];
+        $this->response_sihevi = (array) $this->historico[intval($this->recording - 1)];
     }
 }
