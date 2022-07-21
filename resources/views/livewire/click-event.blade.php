@@ -1,9 +1,20 @@
 <div class="card">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <div class="container-fluid d-flex flex-row fixed-width">
+<<<<<<< HEAD
         @livewire('response-sihevi')
         <div class="card col-sm-3 mt-5 ml-4 border border-primary rounded">
             <div class="card-header  text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
+=======
+
+        {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
+        <i class="fa fa-home"></i>
+        MENÚ
+        </a> --}}
+
+        <div class="card col-sm-3 mt-5 ml-4">
+            <div class="card-header text-center">
+>>>>>>> refs/remotes/origin/main
                 <br>
                 <h5>SIHEVI CONSULT</h5>
             </div>
@@ -18,21 +29,32 @@
                         <option value="NUIP">NUIP - UNIQUE PERSONAL IDENTIFICATION NUMBER</option>
                         <option value="PE">PE - SPECIAL RESIDENCE PERMIT</option>
                     </select>
-                    <h1>{{ $documenttype }}</h1>
                 </div>
 
 
                 <div class="form-group">
                     <label>Identification</label>
+<<<<<<< HEAD
                     <input wire:model="identification" type="text" class="form-control"
                         placeholder="Enter identification">
                     <h1>{{ $identification }}</h1>
                </div>
+=======
+                    <input wire:model="identification" type="text" class="form-control" placeholder="Enter identification">
+>>>>>>> refs/remotes/origin/main
 
                 <section class="row">
+<<<<<<< HEAD
                    <div class="card-header text-center border border-primary rounded">
                         <button wire:click="callFunction()" class="btn btn-block btn-danger align-left"
                             data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
+=======
+                    {{-- <div class="col-6">
+                            <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
+                        </div> --}}
+                    <div class="card-header text-center">
+                        <button wire:click="callFunction()" class="btn btn-block btn-danger align-left" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
+>>>>>>> refs/remotes/origin/main
                             SIHEVI</button>
                     </div>
                 </section>
@@ -41,6 +63,7 @@
         <div class="card col-md-5 mt-5 ml-3 border border-primary rounded">
             <div class="card-header text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
                 <br>
+<<<<<<< HEAD
                 <h5>SHOW ANSWER</h5>
             </div>
         </div>
@@ -52,6 +75,26 @@
         </div>
     </div>
   
+=======
+                SHOW ANSWER
+                <br>
+                @if($historico != null)
+                @foreach($historico as $history)
+                @foreach($history as $data)
+                <p>
+                    {{ $data }}
+                </p>
+                @endforeach
+                @endforeach
+                @endif
+            </div>
+        </div>
+        <div class="card col-sm-3 mt-5 ml-3">
+            <h1>data 2</h1>
+        </div>
+    </div>
+    {{-- creating space for communication by whatsapp --}}
+>>>>>>> refs/remotes/origin/main
     <div class="ml-3 mr-3 mb-3 border border-primary rounded">
         <div class="card ">
             <div class="card-header text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
@@ -60,20 +103,16 @@
             </div>
 
             <div class="form-group row mt-3 col-md-5  ml-3">
-                <label for="phone_number"
-                    class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
                 <div class="col-md-6">
-                    <input id="phone_number" type="text"
-                        class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
-                        value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
                     @error('phone_number')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
