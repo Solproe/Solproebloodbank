@@ -14,7 +14,8 @@ class ClickEvent extends Component
     protected $diferido;
     public $response_sihevi;
     public $recording;
-    
+    public $data;
+
     public function render()
     {
         return view('livewire.click-event');
@@ -67,24 +68,25 @@ class ClickEvent extends Component
             if ($counter == 1) {
 
                 $last_date = $history->FECHA_DONACION;
-            }
-            else {
+            } else {
 
                 if (strtotime(date($this->ConvertirFormatoFecha($last_date))) > strtotime(date($history->FECHA_DONACION))) {
 
                     $this->recording = $counter;
-                }
-                else {
+                } else {
 
                     $last_date = $history->FECHA_DONACION;
-                    
+
                     $this->recording = $counter;
                 }
             }
 
+            if ($history->FECHA_DONACION == $last_date) {
+
+                $this->data = (array) $history;
+            }
+
             $counter += 1;
         }
-
-        $this->response_sihevi = (array) $this->historico[intval($this->recording - 1)];
     }
 }
