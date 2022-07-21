@@ -10,7 +10,10 @@ class ClickEvent extends Component
 {
     public $identification;
     public $documenttype;
-    public $event = false;
+    public $historico;
+    protected $diferido;
+    protected $sihevi;
+    public $date;
     
     public function render()
     {
@@ -28,11 +31,27 @@ class ClickEvent extends Component
         return view('consulta/Consulta');
     }
 
-    public function invoking()
+    public function callFunction()
     {
 
-        $this->emit('donor', $this->identification);
+        $ch = curl_init();
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
+        );
 
-        $this->event = true;
+        curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        $this->sihevi = json_decode(curl_exec($ch));
+        $info = curl_getinfo($ch);
+        curl_close($ch);
+
+        $this->historico = $this->sihevi->HistoricoDonaciones;
+        $this->diferido = $this->sihevi->InformacionDiferido;
+
+        /* $this->open = true; */
+
     }
 }

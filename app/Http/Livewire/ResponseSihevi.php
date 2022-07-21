@@ -11,12 +11,7 @@ class ResponseSihevi extends Component
 {
 
     /* public $open = true; */
-    public $identification;
-    public $documenttype;
-    public $historico;
-    protected $diferido;
-    protected $sihevi;
-    public $date;
+    
 
     protected $listeners = ['donor' => 'callFunction'];
 
