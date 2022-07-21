@@ -12,8 +12,7 @@ class ClickEvent extends Component
     public $documenttype;
     public $historico;
     protected $diferido;
-    protected $sihevi;
-    public $date;
+    public $response_sihevi;
     
     public function render()
     {
@@ -29,6 +28,11 @@ class ClickEvent extends Component
     public function VerConsulta(Request $id)
     {
         return view('consulta/Consulta');
+    }
+
+    private static function ConvertirFormatoFecha($fecha)
+    {
+        return substr($fecha, 0, 2) . "-" . substr($fecha, 3, 5) . substr($fecha, 6);
     }
 
     public function callFunction()
@@ -51,7 +55,37 @@ class ClickEvent extends Component
         $this->historico = $this->sihevi->HistoricoDonaciones;
         $this->diferido = $this->sihevi->InformacionDiferido;
 
-        /* $this->open = true; */
+        $counter = 1;
 
+        $last_date = "";
+
+        $recording = null;
+
+        foreach ($this->historico as $history) {
+
+            if ($counter == 1) {
+
+                $last_date = $history->FECHA_DONACION;
+            }
+            else {
+
+                if (strtotime($this->ConvertirFormatoFecha($last_date)) > strtotime($history->FECHA_DONACION)) {
+
+                    $recording = $counter;
+                }
+                else {
+
+                    $last_date = $history->FECHA_DONACION;
+                    
+                    $recording = $counter;
+                }
+            }
+
+            $counter += 1;
+        }
+
+        $recording;
+
+        $this->response_sihevi = $this->historico[intval($recording)];
     }
 }

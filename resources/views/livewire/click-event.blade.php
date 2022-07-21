@@ -55,13 +55,11 @@
                 SHOW ANSWER
                 <br>
                 @if($historico != null)
-                @foreach($historico as $history)
-                @foreach($history as $data)
-                <p>
-                    {{ $data }}
-                </p>
-                @endforeach
-                @endforeach
+                    @foreach($response_sihevi as $valor)
+                        <p>
+                            @dd(gettype($response_sihevi))
+                        </p>
+                    @endforeach
                 @endif
             </div>
         </div>
