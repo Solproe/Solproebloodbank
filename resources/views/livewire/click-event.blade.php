@@ -63,19 +63,6 @@
         <div class="card col-md-5 mt-5 ml-3 border border-primary rounded">
             <div class="card-header text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
                 <br>
-<<<<<<< HEAD
-                <h5>SHOW ANSWER</h5>
-            </div>
-        </div>
-        <div class="card col-sm-3 mt-5 ml-3 border border-primary rounded">
-            <div class="card-header text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
-                <br>
-                <h5>IMC/VOLEMIA</h5>
-            </div>
-        </div>
-    </div>
-  
-=======
                 SHOW ANSWER
                 <br>
                 @if($historico != null)
@@ -94,7 +81,6 @@
         </div>
     </div>
     {{-- creating space for communication by whatsapp --}}
->>>>>>> refs/remotes/origin/main
     <div class="ml-3 mr-3 mb-3 border border-primary rounded">
         <div class="card ">
             <div class="card-header text-center fs-3 text-info shadow p-3 mb-5 bg-body rounded">
