@@ -54,14 +54,27 @@
                 <br>
                 SHOW ANSWER
                 <br>
-                {{$recording}}
-                <br>
                 @if($historico != null)
-                    @foreach($data as $valor)
-                        <p>
-                            {{$valor}}
-                        </p>
-                    @endforeach
+                <TABLE BORDER>
+                    <TR>
+                        <TH>Head1</TH>
+                        <TD>Item 1</TD>
+                        <TD>Item 2</TD>
+                        <TD>Item 3</TD>
+                    </TR>
+                    <TR>
+                        <TH>Head2</TH>
+                        <TD>Item 4</TD>
+                        <TD>Item 5</TD>
+                        <TD>Item 6</TD>
+                    </TR>
+                    <TR>
+                        <TH>Head3</TH>
+                        <TD>Item 7</TD>
+                        <TD>Item 8</TD>
+                        <TD>Item 9</TD>
+                    </TR>
+                </TABLE>
                 @endif
             </div>
         </div>
