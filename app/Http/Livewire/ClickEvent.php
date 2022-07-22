@@ -15,9 +15,12 @@ class ClickEvent extends Component
     public $response_sihevi;
     public $recording;
     public $data;
+    public $open = false;
 
     public function render()
     {
+        $this->open = true;
+
         return view('livewire.click-event');
     }
 
@@ -56,6 +59,11 @@ class ClickEvent extends Component
 
         $this->historico = $sihevi->HistoricoDonaciones;
         $this->diferido = $sihevi->InformacionDiferido;
+
+        if ($this->historico == null) {
+
+            $this->open = true;
+        }
 
         $counter = 0;
 

@@ -1,16 +1,15 @@
-<div class="card">
+<div class="border border-info rounded" style="height:100%;width:100%;">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <div class="container-fluid d-flex flex-row fixed-width">
+    <div class="container-fluid d-flex flex-col fixed-height">
 
         {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
         <i class="fa fa-home"></i>
         MENÚ
         </a> --}}
 
-        <div class="card col-sm-3 mt-5 ml-4">
-            <div class="card-header text-center">
-                <br>
-                SIHEVI CONSULT
+        <div class="border border-info rounded mt-3" style="height:370px;width:40%;">
+            <div class="card-header text-center  shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8 ">
+                <h5 class="text-info">SIHEVI CONSULT</h5>
             </div>
             <div class="card-body" v-if=" permisos.find( e => e === 36 ) || permisos.find( e => e === 37 ) ">
 
@@ -42,50 +41,73 @@
                             <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
                     <div class="card-header text-center">
-                        <button wire:click="callFunction()" class="btn btn-block btn-danger align-left" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
+                        <button wire:click="callFunction()" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
                             SIHEVI</button>
                         {{-- <p>{{ $message }}</p> --}}
                     </div>
                 </section>
             </div>
         </div>
-        <div class="card col-md-5 mt-5 ml-3">
-            <div class="card-header text-center">
-                <br>
-                SHOW ANSWER
-                <br>
-                @if($historico != null)
-                <TABLE BORDER>
-                    <TR>
-                        <TH>Head1</TH>
-                        <TD>Item 1</TD>
-                        <TD>Item 2</TD>
-                        <TD>Item 3</TD>
-                    </TR>
-                    <TR>
-                        <TH>Head2</TH>
-                        <TD>Item 4</TD>
-                        <TD>Item 5</TD>
-                        <TD>Item 6</TD>
-                    </TR>
-                    <TR>
-                        <TH>Head3</TH>
-                        <TD>Item 7</TD>
-                        <TD>Item 8</TD>
-                        <TD>Item 9</TD>
-                    </TR>
-                </TABLE>
-                @endif
+        <div class="border border-info rounded ml-3 mt-3" style="height:370px;width:80%;">
+            <div class="card-header text-center shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8">
+                <h5 class="text-info">SHOW ANSWER</h5>
             </div>
+            @if ($open == true)
+                <x-modal />
+            @endif
+            @if ($historico != null)
+            
+            <div class="container table-responsive text-center">
+                <table class="table-sm" style="height: 100%;">
+                    <TR>
+                        <th id="data" style="text-align:left;">Identification</th>
+                        <td>:</td>
+                        <td>{{$data['NUM_IDENTIFICACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Full Name</th>
+                        <td>:</td>
+                        <div class="container d-flex justify-content-center">
+                            <TD>{{$data['PRIMER_NOMBRE']}}</TD>
+                            <td>{{$data['SEGUNDO_NOMBRE']}}</td>
+                            <td>{{$data['PRIMER_APELLIDO']}}</td>
+                            <td>{{$data['SEGUNDO_APELLIDO']}}</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Donation Date</th>
+                        <td>:</td>
+                        <td>{{$data['FECHA_DONACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Donor Type</th>
+                        <td>:</td>
+                        <td>{{$data['TIPO_DONACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Blood Bank</th>
+                        <td>:</td>
+                        <td style="width:40%;">{{$data['NOMBRE_BANCO']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Status</th>
+                        <td>:</td>
+                        <td>{{$data['TIPO_DONANTE']}}</td>
+                    </tr>
+                </table>
+            </div>
+            @endif
         </div>
-        <div class="card col-sm-3 mt-5 ml-3">
-            <h1>data 2</h1>
+        <div class="border border-info rounded ml-3 mt-3" style="height:370px;;width:30%;">
+            <div class="card-header text-center shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8">
+                <h5 class="text-info">IMC/VOLEMIA</h5>
+            </div>
         </div>
     </div>
     {{-- creating space for communication by whatsapp --}}
-    <div class="ml-3 mr-3 mb-3 border border-primary rounded">
-        <div class="card ">
-            <div class="card-header text-center fs-3 text-danger ">
+    <div>
+        <div class="border border-info rounded ml-3 mt-3" style="height:90px;;width:90%;">
+            <div class="card-header text-center fs-3 text-info shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8 ">
                 <br>
                 <p class="text-center">SENDING AND VERIFICATION AND NOTIFICATION OF TELEPHONE NUMBER</p>
             </div>
