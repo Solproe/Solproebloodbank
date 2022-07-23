@@ -22,12 +22,5 @@ class ConsultarDonante extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
     
-        return [
-            'identification' => 'required|numeric',
-            'documenttype' => 'required|alpha|in:CC,CE,PA,NUIP,PE'
-        ];
-    }
 }
