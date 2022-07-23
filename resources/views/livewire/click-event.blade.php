@@ -25,8 +25,6 @@
                         <option value="PE">PE - SPECIAL RESIDENCE PERMIT</option>
                     </select>
                 </div>
-
-
                 <div class="form-group">
                     <label>Identification</label>
                     <input wire:model="identification" type="text" class="form-control"
@@ -70,11 +68,10 @@
         </div>
     </div>
     {{-- creating space for communication by whatsapp --}}
-    <div>
-        <div  class="border border-info rounded ml-3 mt-3" style="height:90px;;width:90%;">
+    <div class="container-fluid d-flex  flex-row fixed-width">
+        <div  class="border border-info rounded ml-1 mt-3 mb-3" style="height:180px;;width:100%;">
             <div class="card-header text-center fs-3 text-info shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8 ">
-                <br>
-                <p class="text-center">SENDING AND VERIFICATION AND NOTIFICATION OF TELEPHONE NUMBER</p>
+                <h2 class="text-info ">SENDING AND VERIFICATION AND NOTIFICATION OF TELEPHONE NUMBER</h2>
             </div>
 
             <div class="form-group row mt-3 col-md-5  ml-3">
