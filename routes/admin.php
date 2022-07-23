@@ -27,10 +27,6 @@ Route::resource('donors', DonorsController::class)->names('donor.donors');
 Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
 
 
-
-
-
-
 /* Route::get('/sihevi/consults/consulta', function() {
      return view('sihevi.consults.consulta');
 });*/

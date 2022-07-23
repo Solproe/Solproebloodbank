@@ -27,8 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label>Identification</label>
-                    <input wire:model="identification" type="text" class="form-control"
-                        placeholder="Enter identification">
+                    <input wire:model="identification" type="text" class="form-control" placeholder="Enter identification">
 
                     {{-- <input @keydown.tab.prevent="GestionarLectura($event.target.value)" v-model="identificacion"
                         type="text" class="form-control"> --}}
@@ -40,8 +39,7 @@
                             <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
                     <div class="card-header text-center">
-                        <button wire:click="callFunction()" class="btn btn-block btn-danger align-left"
-                            data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
+                        <button wire:click="callFunction()" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
                             SIHEVI</button>
                         {{-- <p>{{ $message }}</p> --}}
                     </div>
@@ -51,15 +49,52 @@
         <div class="border border-info rounded ml-3 mt-3" style="height:370px;width:80%;">
             <div class="card-header text-center shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8">
                 <h5 class="text-info">SHOW ANSWER</h5>
-                {{ $recording }}
-                @if ($historico != null)
-                    @foreach ($data as $valor)
-                        <h1>
-                            {{ $valor }}
-                        </h1>
-                    @endforeach
-                @endif
             </div>
+            @if ($open == true)
+                <x-modal />
+            @endif
+            @if ($historico != null)
+            
+            <div class="container table-responsive text-center">
+                <table class="table-sm" style="height: 100%;">
+                    <TR>
+                        <th id="data" style="text-align:left;">Identification</th>
+                        <td>:</td>
+                        <td>{{$data['NUM_IDENTIFICACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Full Name</th>
+                        <td>:</td>
+                        <div class="container d-flex justify-content-center">
+                            <TD>{{$data['PRIMER_NOMBRE']}}</TD>
+                            <td>{{$data['SEGUNDO_NOMBRE']}}</td>
+                            <td>{{$data['PRIMER_APELLIDO']}}</td>
+                            <td>{{$data['SEGUNDO_APELLIDO']}}</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Donation Date</th>
+                        <td>:</td>
+                        <td>{{$data['FECHA_DONACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Donor Type</th>
+                        <td>:</td>
+                        <td>{{$data['TIPO_DONACION']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Blood Bank</th>
+                        <td>:</td>
+                        <td style="width:40%;">{{$data['NOMBRE_BANCO']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:left;">Status</th>
+                        <td>:</td>
+                        <td>{{$data['TIPO_DONANTE']}}</td>
+                    </tr>
+                </table>
+            </div>
+            @endif
         </div>
         <div class="border border-info rounded ml-3 mt-3" style="height:370px;;width:30%;">
             <div class="card-header text-center shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8">
@@ -77,13 +112,11 @@
             <div class="form-group row mt-3 col-md-5  ml-3">
                 <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
                 <div class="col-md-6">
-                    <input id="phone_number" type="text"
-                        class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
-                        value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
                     @error('phone_number')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
             </div>
