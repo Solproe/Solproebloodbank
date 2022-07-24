@@ -65,7 +65,7 @@
                     <tr>
                         <th style="text-align:left;">Full Name</th>
                         <td>:</td>
-                        <div class="container d-flex justify-content-center">
+                        <div class="container d-flex justify-left">
                             <TD>{{$data['PRIMER_NOMBRE']}}</TD>
                             <td>{{$data['SEGUNDO_NOMBRE']}}</td>
                             <td>{{$data['PRIMER_APELLIDO']}}</td>
