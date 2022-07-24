@@ -12,14 +12,14 @@ class ClickEvent extends Component
     public $documenttype;
     public $historico;
     protected $diferido;
-    public $response_sihevi;
+    public $response;
     public $recording;
     public $data;
-    public $open = false;
+    public $open;
+    public $sexo;
 
     public function render()
     {
-        $this->open = true;
 
         return view('livewire.click-event');
     }
@@ -42,6 +42,7 @@ class ClickEvent extends Component
 
     public function callFunction()
     {
+        $this->open = false;
 
         $ch = curl_init();
         $headers = array(
@@ -95,6 +96,39 @@ class ClickEvent extends Component
             }
 
             $counter += 1;
+        }
+        date_default_timezone_set('UTC');
+
+        $datetime1 = date_create(date("Y-m-d"));
+
+        $datetime2 = date_create($this->ConvertirFormatoFecha($last_date));
+
+        $interval = date_diff($datetime1, $datetime2);
+
+        foreach ($interval as $valor) {
+
+            $tiempo[] = $valor;
+        }
+
+        if ($this->sexo == "hombre" && $tiempo[0] == 0) {
+
+            if ($tiempo[1] < 4) {
+
+                $this->response = "Fuera del rango de tiempo de donacion";
+            }
+        }
+
+        elseif ($this->sexo == "mujer") {
+
+            if ($tiempo[1] < 3 && $tiempo[0] == 0) {
+
+                $this->response = "Fuera del rango de tiempo de donacion";
+            }
+
+        else {
+
+            $this->response = "habilitado";
+        }
         }
     }
 }

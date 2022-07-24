@@ -1,5 +1,6 @@
 <div class="border border-info rounded" style="height:100%;width:100%;">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <div class="container-fluid d-flex flex-col fixed-height">
 
         {{-- <a href="{{ asset('menu') }}" class="btn btn-dark mb-3 mr-2">
@@ -38,10 +39,13 @@
                     {{-- <div class="col-6">
                             <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
                         </div> --}}
-                    <div class="card-header text-center">
+                    <div class="col">
+                        <x-modal></x-modal>
+                    </div>
+                    <div class="col">
                         <button wire:click="callFunction()" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-globe"></i>
-                            SIHEVI</button>
-                        {{-- <p>{{ $message }}</p> --}}
+                            SIHEVI
+                        </button>
                     </div>
                 </section>
             </div>
@@ -51,14 +55,18 @@
                 <h5 class="text-info">SHOW ANSWER</h5>
             </div>
             @if ($open == true)
-                <x-modal />
+            <div>
+                <script>
+                    swal("Oops!", "Something went wrong on the page!", "error");
+                </script>
+            </div>
             @endif
             @if ($historico != null)
-            
+            <p>{{$response}}</p>
             <div class="container table-responsive text-center">
                 <table class="table-sm" style="height: 100%;">
                     <TR>
-                        <th id="data" style="text-align:left;">Identification</th>
+                        <th style="text-align:left;">Identification</th>
                         <td>:</td>
                         <td>{{$data['NUM_IDENTIFICACION']}}</td>
                     </tr>
@@ -104,7 +112,7 @@
     </div>
     {{-- creating space for communication by whatsapp --}}
     <div class="container-fluid d-flex  flex-row fixed-width">
-        <div  class="border border-info rounded ml-1 mt-3 mb-3" style="height:180px;;width:100%;">
+        <div class="border border-info rounded ml-1 mt-3 mb-3" style="height:180px;;width:100%;">
             <div class="card-header text-center fs-3 text-info shadow-lg p-3 mb-3 mt-2 bg-white rounded border-8 ">
                 <h2 class="text-info ">SENDING AND VERIFICATION AND NOTIFICATION OF TELEPHONE NUMBER</h2>
             </div>
