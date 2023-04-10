@@ -1,0 +1,48 @@
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Consult Donor</h1>
+@stop
+
+@section('content')
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header text-center text-xl text-danger">
+                SIHEVI CONSULT
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label><i class="text-danger"> *</i> Types of identification</label>
+                    <select v-model="tipo_documento" class="form-control">
+                        <option value="">CHOOSE TYPE OF IDENTIFICATION</option>
+                        <option value="CC">CC - CITIZENSHIP CARD</option>
+                        <option value="CE">CE - FOREIGNER ID</option>
+                        <option value="PA">PA - PASSPORT</option>
+                        <option value="NUIP">NUIP - UNIQUE PERSON IDENTIFICATION NUMBERL</option>
+                        <option value="PE">PE - SPECIAL RESIDENCE PERMIT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="text-danger">*</i> Identification</label>
+                    <input v-model="identificacion" type="text" class="form-control">
+                </div>
+                <section class="row">
+                    {{-- <div class="col-6">
+                        <button v-on:click="ConsultarDonanteEnHuav()" class="btn btn-block btn-primary"><i class="fa fa-h-square"></i> HUAV</button>
+                </div> --}}
+                <div class="col-12">
+                    <button type="button" wire:click="callFunction" class="btn btn-danger">Click Me</button>
+                    <button class="btn btn-danger btn-med float-right" wire="SiheviConsult">SIHEVI</button>
+                </div>   
+                </section>
+               
+            </div>
+        </div>
+    </div>
+
+
+@stop
