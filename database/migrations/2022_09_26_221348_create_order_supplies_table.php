@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_supplies');
             $table->foreign('id_supplies')->references('id')->on('supplies');
             $table->integer('quantity');
-            $table->integer('price')->nullable();
             $table->timestamps();
         });
     }

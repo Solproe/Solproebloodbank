@@ -18,9 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_applicant');
             $table->foreign('id_applicant')->references('id')->on('users');
             $table->string('status');
-            $table->unsignedBigInteger('id_provider')->nullable();
-            $table->foreign('id_provider')->references('id')->on('providers');
-            $table->string('ordertype');
             $table->timestamps();
         });
     }
