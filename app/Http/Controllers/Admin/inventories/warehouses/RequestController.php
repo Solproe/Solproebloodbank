@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin\inventories\warehouse;
+namespace App\Http\Controllers\Admin\inventories\warehouses;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventories\Order\RequestOrder;
+use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
+use App\Models\Inventories\supplies\supplies;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -14,7 +17,8 @@ class RequestController extends Controller
      */
     public function index()
     {
-        return view('admin.inventories.warehouses.index');
+        $supplies = supplies::all();
+        return view('admin.inventories.warehouses.index', compact('supplies'));
     }
 
     /**
@@ -35,7 +39,20 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new RequestOrder();
+        $order->id_applicant = auth()->user()->id;
+        $order->status = 'earring';
+        $order->save();
+
+        foreach ($request->supplies as $key => $value) {
+            $suppliesOrder = new OrderSuppliesOrder();
+            $suppliesOrder->id_order = $order->id;
+            $suppliesOrder->id_supplies = $key;
+            $suppliesOrder->quantity = $value;
+            $suppliesOrder->save();
+        }
+
+        return redirect()->route('dashboard');
     }
 
     /**
