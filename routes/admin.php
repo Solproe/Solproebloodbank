@@ -17,44 +17,47 @@ use App\Http\Controllers\RolesAndPermissions\Roles;
 use App\Http\Controllers\sihevi\ConsultaController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::post('data', [RegisterSecondLevel::class, 'create'])->name('data');
+    Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer');
 
-Route::get('register2', function () {
-    return view('auth.register');
-})->name('register2');
+    Route::post('data', [RegisterSecondLevel::class, 'create'])->name('data');
 
-Route::resource('Permissions', Permissions::class)->names('RolesAndPermissions.Permissions');
+    Route::get('register2', function () {
+        return view('auth.register');
+    })->name('register2');
 
-Route::resource('Roles', Roles::class)->names('RolesAndPermissions.Roles');
+    Route::resource('Permissions', Permissions::class)->names('RolesAndPermissions.Permissions');
 
-Route::get('', [HomeController::class, 'index'])->name('admin.home');
+    Route::resource('Roles', Roles::class)->names('RolesAndPermissions.Roles');
 
-Route::resource('Pettycashs', Pettycashs::class)->names('admin.accountings.pettycash');
+    Route::get('', [HomeController::class, 'index'])->name('admin.home');
 
-Route::resource('requestorings', RequestoringController::class)->names('admin.requestorings');
+    Route::resource('Pettycashs', Pettycashs::class)->names('admin.accountings.pettycash');
 
-Route::resource('providers', ProveedorController::class)->names('admin.providers');
+    Route::resource('requestorings', RequestoringController::class)->names('admin.requestorings');
 
-Route::resource('states', StateController::class)->names('admin.states');
+    Route::resource('providers', ProveedorController::class)->names('admin.providers');
 
-Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
+    Route::resource('states', StateController::class)->names('admin.states');
 
-Route::resource('supplies', SupplyController::class)->names('admin.inventories.supplies');
+    Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
 
-Route::resource('donors', PersonController::class)->names('donors');
+    Route::resource('supplies', SupplyController::class)->names('admin.inventories.supplies');
 
-Route::resource('storages', WarehouseController::class)->names('admin.inventories.supplies.storages');
+    Route::resource('donors', PersonController::class)->names('donors');
 
-Route::resource('warehouses', RequestController::class)->names('admin.inventories.warehouses');
+    Route::resource('storages', WarehouseController::class)->names('admin.inventories.supplies.storages');
 
-Route::resource('suppliesorder', SuppliesOrder::class)->names('admin.inventories.suppliesorder');
+    Route::resource('warehouses', RequestController::class)->names('admin.inventories.warehouses');
 
-Route::post('deletePermissions', [Roles::class, 'deletePermissions'])->name('admin.deletePermissions');
+    Route::resource('suppliesorder', SuppliesOrder::class)->names('admin.inventories.suppliesorder');
 
-Route::post('addPermissions', [Roles::class, 'addPermissions'])->name('admin.addPermissions');
+    Route::post('deletePermissions', [Roles::class, 'deletePermissions'])->name('admin.deletePermissions');
 
-Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
+    Route::post('addPermissions', [Roles::class, 'addPermissions'])->name('admin.addPermissions');
+
+    Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
+});
 
 Route::view('selects', 'selects');

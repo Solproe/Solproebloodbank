@@ -41,6 +41,7 @@ class RequestController extends Controller
     {
         $order = new RequestOrder();
         $order->id_applicant = auth()->user()->id;
+        dd(auth()->user()->id);
         $order->status = 'earring';
         $order->save();
 
@@ -52,7 +53,12 @@ class RequestController extends Controller
             $suppliesOrder->save();
         }
 
-        return redirect()->route('dashboard');
+        if ($suppliesOrder->save()) {
+            return redirect()->route('admin.providers.index');
+
+        } else {
+            return redirect()->route('admin.providers.create');
+        }
     }
 
     /**
