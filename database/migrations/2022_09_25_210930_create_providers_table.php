@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('check_digital');
             $table->string('id_regimens');
             $table->string('name');
-            /*  $table->string('id_state'); */
-            /*  $table->string('id_town'); */
             $table->string('address');
             $table->string('legal_representative');
             $table->string('CITIZENSHIO_CARD');

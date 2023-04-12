@@ -41,7 +41,6 @@ class RequestController extends Controller
     {
         $order = new RequestOrder();
         $order->id_applicant = auth()->user()->id;
-        dd(auth()->user()->id);
         $order->status = 'earring';
         $order->save();
 
