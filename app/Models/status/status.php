@@ -13,7 +13,6 @@ class status extends Model
     protected $table = 'status';
 
     protected $fillable= [
-
         'id',
         'status_name'
     ];
