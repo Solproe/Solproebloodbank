@@ -3,13 +3,13 @@
 use App\Http\Controllers\Admin\accountings\Pettycashs;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
-use App\Http\Controllers\admin\inventories\supplies\SupplyController;
-use App\Http\Controllers\admin\inventories\supplies\WarehouseController;
-use App\Http\Controllers\admin\inventories\warehouses\RequestController;
+use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
+use App\Http\Controllers\Admin\inventories\supplies\WarehouseController;
+use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\Admin\inventories\warehouse\warehouse_movement;
 use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
-use App\Http\Controllers\admin\stateController;
+use App\Http\Controllers\Admin\stateController;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
 use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
