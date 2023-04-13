@@ -74,7 +74,7 @@
                 <script>
                     if ('{{ $message }}' !== '') {
                         Swal.fire(
-                            'The Internet?',
+                            'The data is important to continue',
                             '{{ $message }}',
                             'question'
                         );

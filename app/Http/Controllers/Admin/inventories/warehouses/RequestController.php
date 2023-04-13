@@ -17,9 +17,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $message = null;
-        $supplies = supplies::all();
-        return view('admin.inventories.warehouses.index', compact('supplies', 'message'));
+
     }
 
     /**
@@ -29,7 +27,9 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        $message = null;
+        $supplies = supplies::all();
+        return view('admin.inventories.warehouses.create', compact('supplies', 'message'));
     }
 
     /**
@@ -44,25 +44,26 @@ class RequestController extends Controller
         $order = new RequestOrder();
         $order->id_applicant = auth()->user()->id;
         $order->status = 'earring';
-        $order->save();
 
         foreach ($request->supplies as $key => $value) {
             $suppliesOrder = new OrderSuppliesOrder();
-            $suppliesOrder->id_order = $order->id;
+
             $suppliesOrder->id_supplies = $key;
             if ($value == null) {
                 $supply = supplies::where('id', $key)->first();
-                $message = "por favor, especifique la cantidad para: " . $supply->supply_name;
+                $message = "please specify quantity for: " . $supply->supply_name;
                 $supplies = supplies::all();
-                return view('admin.inventories.warehouses.index', compact('supplies', 'message'));
+                return view('admin.inventories.warehouses.create', compact('supplies', 'message'));
             } else {
                 $suppliesOrder->quantity = $value;
+                $order->save();
+                $suppliesOrder->id_order = $order->id;
             }
             $suppliesOrder->save();
         }
 
         if ($suppliesOrder->save()) {
-            return redirect()->route('admin.providers.index');
+            return redirect()->route('admin.inventories.warehouses.index');
 
         } else {
             return redirect()->route('admin.providers.create');

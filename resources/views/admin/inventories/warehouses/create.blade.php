@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <link href="/css/app.css" rel="stylesheet">
+    {{-- <link href="/css/app.css" rel="stylesheet">
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -49,5 +49,6 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
+    @livewire('admin.warehouse.requestsuppliescreate', ['supplies' => $supplies, 'message' => $message])
 @stop
