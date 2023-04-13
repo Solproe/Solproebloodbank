@@ -17,8 +17,9 @@ class RequestController extends Controller
      */
     public function index()
     {
+        $message = null;
         $supplies = supplies::all();
-        return view('admin.inventories.warehouses.index', compact('supplies'));
+        return view('admin.inventories.warehouses.index', compact('supplies', 'message'));
     }
 
     /**
@@ -39,6 +40,7 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
+        $count = 0;
         $order = new RequestOrder();
         $order->id_applicant = auth()->user()->id;
         $order->status = 'earring';
@@ -48,7 +50,14 @@ class RequestController extends Controller
             $suppliesOrder = new OrderSuppliesOrder();
             $suppliesOrder->id_order = $order->id;
             $suppliesOrder->id_supplies = $key;
-            $suppliesOrder->quantity = $value;
+            if ($value == null) {
+                $supply = supplies::where('id', $key)->first();
+                $message = "por favor, especifique la cantidad para: " . $supply->supply_name;
+                $supplies = supplies::all();
+                return view('admin.inventories.warehouses.index', compact('supplies', 'message'));
+            } else {
+                $suppliesOrder->quantity = $value;
+            }
             $suppliesOrder->save();
         }
 
