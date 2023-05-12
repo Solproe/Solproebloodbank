@@ -5,6 +5,7 @@ namespace App\Models\status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inventories\supplies\supplies;
+use App\Models\ValidateReceived\ValidateReceivedModel;
 
 class status extends Model
 {
@@ -21,9 +22,8 @@ class status extends Model
         return $this->hasMany(supplies::class, 'id');
     }
 
-    public static function status($id){
-        return supplies::where('id_status','=',$id)
-        ->get();
+    public function validateReceived()
+    {
+        return $this->hasMany(ValidateReceivedModel::class, 'id');
     }
-    
 }

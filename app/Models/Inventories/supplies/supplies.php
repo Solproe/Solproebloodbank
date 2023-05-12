@@ -7,7 +7,6 @@ use App\Models\Inventories\Order\SuppliesOrder;
 use App\Models\Inventories\storage\warehouse_movement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\process\step_process;
 use App\Models\status\status;
 
 class supplies extends Model
@@ -42,5 +41,5 @@ class supplies extends Model
    {
         return $this->hasMany(ShoppingSupplies::class, 'id');
    }
-    
+
 }
