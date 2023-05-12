@@ -23,9 +23,9 @@ class FirebaseMessaging
 
     public function send(RequestInterface $requests)
     {
-        $message = CloudMessage::withTarget('Topic', $requests->topic)
-        ->withNotification(Notification::create($requests->type, $requests->address))
-        ->withData(['salut' => 'hola']);
+        $message = CloudMessage::withTarget('Topic', '')
+        ->withNotification(Notification::create('Solproe', 'envio de productos'))
+        ->withData(['consecutive' => $requests->consecutive]);
 
         $this->messaging->send($message);
     }

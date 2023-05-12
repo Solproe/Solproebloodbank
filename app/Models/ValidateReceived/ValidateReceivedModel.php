@@ -38,11 +38,6 @@ class ValidateReceivedModel extends Model implements RequestInterface
         return $this->belongsTo(status::class, 'id_status');
     }
 
-    public function save(array $options = [])
-    {
-        //code
-    }
-
     public function send()
     {
         //code

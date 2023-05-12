@@ -4,7 +4,8 @@ namespace App\Http\Controllers\ValidateReceived;
 
 use App\Http\Controllers\Controller;
 use App\Models\ValidateReceived\ValidateReceivedModel;
-use App\Services\RequestInterface;
+use App\Services\FirebaseMessaging;
+use App\Services\FirebaseService;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,10 @@ class ValidateReceivedController extends Controller
             'through' => 'required',
         ]);
 
+        $firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
+
+        $messaging = new FirebaseMessaging($firebase->getFirebase());
+
         $validateReceived = new ValidateReceivedModel();
 
         $consecutive = $request->unities.$request->boxes.time().date('DMY');
@@ -60,8 +65,6 @@ class ValidateReceivedController extends Controller
         $date = $request->date;
 
         $validateReceived->date = $date . " " . $request->hour;
-
-        $validateReceived->hour = $request->hour;
 
         $validateReceived->interval = $request->minutesInterval;
 
@@ -76,12 +79,19 @@ class ValidateReceivedController extends Controller
         try
         {
             $validateReceived->save();
-            return redirect()->route('admin.validatereceived.index');
+
+            $messaging->send($validateReceived);
         }
         catch (Exception $e)
         {
             dd($e);
         }
+
+
+
+
+        return redirect()->route('admin.validatereceived.index');
+
     }
 
     /**
