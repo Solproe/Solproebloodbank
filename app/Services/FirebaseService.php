@@ -4,6 +4,7 @@ namespace App\Services;
 
 require '../vendor/autoload.php';
 
+use Exception;
 use Kreait\Firebase\Factory;
 
 class FirebaseService
@@ -12,8 +13,14 @@ class FirebaseService
 
     public function __construct($databaseName)
     {
-        $this->firebase = (new Factory)
-            ->withServiceAccount('../key/solproyectar-6f96d-firebase-adminsdk-n64ov-99c49e1e43.json');
+            try{
+                $this->firebase = (new Factory)
+                ->withServiceAccount('../key/solproyectar-6f96d-firebase-adminsdk-n64ov-99c49e1e43.json');
+            }
+            catch (Exception $e)
+            {
+                dd($e);
+            }
     }
 
     public function getFirebase(): Factory

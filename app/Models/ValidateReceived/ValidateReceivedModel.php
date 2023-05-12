@@ -4,10 +4,11 @@ namespace App\Models\ValidateReceived;
 
 use App\Models\status\status;
 use App\Models\User;
+use App\Services\RequestInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ValidateReceivedModel extends Model
+class ValidateReceivedModel extends Model implements RequestInterface
 {
     use HasFactory;
 
@@ -35,5 +36,15 @@ class ValidateReceivedModel extends Model
     public function status()
     {
         return $this->belongsTo(status::class, 'id_status');
+    }
+
+    public function save(array $options = [])
+    {
+        //code
+    }
+
+    public function send()
+    {
+        //code
     }
 }
