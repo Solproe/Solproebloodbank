@@ -5,7 +5,6 @@
 @vite('resources/css/app.css')
 
 
-
 <div class="border-b border-gray-900/10 pb-12">
 
     <div class="mt-10 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -27,7 +26,6 @@
             <tbody>
                 @foreach ($validateReceived as $validate)
                 <tr>
-                    @dd($validate);
                     <th scope="row"> {{$validate->consecutive}} </th>
                     <td> {{$validate->unities}} </td>
                     <td> {{$validate->boxes}} </td>

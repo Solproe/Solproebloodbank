@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ValidateReceived;
 
 use App\Http\Controllers\Controller;
 use App\Models\ValidateReceived\ValidateReceivedModel;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,19 @@ class ValidateReceivedController extends Controller
     public function index()
     {
         $validateReceived = ValidateReceivedModel::all();
+
+        foreach ($validateReceived as $validate)
+        {
+            if (strtotime(date(Carbon::now(env('TIMEZONE')))) < strtotime(date($validate->date)))
+            {
+                dd($validate->date);
+            }
+            else
+            {
+                dd(date(Carbon::now(env('TIMEZONE'))));
+            }
+        }
+
         return view('validateReceived.index', compact('validateReceived'));
     }
 
@@ -55,7 +69,11 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->id_user = auth()->user()->id;
 
-        $validateReceived->date = $request->date;
+        $date = $request->date;
+
+        $validateReceived->date = $date . " " . $request->hour;
+
+        $validateReceived->hour = $request->hour;
 
         $validateReceived->interval = $request->minutesInterval;
 

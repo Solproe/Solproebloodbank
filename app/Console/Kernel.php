@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Models\ValidateReceived\ValidateReceivedModel;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +17,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function ()
+        {
+            $validateReceived = ValidateReceivedModel::all();
+
+            foreach ($validateReceived as $validate)
+            {
+                if (strtotime(date(Carbon::now(env('TIMEZONE')))) < strtotime(date($validate->date)))
+                {
+                    //continue
+                }
+                else
+                {
+                    //code
+                }
+            }
+        })->everyThreeHours();
+
+
     }
 
     /**

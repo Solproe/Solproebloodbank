@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tugps24' => [
+        'token' => env('TOKEN_API_TUGPS24'),
+        'url'   => env('URL_API_TUGPS24'),
+        'db'    => [
+            'solproe-solproyectar'  =>  'https://solproe-solproyectar.firebaseio.com/',
+            'default'   =>  'https://solproyectar-6f96d-default-rtdb.firebaseio.com/',
+        ],
+    ],
+
 ];

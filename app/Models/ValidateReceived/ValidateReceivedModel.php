@@ -2,7 +2,7 @@
 
 namespace App\Models\ValidateReceived;
 
-use App\Models\Status\status;
+use App\Models\status\status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -13,16 +13,17 @@ class status extends Model
 
     protected $table = 'status';
 
-    protected $fillable= [
+    protected $fillable = [
         'id',
-        'status_name'
+        'status_name',
     ];
 
-    public function supplies(){
+    public function supplies()
+    {
         return $this->hasMany(supplies::class, 'id');
     }
 
-    public function validateReceived()
+    public function validate_received()
     {
         return $this->hasMany(ValidateReceivedModel::class, 'id');
     }
