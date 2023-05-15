@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('interval');
             $table->integer('unities');
             $table->integer('boxes');
+            $table->string('customer');
             $table->unsignedBigInteger('id_status');
             $table->foreign('id_status')->references('id')->on('status');
             $table->date('received_date')->nullable();

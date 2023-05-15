@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Requests\Requests;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
@@ -23,7 +22,7 @@ class FirebaseMessaging
 
     public function send(RequestInterface $requests)
     {
-        $message = CloudMessage::withTarget('Topic', '')
+        $message = CloudMessage::withTarget('Topic', $requests->customer)
         ->withNotification(Notification::create('Solproe', 'envio de productos'))
         ->withData(['consecutive' => $requests->consecutive]);
 
