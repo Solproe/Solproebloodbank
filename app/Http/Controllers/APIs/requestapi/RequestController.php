@@ -53,7 +53,9 @@ class RequestController extends Controller
             }
             catch (Exception $e)
             {
-                return json_encode($e);
+                $d = ["status" => "error"];
+                $d = json_encode($d);
+                return $d;
             }
         }
     }
