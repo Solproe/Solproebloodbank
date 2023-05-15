@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('Roles', Roles::class)->names('RolesAndPermissions.Roles');
 
-    Route::get('', [HomeController::class, 'index'])->name('admin.home');
+    Route::get('/', [HomeController::class, 'index'])->name('admin.home');
 
     Route::resource('Pettycashs', Pettycashs::class)->names('admin.accountings.pettycash');
 
