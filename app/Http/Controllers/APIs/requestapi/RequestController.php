@@ -48,7 +48,7 @@ class RequestController extends Controller
                     'news' => $request->annotation]);
                 $res = ['status' => 'ok'];
 
-                $res = json_encode($res);
+                $res = json_encode($validateReceived);
                 return $res;
             }
             catch (Exception $e)
