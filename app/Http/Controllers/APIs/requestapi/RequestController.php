@@ -18,10 +18,10 @@ class RequestController extends Controller
 
     public function store(Request $request)
     {
-        return true;
+        return ["res" => "hi baby"];
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validateReceived = ValidateReceivedModel::where('consecutive', $request->consecutive)->first();
 
@@ -29,10 +29,12 @@ class RequestController extends Controller
 
         $carbon = Carbon::now(env('TIMEZONE'));
 
+        $res = ['status' => '200'];
+
         if ($request->status == 'received')
         {
 
-            $res = ['res' => 'ok'];
+            $res = ['status' => 'ok'];
 
             $res = json_encode($res);
             return $res;
@@ -42,15 +44,14 @@ class RequestController extends Controller
             $validateReceived->update(['id_status' => $status->id,
                                         'received_date' => $carbon,
                                         'news' => $request->annotation]);
+
+            $res = ['status' => 'ok'];
+
+            $res = json_encode($res);
+            return $res;
         }
 
-        $data = [
-            'res' => 'ok perro'
-        ];
-
-        $data = json_encode($data);
-
-        return $data;
+        return $res;
     }
 
     public function show(Request $request)

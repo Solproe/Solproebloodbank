@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('update', [RequestController::class, 'update'])->name('v1.update');
+Route::post('store', [RequestController::class, 'store'])->name('v1.store');
+
+Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('v1.update');
 
 Route::get('show', [RequestController::class, 'show'])->name('v1.show');

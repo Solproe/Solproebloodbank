@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Request;
 
+use App\Http\Controllers\APIs\tugps24API as APIsTugps24API;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\data;
 use App\Models\APIs\geocodingGoogleAPI;
@@ -13,6 +14,7 @@ use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
 use App\Services\FirebaseService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Request\geocodingGoogleAPI;
 
 /**
  * @method static \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
@@ -56,7 +58,7 @@ class RequestController extends Controller
     {
         $requests = new Requests();
 
-        $tuGPS24 = new tugps24API();
+        $tuGPS24 = new APIsTugps24API();
 
         $tuGPS24Ambulances = $tuGPS24->request();
 
