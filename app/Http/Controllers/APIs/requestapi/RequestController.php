@@ -30,7 +30,7 @@ class RequestController extends Controller
 
         $date = Carbon::now('GMT-5');
 
-        $date->format('Y-m-d H');
+        $date->format('Y-m-d H:m');
 
         $res = ['status' => '200'];
 
