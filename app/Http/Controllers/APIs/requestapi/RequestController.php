@@ -34,9 +34,9 @@ class RequestController extends Controller
 
         if ($request->status == 'received')
         {
-            $res = ['status' => 'ok'];
-
-            $res = json_encode($res);
+            $validateReceived->update(['news' => json_encode($request->annotation),
+                                            'received_date' => $date,
+                                            'id_status' => $status->id]);
             return $res;
         }
         elseif ($request->status == 'receivedAnnotation')
