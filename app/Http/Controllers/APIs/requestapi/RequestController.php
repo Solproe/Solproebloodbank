@@ -26,7 +26,7 @@ class RequestController extends Controller
     {
         $validateReceived = ValidateReceivedModel::where('consecutive', $id)->first();
 
-        $validateReceived->update(['news' => $request->get_class]);
+        $validateReceived->update(['news' => json_encode($request)]);
 
         $status = status::where('status_name', $request->status)->first();
 
