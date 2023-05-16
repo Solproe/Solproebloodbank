@@ -30,6 +30,8 @@ class RequestController extends Controller
 
         $date = Carbon::now('GMT-5');
 
+        $date->format('Y-m-d H');
+
         $res = ['status' => '200'];
 
         if ($request->status == 'received')
