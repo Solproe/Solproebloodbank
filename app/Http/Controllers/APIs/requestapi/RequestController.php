@@ -28,7 +28,7 @@ class RequestController extends Controller
 
         $status = status::where('status_name', $request->status)->first();
 
-        $date = Carbon::now('GMT-5')->format("yy/MM/dd HH:mm");
+        $date = Carbon::now('GMT-5');
 
         $res = ['status' => '200'];
 
