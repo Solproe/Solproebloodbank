@@ -26,8 +26,6 @@ class RequestController extends Controller
     {
         $validateReceived = ValidateReceivedModel::where('consecutive', $id)->first();
 
-        $validateReceived->update(['news' => "helloooooo"]);
-
         $status = status::where('status_name', $request->status)->first();
 
         $carbon = Carbon::now('GMT-5');
@@ -43,21 +41,21 @@ class RequestController extends Controller
         }
         elseif ($request->status == 'receivedAnnotation')
         {
-            $validateReceived->update(['news' => 'data']);
             try
             {
                 $validateReceived->update(['id_status' => $status->id,
                     'received_date' => strval($carbon),
                     'news' => $request->annotation]);
                 $res = ['status' => 'ok'];
-
                 $res = json_encode($res);
+
                 return true;
             }
             catch (Exception $e)
             {
                 $d = ["status" => "error"];
                 $d = json_encode($d);
+
                 return true;
             }
         }
@@ -65,7 +63,7 @@ class RequestController extends Controller
 
     public function show(Request $request)
     {
-        $val = ['data' => 'data'];
+        $val = ['data' => 'daniel eres un pro!'];
         $val = json_encode($val);
         return $val;
     }
