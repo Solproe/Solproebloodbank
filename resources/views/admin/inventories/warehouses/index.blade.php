@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Warehouse')
+@section('title', 'warehouse')
 
 @section('content_header')
     <h1>List Warehouse Request Supplies</h1>
 @stop
 
 @section('content')
-    @livewire('admin.warehouse.requestsuppliesindex', ['supplies' => $supplies, 'message' => $message])
+    @livewire('admin.warehouse.request-supplies-index', ['order_requests' => $order_requests])
 @stop

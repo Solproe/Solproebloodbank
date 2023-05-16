@@ -2,9 +2,10 @@
 
 namespace App\Models\status;
 
+use App\Models\inventories\supplies\Order_Request;
+use App\Models\Inventories\supplies\supplies;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Inventories\supplies\supplies;
 
 class status extends Model
 {
@@ -12,18 +13,25 @@ class status extends Model
 
     protected $table = 'status';
 
-    protected $fillable= [
+    protected $fillable = [
         'id',
-        'status_name'
+        'status_name',
     ];
 
-    public function supplies(){
+    public function supplies()
+    {
         return $this->hasMany(supplies::class, 'id');
     }
 
-    public static function status($id){
-        return supplies::where('id_status','=',$id)
-        ->get();
+    public function status_id()
+    {
+        return $this->hasMany(order_request::class, 'status');
     }
-    
+
+    public static function status($id)
+    {
+        return supplies::where('id_status', '=', $id)
+            ->get();
+    }
+
 }
