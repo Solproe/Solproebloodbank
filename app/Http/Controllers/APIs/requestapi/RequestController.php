@@ -43,7 +43,8 @@ class RequestController extends Controller
         {
             try
             {
-                $validateReceived->update(['news' => json_encode($request->annotation)]);
+                $validateReceived->update(['news' => json_encode($request->annotation),
+                                            'received_date' => $date]);
 
                 return true;
             }
