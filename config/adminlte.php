@@ -374,8 +374,18 @@ return [
                                 [
                                     'text' => 'Delivery',
                                     'icon' => 'fas fa-truck fa-fw',
-                                    /*  'active' => ['admin/Management*'], */
-                                    'url' => '#',
+                                    'submenu' => [
+                                        [
+                                            'text' => 'index',
+                                            'route' => 'admin.validatereceived.index'
+                                        ],
+
+                                        [
+                                            'text' => 'create',
+                                            'route' => 'admin.validatereceived.create'
+                                        ],
+
+                                    ],
                                 ],
 
                                 [
