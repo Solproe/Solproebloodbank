@@ -28,7 +28,7 @@ class RequestController extends Controller
 
         $status = status::where('status_name', $request->status)->first();
 
-        $carbon = Carbon::now('GMT-5');
+        $date = Carbon::now('GMT-5')->format("yy/MM/dd HH:mm");
 
         $res = ['status' => '200'];
 
@@ -43,7 +43,8 @@ class RequestController extends Controller
         {
             try
             {
-                $validateReceived->update(['news' => json_encode($request->annotation)]);
+                $validateReceived->update(['news' => json_encode($request->annotation),
+                                            'received_date' => $date]);
 
                 return true;
             }
