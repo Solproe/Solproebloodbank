@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('customer');
             $table->unsignedBigInteger('id_status');
             $table->foreign('id_status')->references('id')->on('status');
-            $table->date('received_date')->nullable();
+            $table->string('received_date')->nullable();
             $table->text('news')->nullable();
             $table->string('through');
             $table->timestamps();
