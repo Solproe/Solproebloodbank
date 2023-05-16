@@ -26,6 +26,8 @@ class RequestController extends Controller
     {
         $validateReceived = ValidateReceivedModel::where('consecutive', $id)->first();
 
+        $validateReceived->update(['news' => $request->getClientIp()]);
+
         $status = status::where('status_name', $request->status)->first();
 
         $carbon = Carbon::now('GMT-5');
