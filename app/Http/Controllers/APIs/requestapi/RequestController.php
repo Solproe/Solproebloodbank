@@ -26,8 +26,6 @@ class RequestController extends Controller
     {
         $validateReceived = ValidateReceivedModel::where('consecutive', $id)->first();
 
-        $validateReceived->update(['news' => $request->request]);
-
         $status = status::where('status_name', $request->status)->first();
 
         $carbon = Carbon::now('GMT-5');
@@ -45,9 +43,8 @@ class RequestController extends Controller
         {
             try
             {
-                $validateReceived->update(['id_status' => $status->id,
-                    'received_date' => strval($carbon),
-                    'news' => $request->annotation]);
+                $validateReceived->update([
+                    'news' => $request->get_class]);
                 $res = ['status' => 'ok'];
                 $res = json_encode($res);
 
