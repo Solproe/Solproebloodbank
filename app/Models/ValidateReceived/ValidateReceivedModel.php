@@ -19,7 +19,6 @@ class ValidateReceivedModel extends Model implements RequestInterface
         'consecutive',
         'id_user',
         'date',
-        'interval',
         'unities',
         'boxes',
         'id_status',
