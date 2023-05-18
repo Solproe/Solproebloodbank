@@ -20,7 +20,7 @@ class ValidateReceivedController extends Controller
      */
     public function index()
     {
-        $validateReceived = ValidateReceivedModel::all();
+        $validateReceived = ValidateReceivedModel::all()->orderBy('id', 'DESC');
 
         return view('validateReceived.index', compact('validateReceived'));
     }
