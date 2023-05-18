@@ -44,7 +44,12 @@
                         <td> {{$validate->news}} </td>
                     @endif
                     <td> {{$validate->users->name}} </td>
-                    <td> {{$validate->sender}} </td>
+
+                    @if ($validate->sender == null)
+                        <td> NULL </td>
+                    @else
+                        <td> {{$validate->sender}} </td>
+                    @endif
                   </tr>
                 @endforeach
             </tbody>
