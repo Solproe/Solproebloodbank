@@ -39,6 +39,7 @@ return new class extends Migration
      */
     public function down()
     {
+        $des = "des";
         Schema::dropIfExists('validate_received');
     }
 };

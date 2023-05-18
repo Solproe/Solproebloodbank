@@ -14,6 +14,7 @@ class RequestController extends Controller
 
     public function index()
     {
+        $dus = "dus";
         return true;
     }
 
