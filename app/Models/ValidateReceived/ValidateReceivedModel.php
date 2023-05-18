@@ -17,6 +17,7 @@ class ValidateReceivedModel extends Model implements RequestInterface
     protected $fillable = [
         'id',
         'consecutive',
+        'customer',
         'id_user',
         'date',
         'unities',

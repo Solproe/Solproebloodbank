@@ -12,7 +12,7 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Consecutive</th>
+                <th scope="col">Customer</th>
                 <th scope="col">Unities</th>
                 <th scope="col">Boxes</th>
                 <th scope="col">Status</th>
@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($validateReceived as $validate)
                 <tr>
-                    <th scope="row"> {{$validate->consecutive}} </th>
+                    <th scope="row"> {{$validate->customer}} </th>
                     <td> {{$validate->unities}} </td>
                     <td> {{$validate->boxes}} </td>
                     <td> {{$validate->status->status_name}} </td>
