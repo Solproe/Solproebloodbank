@@ -2,11 +2,21 @@
 
 namespace App\Console;
 
+use App\Models\ValidateReceived\ValidateReceivedModel;
+use App\Services\FirebaseMessaging;
+use App\Services\FirebaseService;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+
+    protected $messaging;
+
+    protected $firebase;
+
     /**
      * Define the application's command schedule.
      *
@@ -15,7 +25,38 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+
+        $this->firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
+
+        $schedule->call(function ()
+        {
+            $validateReceived = ValidateReceivedModel::all();
+
+            foreach ($validateReceived as $validate)
+            {
+                $request = $validate;
+
+                if (strtotime(date(Carbon::now(env('TIMEZONE')))) < strtotime(date($validate->date)))
+                {
+                    //continue
+                }
+                else
+                {
+                    $this->messaging = new FirebaseMessaging($this->firebase->getFirebase());
+
+                    try
+                    {
+                        $this->messaging->send($request);
+                    }
+                    catch (Exception $e)
+                    {
+                        dd($e);
+                    }
+                }
+            }
+        })->everyThreeHours();
+
+
     }
 
     /**

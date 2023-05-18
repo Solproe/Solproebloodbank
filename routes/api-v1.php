@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ApiWhatsapp\ApiManager;
+use App\Http\Controllers\APIs\requestapi\RequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
+Route::post('store', [RequestController::class, 'store'])->name('v1.store');
 
-Route::post('status', [ApiManager::class, 'notification'])->name('status');
+Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('v1.update');
+
+Route::get('show', [RequestController::class, 'show'])->name('v1.show');

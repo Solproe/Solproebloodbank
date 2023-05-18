@@ -2,7 +2,6 @@
 
 namespace App\Models\status;
 
-use App\Models\inventories\supplies\Order_Request;
 use App\Models\Inventories\supplies\supplies;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,15 +22,8 @@ class status extends Model
         return $this->hasMany(supplies::class, 'id');
     }
 
-    public function status_id()
+    public function validate_received()
     {
-        return $this->hasMany(order_request::class, 'status');
+        return $this->hasMany(ValidateReceivedModel::class, 'id');
     }
-
-    public static function status($id)
-    {
-        return supplies::where('id_status', '=', $id)
-            ->get();
-    }
-
 }

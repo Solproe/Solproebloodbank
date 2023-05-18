@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ValidateReceived\ValidateReceivedModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -58,8 +59,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function order_request()
+    public function validateReceived()
     {
-        return $this->hasMany(order_request::class, 'id_applicant');
+        return $this->hasMany(ValidateReceivedModel::class, 'id');
     }
 }
