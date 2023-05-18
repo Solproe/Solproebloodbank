@@ -47,7 +47,7 @@ class RequestController extends Controller
                 $validateReceived->update(['news' => json_encode($request->annotation),
                                             'received_date' => $date,
                                             'id_status' => $status->id,
-                                            'sender' => json_encode($request->sender)]);
+                                            'sender' => json_encode($request->userName)]);
 
                 return true;
             }
