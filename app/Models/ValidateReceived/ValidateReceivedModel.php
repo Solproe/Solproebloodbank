@@ -17,15 +17,16 @@ class ValidateReceivedModel extends Model implements RequestInterface
     protected $fillable = [
         'id',
         'consecutive',
+        'customer',
         'id_user',
         'date',
-        'interval',
         'unities',
         'boxes',
         'id_status',
         'received_date',
         'news',
         'through',
+        'sender',
     ];
 
     public function users()

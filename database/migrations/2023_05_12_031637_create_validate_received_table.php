@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->string('date');
-            $table->string('interval');
             $table->integer('unities');
             $table->integer('boxes');
             $table->string('customer');
@@ -28,6 +27,7 @@ return new class extends Migration
             $table->string('received_date')->nullable();
             $table->text('news')->nullable();
             $table->string('through');
+            $table->string('sender')->nullable();
             $table->timestamps();
         });
     }

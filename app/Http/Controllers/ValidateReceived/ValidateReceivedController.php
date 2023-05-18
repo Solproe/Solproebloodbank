@@ -20,7 +20,7 @@ class ValidateReceivedController extends Controller
      */
     public function index()
     {
-        $validateReceived = ValidateReceivedModel::all();
+        $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
 
         return view('validateReceived.index', compact('validateReceived'));
     }
@@ -46,7 +46,6 @@ class ValidateReceivedController extends Controller
         $request->validate([
             'unities' => 'required',
             'boxes'   => 'required',
-            'minutesInterval' => 'required',
             'hour' => 'required',
             'date' => 'required',
             'through' => 'required',
@@ -72,8 +71,6 @@ class ValidateReceivedController extends Controller
         $validateReceived->customer = $request->customer;
 
         $validateReceived->date = $date . " " . $request->hour;
-
-        $validateReceived->interval = $request->minutesInterval;
 
         $validateReceived->unities = intval($request->unities);
 

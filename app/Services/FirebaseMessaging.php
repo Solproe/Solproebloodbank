@@ -22,7 +22,9 @@ class FirebaseMessaging
 
     public function send(RequestInterface $requests)
     {
-        $message = CloudMessage::withTarget('Topic', $requests->customer)
+        $customer = $requests->customer;
+        $customer = str_replace(" ", "", $customer);
+        $message = CloudMessage::withTarget('Topic', $customer)
         ->withNotification(Notification::create('Solproe', 'envio de productos'))
         ->withData(['consecutive' => $requests->consecutive]);
 

@@ -12,7 +12,7 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Consecutive</th>
+                <th scope="col">Customer</th>
                 <th scope="col">Unities</th>
                 <th scope="col">Boxes</th>
                 <th scope="col">Status</th>
@@ -20,13 +20,14 @@
                 <th scope="col">Date</th>
                 <th scope="col">Received Date</th>
                 <th scope="col">News</th>
-                <th scope="col">Action</th>
+                <th scope="col">User</th>
+                <th scope="col">Sender</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($validateReceived as $validate)
                 <tr>
-                    <th scope="row"> {{$validate->consecutive}} </th>
+                    <th scope="row"> {{$validate->customer}} </th>
                     <td> {{$validate->unities}} </td>
                     <td> {{$validate->boxes}} </td>
                     <td> {{$validate->status->status_name}} </td>
@@ -42,22 +43,13 @@
                     @else
                         <td> {{$validate->news}} </td>
                     @endif
+                    <td> {{$validate->users->name}} </td>
 
-                    <td>
-                        <form action="{{ route('admin.validatereceived.update', $validate->id) }}" method="PUT">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-outline-warning">edit</button>
-                        </form>
-
-                        <form action="{{ route('admin.validatereceived.destroy', $validate->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-outline-danger">delete</button>
-                        </form>
-                    </span>
-                    </td>
-
+                    @if ($validate->sender == null)
+                        <td> NULL </td>
+                    @else
+                        <td> {{$validate->sender}} </td>
+                    @endif
                   </tr>
                 @endforeach
             </tbody>

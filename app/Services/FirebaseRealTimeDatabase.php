@@ -37,7 +37,9 @@ class FirebaseRealTimeDatabase
 
     public function saveRequest($ref, $data)
     {
-        $this->reference = $this->database->getReference($ref)->getChild($data->customer);
+        $customer = $data->customer;
+        $customer = str_replace(" ", "", $customer);
+        $this->reference = $this->database->getReference($ref)->getChild($customer);
 
         $date = substr($data->date, 0, 4) . "/" . substr($data->date, 5, 2) . "/" .
         substr($data->date, 8,2) . " " . substr($data->date, 11, 5);

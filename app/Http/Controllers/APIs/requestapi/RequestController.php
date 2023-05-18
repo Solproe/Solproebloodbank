@@ -36,7 +36,8 @@ class RequestController extends Controller
         {
             $validateReceived->update(['news' => json_encode($request->annotation),
                                             'received_date' => $date,
-                                            'id_status' => $status->id]);
+                                            'id_status' => $status->id,
+                                            'sender' => $request->userName]);
             return $res;
         }
         elseif ($request->status == 'receivedAnnotation')
@@ -45,7 +46,8 @@ class RequestController extends Controller
             {
                 $validateReceived->update(['news' => json_encode($request->annotation),
                                             'received_date' => $date,
-                                            'id_status' => $status->id]);
+                                            'id_status' => $status->id,
+                                            'sender' => $request->userName]);
 
                 return true;
             }
