@@ -20,7 +20,8 @@
                 <th scope="col">Date</th>
                 <th scope="col">Received Date</th>
                 <th scope="col">News</th>
-                <th scope="col">Action</th>
+                <th scope="col">User</th>
+                <th scope="col">Sender</th>
               </tr>
             </thead>
             <tbody>
@@ -42,22 +43,8 @@
                     @else
                         <td> {{$validate->news}} </td>
                     @endif
-
-                    <td>
-                        <form action="{{ route('admin.validatereceived.update', $validate->id) }}" method="PUT">
-                            @csrf
-                            @method('PUT')
-                            <button class="btn btn-outline-warning">edit</button>
-                        </form>
-
-                        <form action="{{ route('admin.validatereceived.destroy', $validate->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-outline-danger">delete</button>
-                        </form>
-                    </span>
-                    </td>
-
+                    <td> {{$validate->users->name}} </td>
+                    <td> {{$validate->sender}} </td>
                   </tr>
                 @endforeach
             </tbody>

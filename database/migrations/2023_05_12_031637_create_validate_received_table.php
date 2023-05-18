@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('received_date')->nullable();
             $table->text('news')->nullable();
             $table->string('through');
+            $table->string('sender')->nullable();
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ class ValidateReceivedModel extends Model implements RequestInterface
         'received_date',
         'news',
         'through',
+        'sender',
     ];
 
     public function users()
