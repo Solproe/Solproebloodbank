@@ -43,7 +43,7 @@ class Order_Request extends Model
 
     public function user()
     {
-        return $this->belongsTo(user::class, 'id_applicant');
+        return $this->belongsTo(User::class, 'id_applicant');
     }
 
     /*  public function status()

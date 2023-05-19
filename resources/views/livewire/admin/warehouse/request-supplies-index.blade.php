@@ -26,39 +26,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($order_requests as $order_request)
-                        <tr>
+                    @if (@isset($order_requests) and $order_requests != null)
+                        @foreach ($order_requests as $order_request)
+                            <tr>
 
 
-                            {{--  @dd($order_request) --}}
-                            <td class="col-md-4" width="12px">{{ $order_request->user->name }}</td>
-                            <td width="10px">{{ $order_request->created_at }}</td>
-                            <td width="10px">{{ $order_request->status_id->status_name }}</td>
+                                {{--  @dd($order_request) --}}
+                                <td class="col-md-4" width="12px">{{ $order_request->user->name }}</td>
+                                <td width="10px">{{ $order_request->created_at }}</td>
+                                <td width="10px">{{ $order_request->status_id->status_name }}</td>
 
-                            <div class="text-center col">
-                                <td width="10%" align="center">
-                                    <a class="far fa-edit btn btn-outline-info btn-med"
-                                        href="{{ route('admin.inventories.warehouses.edit', $order_request) }}">
-                                        Edit</a>
-                                </td>
-                                <td width="10px" align="center">
-                                    <form
-                                        action="{{ route('admin.inventories.warehouses.destroy', $order_request->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
-                                            Remove</button>
-                                    </form>
-                                </td>
-                                <td width="10px" align="center">
-                                    <a class="far fa-chart-bar btn btn-outline-success btn-med"
-                                        href="{{ route('admin.inventories.warehouses.edit', $order_request->id) }}">
-                                        Pack off</a>
-                                </td>
-                            </div>
-                        </tr>
-                    @endforeach
+                                <div class="text-center col">
+                                    <td width="10%" align="center">
+                                        <a class="far fa-edit btn btn-outline-info btn-med"
+                                            href="{{ route('admin.inventories.warehouses.edit', $order_request) }}">
+                                            Edit</a>
+                                    </td>
+                                    <td width="10px" align="center">
+                                        <form
+                                            action="{{ route('admin.inventories.warehouses.destroy', $order_request->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
+                                                Remove</button>
+                                        </form>
+                                    </td>
+                                    <td width="10px" align="center">
+                                        <a class="far fa-chart-bar btn btn-outline-success btn-med"
+                                            href="{{ route('admin.inventories.warehouses.edit', $order_request->id) }}">
+                                            Pack off</a>
+                                    </td>
+                                </div>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
