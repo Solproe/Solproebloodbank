@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin\inventories\warehouse;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inventories\Order\RequestOrder;
-use App\Models\Inventories\Order\ShoppingOrder;
-use App\Models\Inventories\Order\ShoppingSupplies;
 use App\Models\Inventories\Order\SuppliesOrder;
 use App\Models\Inventories\storage\warehouse_movement as StorageWarehouse_movement;
 use App\Models\Inventories\supplies\supplies;
@@ -20,6 +18,7 @@ class warehouse_movement extends Controller
      */
     public function index()
     {
+        dd('data');
         $supplies = supplies::all();
 
         $warehouse = StorageWarehouse_movement::all();
@@ -42,17 +41,13 @@ class warehouse_movement extends Controller
 
         $matriz = array();
 
-        foreach ($suppliesorder as $supplyorder)
-        {
+        foreach ($suppliesorder as $supplyorder) {
             $warehouse = StorageWarehouse_movement::where('id_supply', '=', $supplyorder->id_supplies)->orderBy('id', 'desc')->first();
 
-            if (isset($warehouse->id) && $warehouse->id != null && $supplyorder->supplies->status->status_name == 'active')
-            {
-                $matriz [] = [$supplyorder->supplies->supply_name => $warehouse->balance];
-            }
-            else
-            {
-                $matriz [] = [$supplyorder->supplies->supply_name => 0];
+            if (isset($warehouse->id) && $warehouse->id != null && $supplyorder->supplies->status->status_name == 'active') {
+                $matriz[] = [$supplyorder->supplies->supply_name => $warehouse->balance];
+            } else {
+                $matriz[] = [$supplyorder->supplies->supply_name => 0];
             }
         }
 
@@ -75,10 +70,8 @@ class warehouse_movement extends Controller
 
         $order->save();
 
-        foreach ($request->quantity as $key => $value)
-        {
-            if ( $request->from != null)
-            {
+        foreach ($request->quantity as $key => $value) {
+            if ($request->from != null) {
                 $entity1 = StorageWarehouse_movement::where('entity', '=', $request->from)->where('id_supply', '=', $key)->orderBy('id', 'desc')->first();
             }
 
@@ -86,15 +79,11 @@ class warehouse_movement extends Controller
 
             $balance = 0;
 
-            if ($value != null)
-            {
-                if ($request->to[key($request->to)] != 'principal')
-                {
-                    if (isset($entity2->balance) && $entity2->balance !== null)
-                    {
+            if ($value != null) {
+                if ($request->to[key($request->to)] != 'principal') {
+                    if (isset($entity2->balance) && $entity2->balance !== null) {
                         $balance = $entity2->balance + intval($value);
-                    } else 
-                    {
+                    } else {
                         $balance += intval($value);
                     }
 
@@ -116,12 +105,9 @@ class warehouse_movement extends Controller
 
                     $balance2 = 0;
 
-                    if (isset($entity1->balance) && $entity1->balance != null)
-                    {
+                    if (isset($entity1->balance) && $entity1->balance != null) {
                         $balance2 = $entity1->balance - intval($value);
-                    } 
-                    else 
-                    {
+                    } else {
                         $balance2 -= intval($value);
                     }
 
@@ -140,18 +126,13 @@ class warehouse_movement extends Controller
                     $storage2->balance = $balance2;
 
                     $storage2->save();
-                } 
-                else 
-                {
+                } else {
 
                     $balance2 = 0;
 
-                    if (isset($entity2->balance) && $entity2->balance !== null)
-                    {
+                    if (isset($entity2->balance) && $entity2->balance !== null) {
                         $balance2 = $entity2->balance + intval($value);
-                    }  
-                    else 
-                    {
+                    } else {
                         $balance2 += intval($value);
                     }
 
@@ -171,7 +152,6 @@ class warehouse_movement extends Controller
 
                     $storage3->save();
 
-                   
                 }
             }
 
@@ -206,17 +186,13 @@ class warehouse_movement extends Controller
 
         $supplyorder = SuppliesOrder::where('id_order', '=', $order->id)->get();
 
-        foreach ($supplyorder as $supply)
-        {
+        foreach ($supplyorder as $supply) {
             $balance = StorageWarehouse_movement::where('id_supply', '=', $supply->id_supplies)->orderBy('id', 'desc')->first();
 
-            if ($balance != null)
-            {
-                $price [] = [$supply->id_supplies => $balance->balance];
-            }
-            else
-            {
-                $price [] = [$supply->id_supplies => 0];
+            if ($balance != null) {
+                $price[] = [$supply->id_supplies => $balance->balance];
+            } else {
+                $price[] = [$supply->id_supplies => 0];
             }
         }
 
