@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    @livewire('admin.warehouse.request-supplies-index')
+    @livewire('admin.warehouse.request-supplies-index', ['order_requests' => $order_requests])
 @stop
