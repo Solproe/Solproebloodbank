@@ -19,7 +19,16 @@ class RequestController extends Controller
      */
     public function index()
     {
-        return view('admin.inventories.warehouses.index');
+        try
+        {
+            $order_requests = Order_Request::all();
+        }
+        catch (Exception $e)
+        {
+            dd($e);
+        }
+
+        return view('admin.inventories.warehouses.index', compact('order_requests'));
     }
 
     /**
