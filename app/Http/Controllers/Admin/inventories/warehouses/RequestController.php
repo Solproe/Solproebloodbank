@@ -5,7 +5,6 @@ namespace app\Http\Controllers\Admin\inventories\warehouses;
 use App\Http\Controllers\Controller;
 use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
-use App\Models\inventories\supplies\Order_Request;
 use App\Models\Inventories\supplies\supplies;
 use Illuminate\Http\Request;
 use App\Models\inventories\supplies\Order_Request;
