@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\Admin\inventories\warehouse\warehouse_movement;
 use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
+use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
 use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
@@ -60,4 +61,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
     Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.validatereceived');
+
+    Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
 });
