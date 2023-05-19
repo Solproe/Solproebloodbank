@@ -7,9 +7,11 @@ use Livewire\Component;
 
 class RequestSuppliesIndex extends Component
 {
+
+    public $order_requests;
+
     public function render()
     {
-        $order_requests = Order_Request::all();
-        return view('livewire.admin.warehouse.request-supplies-index', ['order_requests' => $order_requests]);
+        return view('livewire.admin.warehouse.request-supplies-index');
     }
 }

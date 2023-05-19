@@ -7,6 +7,7 @@ use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
 use App\Models\inventories\supplies\Order_Request;
 use App\Models\Inventories\supplies\supplies;
+use Exception;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -18,10 +19,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $request = OrderSuppliesOrder::all();
-        dd($request);
-        $order_requests = Order_Request::all();
-        return view('admin.inventories.warehouses.index', compact('order_requests'));
+        return view('admin.inventories.warehouses.index');
     }
 
     /**

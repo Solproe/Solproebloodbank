@@ -24,8 +24,6 @@ class warehouse_movement extends Controller
 
         $warehouse = StorageWarehouse_movement::all();
 
-        dd($warehouse);
-
         return view('admin.inventories.warehouse.index', compact('warehouse', 'supplies'));
     }
 
