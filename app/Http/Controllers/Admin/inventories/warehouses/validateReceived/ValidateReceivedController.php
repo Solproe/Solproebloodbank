@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ValidateReceived;
+namespace App\Http\Controllers\Admin\inventories\warehouses\validateReceived;
 
 use App\Http\Controllers\Controller;
-use App\Models\status\status;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;

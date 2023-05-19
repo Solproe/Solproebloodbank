@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\Admin\inventories\supplies\WarehouseController;
 use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\Admin\inventories\warehouse\warehouse_movement;
+use App\Http\Controllers\Admin\inventories\warehouses\validateReceived\ValidateReceivedController;
 use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
@@ -15,7 +16,6 @@ use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
 use App\Http\Controllers\RolesAndPermissions\Roles;
 use App\Http\Controllers\sihevi\ConsultaController;
-use App\Http\Controllers\ValidateReceived\ValidateReceivedController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.validatereceived');
+    Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.inventories.validatereceived');
 
     Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
 });

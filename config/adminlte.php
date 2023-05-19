@@ -377,12 +377,12 @@ return [
                                     'submenu' => [
                                         [
                                             'text' => 'index',
-                                            'route' => 'admin.validatereceived.index'
+                                            'route' => 'admin.inventories.validatereceived.index'
                                         ],
 
                                         [
                                             'text' => 'create',
-                                            'route' => 'admin.validatereceived.create'
+                                            'route' => 'admin.inventories.validatereceived.create'
                                         ],
 
                                     ],
