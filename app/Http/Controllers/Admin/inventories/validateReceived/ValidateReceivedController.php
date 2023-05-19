@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\ValidateReceived;
+namespace app\Http\Controllers\Admin\inventories\warehouses\validateReceived;
 
 use App\Http\Controllers\Controller;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
 use App\Services\FirebaseService;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -32,16 +31,7 @@ class ValidateReceivedController extends Controller
      */
     public function create()
     {
-
-        $now_date = Carbon::now()->addDay(1);
-        $now_date = $now_date->toDateString();
-        $date_delivery = Carbon::createFromFormat('Y-m-d', $now_date)->format('d-m-Y');
-
-        $now_time = Carbon::now('GMT-5', 'Y-m-d H:m')->addHour(18);
-        $now_time = $now_time->toTimeString();
-        $time_delivery = $now_time;
-
-        return view('validateReceived.create', compact('date_delivery', 'time_delivery'));
+        return view('validateReceived.create');
     }
 
     /**
@@ -54,7 +44,7 @@ class ValidateReceivedController extends Controller
     {
         $request->validate([
             'unities' => 'required',
-            'boxes' => 'required',
+            'boxes'   => 'required',
             'hour' => 'required',
             'date' => 'required',
             'through' => 'required',
@@ -69,7 +59,7 @@ class ValidateReceivedController extends Controller
 
         $validateReceived = new ValidateReceivedModel();
 
-        $consecutive = $request->unities . $request->boxes . time() . date('DMY');
+        $consecutive = $request->unities.$request->boxes.time().date('DMY');
 
         $validateReceived->consecutive = $consecutive;
 
@@ -96,7 +86,9 @@ class ValidateReceivedController extends Controller
             $messaging->send($validateReceived);
 
             $RTdatabase->saveRequest("validateReceived", $validateReceived);
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             dd($e);
         }
 

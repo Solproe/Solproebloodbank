@@ -25,33 +25,36 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($validateReceived as $validate)
-                <tr>
-                    <th scope="row"> {{$validate->customer}} </th>
-                    <td> {{$validate->unities}} </td>
-                    <td> {{$validate->boxes}} </td>
-                    <td> {{$validate->status->status_name}} </td>
-                    <td> {{$validate->through}} </td>
-                    <td> {{$validate->date}} </td>
-                    @if ($validate->received_date == null)
-                        <td> NULL </td>
-                    @else
-                        <td> {{$validate->received_date}} </td>
-                    @endif
-                    @if ($validate->news == null)
-                        <td> NULL </td>
-                    @else
-                        <td> {{$validate->news}} </td>
-                    @endif
-                    <td> {{$validate->users->name}} </td>
+                @if (isset($validateReceived) and $validateReceived != null)
+                    @foreach ($validateReceived as $validate)
+                        <tr>
+                            <th scope="row"> {{$validate->customer}} </th>
+                            <td> {{$validate->unities}} </td>
+                            <td> {{$validate->boxes}} </td>
+                            <td> {{$validate->status->status_name}} </td>
+                            <td> {{$validate->through}} </td>
+                            <td> {{$validate->date}} </td>
+                            @if ($validate->received_date == null)
+                                <td> NULL </td>
+                            @else
+                                <td> {{$validate->received_date}} </td>
+                            @endif
+                            @if ($validate->news == null)
+                                <td> NULL </td>
+                            @else
+                                <td> {{$validate->news}} </td>
+                            @endif
+                            <td> {{$validate->users->name}} </td>
 
-                    @if ($validate->sender == null)
-                        <td> NULL </td>
-                    @else
-                        <td> {{$validate->sender}} </td>
-                    @endif
-                  </tr>
-                @endforeach
+                            @if ($validate->sender == null)
+                                <td> NULL </td>
+                            @else
+                                <td> {{$validate->sender}} </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                @endif
+
             </tbody>
           </table>
 
