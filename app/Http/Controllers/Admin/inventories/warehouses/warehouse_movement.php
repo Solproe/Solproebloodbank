@@ -24,6 +24,8 @@ class warehouse_movement extends Controller
 
         $warehouse = StorageWarehouse_movement::all();
 
+        dd($warehouse);
+
         return view('admin.inventories.warehouse.index', compact('warehouse', 'supplies'));
     }
 
@@ -93,7 +95,7 @@ class warehouse_movement extends Controller
                     if (isset($entity2->balance) && $entity2->balance !== null)
                     {
                         $balance = $entity2->balance + intval($value);
-                    } else 
+                    } else
                     {
                         $balance += intval($value);
                     }
@@ -119,8 +121,8 @@ class warehouse_movement extends Controller
                     if (isset($entity1->balance) && $entity1->balance != null)
                     {
                         $balance2 = $entity1->balance - intval($value);
-                    } 
-                    else 
+                    }
+                    else
                     {
                         $balance2 -= intval($value);
                     }
@@ -140,8 +142,8 @@ class warehouse_movement extends Controller
                     $storage2->balance = $balance2;
 
                     $storage2->save();
-                } 
-                else 
+                }
+                else
                 {
 
                     $balance2 = 0;
@@ -149,8 +151,8 @@ class warehouse_movement extends Controller
                     if (isset($entity2->balance) && $entity2->balance !== null)
                     {
                         $balance2 = $entity2->balance + intval($value);
-                    }  
-                    else 
+                    }
+                    else
                     {
                         $balance2 += intval($value);
                     }
@@ -171,7 +173,7 @@ class warehouse_movement extends Controller
 
                     $storage3->save();
 
-                   
+
                 }
             }
 
