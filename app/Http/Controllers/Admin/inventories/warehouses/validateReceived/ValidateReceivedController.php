@@ -21,8 +21,15 @@ class ValidateReceivedController extends Controller
     public function index()
     {
         $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
+        $now_date = Carbon::now()->addDay(1);
+        $now_date = $now_date->toDateString();
+        $date_delivery = Carbon::createFromFormat('Y-m-d', $now_date)->format('d-m-Y');
 
-        return view('validateReceived.index', compact('validateReceived'));
+        $now_time = Carbon::now('GMT-5', 'Y-m-d H:m')->addHour(18);
+        $now_time = $now_time->toTimeString();
+        $time_delivery = $now_time;
+
+        return view('validateReceived.index', compact('validateReceived', 'date_delivery', 'time_delivery'));
     }
 
     /**
