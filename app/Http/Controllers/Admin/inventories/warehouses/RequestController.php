@@ -9,7 +9,6 @@ use App\Models\Inventories\supplies\supplies;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\inventories\supplies\Order_Request;
-use Exception;
 
 class RequestController extends Controller
 {

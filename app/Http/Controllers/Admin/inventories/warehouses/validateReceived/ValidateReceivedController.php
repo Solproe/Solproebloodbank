@@ -10,6 +10,7 @@ use App\Services\FirebaseService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class ValidateReceivedController extends Controller
 {
@@ -55,11 +56,25 @@ class ValidateReceivedController extends Controller
         $request->validate([
             'unities' => 'required',
             'boxes' => 'required',
-            'hour' => 'required',
-            'date' => 'required',
             'through' => 'required',
             'customer' => 'required',
         ]);
+
+        $dateAndTime = $request->through;
+
+        $dateAndTime = array_key_first($dateAndTime);
+
+        $through = $request->through[$dateAndTime];
+
+        $dateAndTime = explode(",", $dateAndTime);
+
+        $date = explode("=>", $dateAndTime[0]);
+
+        $date = $date[1];
+
+        $time = explode("=>", $dateAndTime[1]);
+
+        $time = $time[1];
 
         $firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
 
@@ -75,11 +90,9 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->id_user = auth()->user()->id;
 
-        $date = $request->date;
-
         $validateReceived->customer = $request->customer;
 
-        $validateReceived->date = $date . " " . $request->hour;
+        $validateReceived->date = $date . " " . $time;
 
         $validateReceived->unities = intval($request->unities);
 
@@ -87,7 +100,7 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->id_status = 2;
 
-        $validateReceived->through = $request->through;
+        $validateReceived->through = $through;
 
         try
         {

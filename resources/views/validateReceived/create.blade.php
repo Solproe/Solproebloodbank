@@ -45,17 +45,18 @@
                             </td>
 
                             <td class="text-center" width="10px">
-                                <select class="form-select" aria-label="Default select example" name="through">
+                                <select class="form-select" aria-label="Default select example"
+                                        name="through[dateDelivery=>{{$date_delivery}},timeDelivery=>{{$time_delivery}}]">
                                     <option selected>Select through</option>
                                     <option value="CHEVALIER">CHEVALIER</option>
                                     <option value="TERMINAL">TERMINAL A TERMINAL</option>
                                     <option value="AVANSA">AVANSA</option>
                                 </select>
                             </td>
-                            <td class="text-center" width="10px">
+                            <td class="text-center" width="10px" name="dateDelivery[{{$date_delivery}}]">
                                 {{ $date_delivery }}
                             </td>
-                            <td class="text-center" width="10px">
+                            <td class="text-center" width="10px" name="deliveryTime[{{$time_delivery}}]">
                                 {{ $time_delivery }}
                             </td>
                             <td class="text-center" width="10px">
@@ -67,5 +68,4 @@
             </table>
         </div>
     </div>
-
 @endsection
