@@ -53,10 +53,10 @@
                                     <option value="AVANSA">AVANSA</option>
                                 </select>
                             </td>
-                            <td class="text-center" width="10px" name="dateDelivery[{{$date_delivery}}]">
+                            <td class="text-center" width="10px">
                                 {{ $date_delivery }}
                             </td>
-                            <td class="text-center" width="10px" name="deliveryTime[{{$time_delivery}}]">
+                            <td class="text-center" width="10px">
                                 {{ $time_delivery }}
                             </td>
                             <td class="text-center" width="10px">
