@@ -41,8 +41,8 @@ class FirebaseRealTimeDatabase
         $customer = str_replace(" ", "", $customer);
         $this->reference = $this->database->getReference($ref)->getChild($customer);
 
-        $date = substr($data->date, 0, 4) . "/" . substr($data->date, 5, 2) . "/" .
-        substr($data->date, 8,2) . " " . substr($data->date, 11, 5);
+        $date = substr($data->date, 0, 2) . "/" . substr($data->date, 3, 2) . "/" .
+        substr($data->date, 6,4) . " " . substr($data->date, 11, 5);
 
         //dd($date);
 
