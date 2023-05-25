@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\inventories\warehouses\validateReceived;
 
 use App\Http\Controllers\Controller;
+use App\Models\Center;
+use App\Models\delivery;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
@@ -28,8 +30,11 @@ class ValidateReceivedController extends Controller
         $now_time = Carbon::now('GMT-5', 'Y-m-d H:m')->addHour(18);
         $now_time = $now_time->toTimeString();
         $time_delivery = $now_time;
+        $centers = center::all();
 
-        return view('validateReceived.index', compact('validateReceived', 'date_delivery', 'time_delivery'));
+        $deliverys = delivery::all();
+
+        return view('validateReceived.index', compact('validateReceived', 'date_delivery', 'time_delivery', 'centers', 'deliverys'));
     }
 
     /**
@@ -39,14 +44,6 @@ class ValidateReceivedController extends Controller
      */
     public function create()
     {
-
-        $now_date = Carbon::now()->addDay(1);
-        $now_date = $now_date->toDateString();
-        $date_delivery = Carbon::createFromFormat('Y-m-d', $now_date)->format('d-m-Y');
-
-        $now_time = Carbon::now('GMT-5', 'Y-m-d H:m')->addHour(18);
-        $now_time = $now_time->toTimeString();
-        $time_delivery = $now_time;
 
         return view('validateReceived.create', compact('date_delivery', 'time_delivery'));
     }

@@ -12,7 +12,7 @@ return [
     | location for this type of information, allowing packages to have
     | a conventional file to locate the various service credentials.
     |
-    */
+     */
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
@@ -33,11 +33,23 @@ return [
 
     'tugps24' => [
         'token' => env('TOKEN_API_TUGPS24'),
-        'url'   => env('URL_API_TUGPS24'),
-        'db'    => [
-            'solproe-solproyectar'  =>  'https://solproe-solproyectar.firebaseio.com/',
-            'default'   =>  'https://solproyectar-6f96d-default-rtdb.firebaseio.com/',
+        'url' => env('URL_API_TUGPS24'),
+        'db' => [
+            'solproe-solproyectar' => 'https://solproe-solproyectar.firebaseio.com/',
+            'default' => 'https://solproyectar-6f96d-default-rtdb.firebaseio.com/',
         ],
+
+    ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => 'GOOGLE_REDIRECT_URI',
     ],
 
 ];

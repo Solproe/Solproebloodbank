@@ -296,8 +296,15 @@ return [
                     'route' => 'donors.index',
                     'icon' => 'fas fa-users fa-fw',
                     'active' => ['donor/Donor*'],
+                ],
+                [
+                    'text' => 'Reports',
+                    'route' => 'donors.index',
+                    'icon' => 'fas fa-users fa-fw',
+                    'active' => ['donor/Donor*'],
 
                 ],
+
             ],
         ],
         [
@@ -306,7 +313,7 @@ return [
             'submenu' =>
             [
                 [
-                    'text' => 'Contabilidad',
+                    'text' => 'Accounting',
                     'icon' => 'fas fa-thin fa-book fa-fw',
                     'submenu' =>
                     [
