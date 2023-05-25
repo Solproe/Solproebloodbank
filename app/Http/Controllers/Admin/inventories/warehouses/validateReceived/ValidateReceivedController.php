@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\inventories\warehouses\validateReceived;
 use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Models\delivery;
+use App\Models\status\status;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
@@ -12,7 +13,6 @@ use App\Services\FirebaseService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class ValidateReceivedController extends Controller
 {
@@ -102,7 +102,9 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->boxes = intval($request->boxes);
 
-        $validateReceived->id_status = 2;
+        $status = status::where('status_name', 'sent')->first();
+
+        $validateReceived->id_status = $status->id;
 
         $validateReceived->through = $through;
 

@@ -54,10 +54,10 @@
                                                     <tr>
                                                         <td class="text-center" width="8px">
                                                             <select class="form-select justify-center"
-                                                                aria-label="Default select example" name="centre">
+                                                                aria-label="Default select example" name="customer">
                                                                 <option selected>Select BloodBank</option>
                                                                 @foreach ($centers as $center)
-                                                                    <option value="$center_>ID_CENTRE">
+                                                                    <option value="{{ $center->DES_CENTRE }}">
                                                                         {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
@@ -71,10 +71,10 @@
                                                         </td>
                                                         <td class="text-center" width="10px">
                                                             <select class="form-select" aria-label="Default select example"
-                                                                name="delivery">
+                                                                name="through[dateDelivery=>{{ $date_delivery }},timeDelivery=>{{ $time_delivery }}]">
                                                                 <option selected>Select SHIPPING TRANSPORTATION</option>
                                                                 @foreach ($deliverys as $delivery)
-                                                                    <option value="$delivery->id_delivery">
+                                                                    <option value="{{ $delivery->des_delivery }}">
                                                                         {{ $delivery->des_delivery }}</option>
                                                                 @endforeach
                                                             </select>
