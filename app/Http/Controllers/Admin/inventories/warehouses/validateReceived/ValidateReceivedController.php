@@ -24,13 +24,7 @@ class ValidateReceivedController extends Controller
     public function index()
     {
         $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
-        $now_date = Carbon::now()->addDay(1);
-        $now_date = $now_date->toDateString();
-        $date_delivery = Carbon::createFromFormat('Y-m-d', $now_date)->format('d-m-Y');
 
-        $now_time = Carbon::now('GMT-5', 'Y-m-d H:m')->addHour(18);
-        $now_time = $now_time->toTimeString();
-        $time_delivery = $now_time;
         $centers = center::all();
 
         $deliverys = delivery::all();
@@ -62,23 +56,16 @@ class ValidateReceivedController extends Controller
             'boxes' => 'required',
             'through' => 'required',
             'customer' => 'required',
+            'delivery' => 'required',
         ]);
 
-        $dateAndTime = $request->through;
+        $deliveries = delivery::where("id_delivery", $request->delivery);
 
-        $dateAndTime = array_key_first($dateAndTime);
+        $dateAndTime = Carbon::now("GMT-5");
+
+        $dateAndTime = $dateAndTime->addHours();
 
         $through = $request->through[$dateAndTime];
-
-        $dateAndTime = explode(",", $dateAndTime);
-
-        $date = explode("=>", $dateAndTime[0]);
-
-        $date = $date[1];
-
-        $time = explode("=>", $dateAndTime[1]);
-
-        $time = $time[1];
 
         $firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
 
@@ -96,7 +83,7 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->customer = $request->customer;
 
-        $validateReceived->date = $date . " " . $time;
+        $validateReceived->date = "";
 
         $validateReceived->unities = intval($request->unities);
 

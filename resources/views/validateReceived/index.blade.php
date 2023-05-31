@@ -11,7 +11,6 @@
 
     @vite('resources/css/app.css')
 
-
     <div class="border-b border-gray-900/10 pb-12">
         <div class="card-heard">
             <div class="mt-3 mb-3 input-group">

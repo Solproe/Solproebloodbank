@@ -9,6 +9,6 @@ class delivery extends Model
 {
     use HasFactory;
     protected $table = 'delivery';
-    protected $fillabel = ['id_delivery', 'time_delivery'];
-    protected $primaryKey = 'Des_delivery';
+    protected $fillabel = ['id_delivery', 'des_delivery','time_delivery'];
+    protected $primaryKey = 'id_delivery';
 }

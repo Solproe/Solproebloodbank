@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\APIs\requestapi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Center;
+use App\Models\Inventories\Requestoring;
 use App\Models\status\status;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Nette\Utils\Arrays;
 
 class RequestController extends Controller
 {
@@ -59,8 +62,30 @@ class RequestController extends Controller
 
     public function show(Request $request)
     {
-        $val = ['data' => 'daniel eres un pro!'];
-        $val = json_encode($val);
-        return $val;
+        $center = Center::all();
+
+        $data = [];
+
+        try
+        {
+            foreach ($center as $centre)
+            {
+                if (array_key_exists("data", $data))
+                {
+                    $data = [$centre];
+                }
+                else
+                {
+                    array_push($data, $centre);
+                }
+            }
+            $data = json_encode($data);
+        }
+        catch (Exception $e)
+        {
+            return $e;
+        }
+
+        return $data;
     }
 }
