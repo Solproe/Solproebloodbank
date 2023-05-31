@@ -25,11 +25,11 @@ class ValidateReceivedController extends Controller
     {
         $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
 
-        $centers = center::all();
+        $centers = Center::all();
 
-        $deliverys = delivery::all();
+        $deliveries = delivery::all();
 
-        return view('validateReceived.index', compact('validateReceived', 'date_delivery', 'time_delivery', 'centers', 'deliverys'));
+        return view('validateReceived.index', compact('validateReceived', 'centers', 'deliveries'));
     }
 
     /**
