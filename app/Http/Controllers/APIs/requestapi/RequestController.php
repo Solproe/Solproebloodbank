@@ -71,7 +71,7 @@ class RequestController extends Controller
             {
                 if (array_key_exists("data", $data))
                 {
-                    $data = [$centre];
+                    $data = $centre;
                 }
                 else
                 {
