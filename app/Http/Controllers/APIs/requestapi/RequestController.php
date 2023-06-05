@@ -78,6 +78,7 @@ class RequestController extends Controller
                     array_push($data, $centre);
                 }
             }
+            array_push($data, get_class($data));
             $data = json_encode($data);
         }
         catch (Exception $e)
