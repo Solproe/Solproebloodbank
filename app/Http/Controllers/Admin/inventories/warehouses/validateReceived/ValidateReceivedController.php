@@ -55,17 +55,13 @@ class ValidateReceivedController extends Controller
             'unities' => 'required',
             'boxes' => 'required',
             'through' => 'required',
-            'customer' => 'required',
-            'delivery' => 'required',
         ]);
 
-        $deliveries = delivery::where("id_delivery", $request->delivery);
+        $delivery = delivery::where("id_delivery", $request->through)->first();
 
-        $dateAndTime = Carbon::now("GMT-5");
+        $dateAndTime = Carbon::now("GMT-5", "Y-m-d H:m");
 
-        $dateAndTime = $dateAndTime->addHours();
-
-        $through = $request->through[$dateAndTime];
+        $dateAndTime = $dateAndTime->addHours(intval($delivery->time_delivery));
 
         $firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
 
@@ -83,7 +79,7 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->customer = $request->customer;
 
-        $validateReceived->date = "";
+        $validateReceived->date = $dateAndTime->toDateString() . " " . $dateAndTime->toTimeString();
 
         $validateReceived->unities = intval($request->unities);
 
@@ -93,21 +89,18 @@ class ValidateReceivedController extends Controller
 
         $validateReceived->id_status = $status->id;
 
-        $validateReceived->through = $through;
+        $validateReceived->through = $request->through;
 
         try
         {
             $validateReceived->save();
-
             $messaging->send($validateReceived);
-
             $RTdatabase->saveRequest("validateReceived", $validateReceived);
         } catch (Exception $e) {
             dd($e);
         }
 
         return redirect()->route('admin.validatereceived.index');
-
     }
 
     /**

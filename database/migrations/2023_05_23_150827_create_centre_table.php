@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('centre', function (Blueprint $table) {
-            $table->double('id_centre');
+            $table->integer('id_centre')->primary();
             $table->string('cod_centre');
             $table->string('des_centre');
             $table->timestamps();

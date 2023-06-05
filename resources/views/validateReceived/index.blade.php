@@ -43,11 +43,9 @@
                                                     <th class="text-center">UNITIES</th>
                                                     <th class="text-center">BOXES</th>
                                                     <th class="text-center">SHIPPING TRANSPORTATION</th>
-                                                    <th class="text-center">DATE OF DELIVERY</th>
-                                                    <th class="text-center">TIME OF DELIVERY</th>
                                                 </tr>
                                             </thead>
-                                            <Tbody>
+                                            <tbody>
                                                 <form action="{{ route('admin.validatereceived.store') }}" method="POST">
                                                     @csrf
                                                     <tr>
@@ -56,8 +54,8 @@
                                                                 aria-label="Default select example" name="customer">
                                                                 <option selected>Select BloodBank</option>
                                                                 @foreach ($centers as $center)
-                                                                    <option value="{{ $center->DES_CENTRE }}">
-                                                                        {{ $center->DES_CENTRE }}</option>
+                                                                    <option value="{{ $center->id_centre }}">
+                                                                        {{ $center->des_centre }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
@@ -70,22 +68,16 @@
                                                         </td>
                                                         <td class="text-center" width="10px">
                                                             <select class="form-select" aria-label="Default select example"
-                                                                name="through[dateDelivery=>{{ $date_delivery }},timeDelivery=>{{ $time_delivery }}]">
+                                                                name="through">
                                                                 <option selected>Select SHIPPING TRANSPORTATION</option>
-                                                                @foreach ($deliverys as $delivery)
-                                                                    <option value="{{ $delivery->des_delivery }}">
+                                                                @foreach ($deliveries as $delivery)
+                                                                    <option value="{{ $delivery->id_delivery }}">
                                                                         {{ $delivery->des_delivery }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
-                                                        <td class="text-center mb-2" width="10px">
-                                                            {{ $date_delivery }}
-                                                        </td>
-                                                        <td class="text-center" width="10px">
-                                                            {{ $time_delivery }}
-                                                        </td>
                                                     </tr>
-                                            </Tbody>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -156,10 +148,7 @@
 
                 </tbody>
             </table>
-
         </div>
-
     </div>
-
 
 @endsection

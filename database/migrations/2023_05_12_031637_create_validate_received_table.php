@@ -26,7 +26,8 @@ return new class extends Migration
             $table->foreign('id_status')->references('id')->on('status');
             $table->string('received_date')->nullable();
             $table->text('news')->nullable();
-            $table->string('through');
+            $table->unsignedBigInteger('through');
+            $table->foreign('through')->references('id_delivery')->on('delivery');
             $table->string('sender')->nullable();
             $table->timestamps();
         });

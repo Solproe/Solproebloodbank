@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Http\Middleware\data;
+use App\Models\Center;
+use Exception;
 use Kreait\Firebase\Database\Snapshot as DatabaseSnapshot;
 use Kreait\Firebase\Factory;
 
@@ -38,24 +40,32 @@ class FirebaseRealTimeDatabase
     public function saveRequest($ref, $data)
     {
         $customer = $data->customer;
-        $customer = str_replace(" ", "", $customer);
+        $center = Center::where('ID_CENTRE', $customer)->first();
+        $customer = str_replace(" ", "", $center->des_centre);
         $this->reference = $this->database->getReference($ref)->getChild($customer);
 
-        $date = substr($data->date, 0, 2) . "/" . substr($data->date, 3, 2) . "/" .
-        substr($data->date, 6,4) . " " . substr($data->date, 11, 5);
+        $date = substr($data->date, 0, 4) . "/" . substr($data->date, 5, 2) . "/" .
+        substr($data->date, 8, 2) . " " . substr($data->date, 11, 5);
 
-        //dd($date);
+        dd($date);
 
         $json = [
             'consecutive' => $data->consecutive,
             'unities' => $data->unities,
             'boxes' => $data->boxes,
-            'through' => $data->through,
+            'through' => $center->des_centre,
             'status' => $data->status->status_name,
             'date' => $date,
         ];
 
-        $this->reference->set($json);
+        try
+        {
+            $this->reference->set($json);
+        }
+        catch (Exception $e)
+        {
+            dd($e);
+        }
     }
 
     public function updateTokens()
