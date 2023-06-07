@@ -69,16 +69,16 @@ class RequestController extends Controller
         {
             foreach ($center as $centre)
             {
-                if (array_key_exists("data", $data))
+                if (array_key_exists("bloodBankNames", $data))
                 {
-                    $data = $centre;
+                    array_push($data["bloodBankNames"], $centre);
                 }
                 else
                 {
-                    array_push($data, $centre);
+                    $data = ["bloodBankNames" => []];
+                    array_push($data["bloodBankNames"], $centre);
                 }
             }
-            array_push($data, gettype($data));
             $data = json_encode($data);
         }
         catch (Exception $e)

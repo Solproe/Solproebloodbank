@@ -13,6 +13,7 @@ use App\Services\FirebaseService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ValidateReceivedController extends Controller
 {
@@ -26,6 +27,10 @@ class ValidateReceivedController extends Controller
         $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
 
         $centers = Center::all();
+
+        $duss = DB::select('describe delivery');
+
+        dd($duss);
 
         $deliveries = delivery::all();
 
