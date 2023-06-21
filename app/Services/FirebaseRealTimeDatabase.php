@@ -51,7 +51,7 @@ class FirebaseRealTimeDatabase
             'consecutive' => $data->consecutive,
             'unities' => $data->unities,
             'boxes' => $data->boxes,
-            'through' => $center->des_centre,
+            'through' => $data->delivery->des_delivery,
             'status' => $data->status->status_name,
             'date' => $date,
         ];
