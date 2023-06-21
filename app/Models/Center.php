@@ -21,4 +21,5 @@ class Center extends Model
     {
         return $this->hasMany(ValidateReceivedModel::class, 'ID_CENTRE');
     }
+
 }

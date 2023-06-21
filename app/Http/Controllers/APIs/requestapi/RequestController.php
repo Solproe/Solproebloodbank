@@ -71,12 +71,12 @@ class RequestController extends Controller
             {
                 if (array_key_exists("bloodBankNames", $data))
                 {
-                    array_push($data["bloodBankNames"], $centre);
+                    array_push($data["bloodBankNames"], $centre->des_centre);
                 }
                 else
                 {
                     $data = ["bloodBankNames" => []];
-                    array_push($data["bloodBankNames"], $centre);
+                    array_push($data["bloodBankNames"], $centre->des_centre);
                 }
             }
             $data = json_encode($data);
