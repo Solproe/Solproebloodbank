@@ -30,8 +30,6 @@ class ValidateReceivedController extends Controller
 
         $duss = DB::select('describe delivery');
 
-        dd($duss);
-
         $deliveries = delivery::all();
 
         return view('validateReceived.index', compact('validateReceived', 'centers', 'deliveries'));
