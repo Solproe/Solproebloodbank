@@ -68,6 +68,10 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__.'/Commands');
 
+        $schedule = new Schedule();
+
+        $this->schedule($schedule);
+
         require base_path('routes/console.php');
     }
 }
