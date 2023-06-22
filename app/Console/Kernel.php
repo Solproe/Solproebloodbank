@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $this->firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
-
         $schedule->call(function ()
         {
+            $this->firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
+
             $validateReceived = ValidateReceivedModel::all();
 
             foreach ($validateReceived as $validate)
