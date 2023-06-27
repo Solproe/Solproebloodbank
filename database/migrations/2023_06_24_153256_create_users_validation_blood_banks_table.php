@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users_validation_blood_banks', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_bloodbank');
+            $table->double('id_bloodbank');
             $table->string('email');
             $table->string('phoneNumber');
             $table->string('identification');
