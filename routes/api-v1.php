@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIs\authentication\validateAppUsers;
 use App\Http\Controllers\APIs\requestapi\RequestController;
 use App\Http\Controllers\APIs\requestapi\validate;
 use App\Models\usersValidationBloodBank;
@@ -27,4 +28,4 @@ Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('
 
 Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 
-Route::post('validation', [validate::class, 'validateBloodBankUsers'])->name('v1.validation');
+Route::post('validation', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validation');
