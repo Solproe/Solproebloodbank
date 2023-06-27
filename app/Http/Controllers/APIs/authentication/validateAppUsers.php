@@ -10,23 +10,21 @@ class validateAppUsers extends Controller
 {
     public function validateBloodBankUsers(Request $request)
     {
-        /*$validateUser = usersValidationBloodBank::where('email', "luisdanielcoronelposada903@gmail.com")->first();
+        $validateUser = usersValidationBloodBank::where('email', "luisdanielcoronelposada903@gmail.com")->first();
 
         $response = [];
 
-        if ($validateUser != null)
+        if (isset($validateUser->email) && $validateUser->email != null)
         {
-            $response = ["data" => "null"];
+            $response = ["res" => true];
             $response = json_encode($response);
             return $response;
         }
         else
         {
-            $response = ["data" => "full"];
+            $response = ["res" => false];
             $response = json_encode($response);
             return $response;
-        }*/
-
-        return true;
+        }
     }
 }
