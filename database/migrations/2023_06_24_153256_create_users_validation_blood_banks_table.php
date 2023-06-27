@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('users_validation_blood_banks', function (Blueprint $table) {
             $table->id();
-            $table->double('id_bloodbank');
+            $table->integer('id_centre');
             $table->string('email');
             $table->string('phoneNumber');
             $table->string('identification');
-            $table->foreign('id_bloodbank')->references('id_centre')->on('centre');
+            $table->foreign('id_centre')->references('id_centre')->on('centre');
             $table->timestamps();
         });
     }
