@@ -28,4 +28,4 @@ Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('
 
 Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 
-Route::post('validation', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validation');
+Route::post('validate', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validate');
