@@ -11,7 +11,7 @@ class usersValidationBloodBank extends Model
 
     protected $fillable = [
         'id',
-        'bloodbank',
+        'id_centre',
         'email',
         'phoneNumber',
         'identification'
@@ -21,6 +21,6 @@ class usersValidationBloodBank extends Model
 
     public function center()
     {
-        return $this->belongsTo(Center::class, 'ID_CENTER');
+        return $this->belongsTo(Center::class, 'id_centre');
     }
 }

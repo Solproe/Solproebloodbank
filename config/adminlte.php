@@ -350,6 +350,13 @@ return [
                             'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'],
                             'role' => ['Admin', 'System'],
                         ],
+
+                        [
+                            'text' => 'App Users',
+                            'route' => 'admin.appUsers.index',
+                            'icon' => 'far fa-user'
+                        ],
+
                         [
                             'text' => 'Supplies',
                             'icon' => 'fas fa-gifts fa-fw',

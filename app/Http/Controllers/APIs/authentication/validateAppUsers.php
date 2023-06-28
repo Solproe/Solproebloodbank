@@ -10,7 +10,8 @@ class validateAppUsers extends Controller
 {
     public function validateBloodBankUsers(Request $request)
     {
-        $validateUser = usersValidationBloodBank::where('email', $request->email)->first();
+        $validateUser = usersValidationBloodBank::where([['email', '=', $request->email],
+                                                        ['phoneNumber', '=', $request->number]])->first();
 
         $response = [];
 

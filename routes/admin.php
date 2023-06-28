@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\accountings\Pettycashs;
+use App\Http\Controllers\Admin\appUsers\AppUsersController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
@@ -61,6 +62,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
     Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.validatereceived');
+
+    Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
     Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
 });
