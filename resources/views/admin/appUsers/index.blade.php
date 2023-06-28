@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Delivery')
+@section('title', 'Users')
 
 
 @section('content_header')
@@ -103,6 +103,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Identification</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,6 +114,7 @@
                                 <td> {{ $appUser->email }} </td>
                                 <td> {{ $appUser->phoneNumber }} </td>
                                 <td> {{ $appUser->identification }} </td>
+                                <td> duss </td>
                             </tr>
                         @endforeach
                     @endif
