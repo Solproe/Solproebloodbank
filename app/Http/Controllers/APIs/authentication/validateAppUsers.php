@@ -18,7 +18,7 @@ class validateAppUsers extends Controller
         if (isset($validateUser->email) && $validateUser->email != null)
         {
             $response = ["validateRes" => true,
-                        "bloodBank" => $validateUser->des_centre];
+                        "bloodBank" => $validateUser->center->descentre];
             $response = json_encode($response);
             return $response;
         }
