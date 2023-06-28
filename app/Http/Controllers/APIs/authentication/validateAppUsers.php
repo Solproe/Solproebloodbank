@@ -12,8 +12,8 @@ class validateAppUsers extends Controller
     {
         $number = substr($request->number, strlen($request->number), 10);
 
-        $validateUser = usersValidationBloodBank::where([['email', '=', $request->email],
-                                                        ['phoneNumber', '=', $number]])->first();
+        $validateUser = usersValidationBloodBank::where(['email' => $request->email,
+                                                        'phoneNumber' => $number])->first();
 
         $response = [];
 
