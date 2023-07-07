@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('consecutive');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->string('date');
+            $table->date('date');
             $table->integer('unities');
             $table->integer('boxes');
             $table->string('customer');
