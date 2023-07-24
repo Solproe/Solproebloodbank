@@ -20,7 +20,7 @@
                     data-target="#create_delivery">
                     Create
                 </button>
-
+                {{--  @dd($centers) --}}
                 <!-- Modal -->
                 <div class="modal fade" id="create_delivery" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,6 +43,8 @@
                                                     <th class="text-center">UNITIES</th>
                                                     <th class="text-center">BOXES</th>
                                                     <th class="text-center">SHIPPING TRANSPORTATION</th>
+                                                    <th class="text-center">DELIVERY DATE</th>
+                                                    <th class="text-center">DELIVERY TIME</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,6 +77,12 @@
                                                                         {{ $delivery->des_delivery }}</option>
                                                                 @endforeach
                                                             </select>
+                                                        </td>
+                                                        <td width="10px"><input type="date" name="date"
+                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                        </td>
+                                                        <td width="10px"><input type="time" name="time"
+                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                                         </td>
                                                     </tr>
                                             </tbody>

@@ -58,11 +58,15 @@ class ValidateReceivedController extends Controller
             'unities' => 'required',
             'boxes' => 'required',
             'through' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'customer' => 'required',
         ]);
 
         $delivery = delivery::where("id_delivery", $request->through)->first();
-
-        $dateAndTime = Carbon::now("GMT-5", "Y-m-d H:m");
+        $carbon = new Carbon();
+        /*   $dateAndTime = Carbon::now("GMT-5", "Y-m-d H:m"); */
+        $dateAndTime = $carbon->create($request->date . " " . $request->time . ":00");
 
         $dateAndTime = $dateAndTime->addHours(intval($delivery->time_delivery));
 
@@ -81,7 +85,7 @@ class ValidateReceivedController extends Controller
         $validateReceived->id_user = auth()->user()->id;
 
         $validateReceived->customer = $request->customer;
-
+        /*  dd($dateAndTime); */
         $validateReceived->date = $dateAndTime->toDateString() . " " . $dateAndTime->toTimeString();
 
         $validateReceived->unities = intval($request->unities);

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
+use App\Http\Controllers\Donors\Reports\ReportController;
 use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
 use App\Http\Controllers\RolesAndPermissions\Roles;
@@ -66,4 +67,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
     Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
+
 });
+/* Donor reporting routes */
+
+Route::get('reports/export/', [ReportController::class, 'export'])->name('donor.Reports.export');
+Route::get('reports/import', [ReportController::class, 'import'])->name('donor.Reports.import');
+Route::get('reports/modalvariable', [ReportController::class, 'modalvariable'])->name('donor.Reports.modalvariable');
+
+Route::post('reports/export-post', [ReportController::class, 'exportPost'])->name('donor.Reports.exportPost');
