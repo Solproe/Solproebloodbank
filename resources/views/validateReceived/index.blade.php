@@ -54,8 +54,8 @@
                                                                 aria-label="Default select example" name="customer">
                                                                 <option selected>Select BloodBank</option>
                                                                 @foreach ($centers as $center)
-                                                                    <option value="{{ $center->id_centre }}">
-                                                                        {{ $center->des_centre }}</option>
+                                                                    <option value="{{ $center->ID_CENTRE }}">
+                                                                        {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
