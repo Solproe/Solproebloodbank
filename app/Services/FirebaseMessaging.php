@@ -9,7 +9,6 @@ use Kreait\Firebase\Messaging\Notification;
 
 require '../vendor/autoload.php';
 
-
 class FirebaseMessaging
 {
     public $firebase;
@@ -24,10 +23,10 @@ class FirebaseMessaging
     public function send(RequestInterface $requests)
     {
         $customer = Center::where("id_centre", $requests->customer)->first();
-        $customer = str_replace(" ", "", $customer->des_centre);
+        $customer = str_replace(" ", "", $customer->DES_CENTRE);
         $message = CloudMessage::withTarget('Topic', $customer)
-        ->withNotification(Notification::create('Solproe', 'envio de productos'))
-        ->withData(['consecutive' => $requests->consecutive]);
+            ->withNotification(Notification::create('Solproe', 'envio de productos'))
+            ->withData(['consecutive' => $requests->consecutive]);
 
         $this->messaging->send($message);
     }
