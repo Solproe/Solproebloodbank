@@ -286,7 +286,7 @@ return [
                 [
                     'text' => 'Consult',
                     'route' => 'sihevi.consults.index',
-                    'icon' => 'fas fa-users fa-fw',
+                    'icon' => 'fas fa-search fa-fw',
                     'active' => ['admin/Donor*'],
 
                 ],
@@ -295,13 +295,28 @@ return [
                     'text' => 'Register Donors',
                     'route' => 'donors.index',
                     'icon' => 'fas fa-users fa-fw',
-                    'active' => ['donor/Donor*'],
+                    /* 'active' => ['donor/Donor*'], */
                 ],
                 [
                     'text' => 'Reports',
-                    'route' => 'donors.index',
-                    'icon' => 'fas fa-users fa-fw',
-                    'active' => ['donor/Donor*'],
+                    'icon' => 'fas fa-file-alt fa-fw',
+                    'submenu' => [
+                        [
+                            'text' => 'Export donor data',
+                            'icon' => 'fas fa-file-export',
+                            'route' => 'donor.Reports.export',
+                            'active' => ['admin/Management*'],
+
+                        ],
+
+                        [
+                            'text' => 'Import donor data',
+                            'icon' => 'fas fa-file-import',
+                            'route' => 'donor.Reports.import',
+                            'active' => ['admin/Management*'],
+
+                        ],
+                    ],
 
                 ],
 
@@ -354,7 +369,7 @@ return [
                         [
                             'text' => 'App Users',
                             'route' => 'admin.appUsers.index',
-                            'icon' => 'far fa-user'
+                            'icon' => 'far fa-user',
                         ],
 
                         [

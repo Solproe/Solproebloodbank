@@ -199,6 +199,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         Kreait\Laravel\Firebase\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -216,6 +217,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Carbon' => Illuminate\Support\Carbon::class,
     ])->toArray(),
 
 ];
