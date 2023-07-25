@@ -158,4 +158,5 @@ class ValidateReceivedController extends Controller
 
         return redirect()->route('admin.validatereceived.index');
     }
+
 }

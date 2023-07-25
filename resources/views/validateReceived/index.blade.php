@@ -9,6 +9,8 @@
 
 @section('content')
 
+    <script src="{{ asset('js/components/Nozeroornegativenumber.js') }}"></script>
+
     @vite('resources/css/app.css')
 
     <div class="border-b border-gray-900/10 pb-12">
@@ -62,12 +64,34 @@
                                                             </select>
                                                         </td>
                                                         <td width="10px"><input type="number" name="unities"
-                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                                oninput="if( this.value.length > 3 )  this.value = this.value.slice(0,3)"
+                                                                onKeyPress="return onlyNumbers(event)"
+                                                                onKeyUp="losesfocus(this)"
+                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset
+                                                                 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                  focus:ring-indigo-600 sm:text-sm sm:leading-6 text-right">
                                                         </td>
                                                         <td width="10px"><input type="number" name="boxes"
-                                                                id="first-name" autocomplete="given-name"
-                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                                oninput="if( this.value.length > 3 )  this.value = this.value.slice(0,3)"
+                                                                onKeyPress="onlyNumbers(event)" onKeyUp="losesfocus(this)"
+                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset
+                                                                ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                 focus:ring-indigo-600 sm:text-sm sm:leading-6 text-right">
                                                         </td>
+
+                                                        {{--  Unscroll in numerical input --}}
+                                                        <style>
+                                                            input[type=number]::-webkit-outer-spin-button,
+                                                            input[type=number]::-webkit-inner-spin-button {
+                                                                -webkit-appearance: none;
+                                                                margin: 0;
+                                                            }
+
+                                                            input[type=number] {
+                                                                -moz-appearance: textfield;
+                                                            }
+                                                        </style>
+
                                                         <td class="text-center" width="10px">
                                                             <select class="form-select" aria-label="Default select example"
                                                                 name="through">
