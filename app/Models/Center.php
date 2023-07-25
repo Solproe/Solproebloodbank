@@ -11,9 +11,9 @@ class Center extends Model
     use HasFactory;
     protected $table = 'centre';
     protected $fillabel = [
-        'id_centre',
-        'cod_centre',
-        'des_centre',
+        'ID_CENTRE',
+        'COD_CENTRE',
+        'DES_CENTRE',
     ];
     protected $primaryKey = 'ID_CENTRE';
 
