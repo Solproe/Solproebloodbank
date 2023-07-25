@@ -24,7 +24,7 @@ class ValidateReceivedController extends Controller
      */
     public function index()
     {
-        $validateReceived = ValidateReceivedModel::orderBy('id', 'DESC')->get();
+        $validateReceived = ValidateReceivedModel::orderBy('date', 'DESC')->get();
 
         $centers = Center::all();
 

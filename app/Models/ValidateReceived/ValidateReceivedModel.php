@@ -2,13 +2,13 @@
 
 namespace App\Models\ValidateReceived;
 
+use App\Models\Center;
 use App\Models\delivery;
 use App\Models\status\status;
 use App\Models\User;
 use App\Services\RequestInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Center;
 
 class ValidateReceivedModel extends Model implements RequestInterface
 {
@@ -43,12 +43,12 @@ class ValidateReceivedModel extends Model implements RequestInterface
 
     public function delivery()
     {
-        return $this->belongsTo(delivery::class, 'id_delivery');
+        return $this->belongsTo(delivery::class, 'through');
     }
 
     public function center()
     {
-        return $this->belongsTo(Center::class, 'ID_CENTRE', 'customer');
+        return $this->belongsTo(Center::class, 'customer');
     }
 
     public function send()

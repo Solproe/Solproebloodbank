@@ -151,11 +151,11 @@
                     @if (isset($validateReceived) and $validateReceived != null)
                         @foreach ($validateReceived as $validate)
                             <tr>
-                                <th scope="row"> {{ $validate->customer }} </th>
+                                <th scope="row"> {{ $validate->center->DES_CENTRE }} </th>
                                 <td> {{ $validate->unities }} </td>
                                 <td> {{ $validate->boxes }} </td>
                                 <td> {{ $validate->status->status_name }} </td>
-                                <td> {{ $validate->through }} </td>
+                                <td> {{ $validate->delivery->des_delivery }} </td>
                                 <td> {{ $validate->date }} </td>
                                 @if ($validate->received_date == null)
                                     <td> NULL </td>
