@@ -2,19 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Controllers\BankConsult;
-use App\Http\Controllers\connectdb;
-use App\Http\Controllers\donor\PersonController;
-use App\Http\Controllers\sihevi\BankconsultController;
-use App\Http\Requests\ConsultarDonante;
 use App\Models\Remote\DatabaseModel;
-use Livewire\Component;
-use Illuminate\Http\Request;
 use App\Models\sihevi\consult\Consult;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Livewire\Component;
 use PDO;
-use phpDocumentor\Reflection\Types\This;
 
 class ClickEvent extends Component
 {
@@ -58,43 +50,32 @@ class ClickEvent extends Component
 
     public function nextDonationDate($localdate, $sihevidate, $gender)
     {
-        if (strtotime($localdate) < strtotime($sihevidate))
-        {
+        if (strtotime($localdate) < strtotime($sihevidate)) {
             $this->nextdonationdate = $sihevidate;
-        }
-        else
-        {
+        } else {
             $this->nextdonationdate = $localdate;
         }
 
-        if ($this->localDataDonor['COD_GENDER'] == 'F')
-        {
+        if ($this->localDataDonor['COD_GENDER'] == 'F') {
             $this->nextdonationdate = Carbon::createFromFormat('d-m-Y', $this->date)->addMonths(4)->format('d-m-Y');
 
             $this->nextdonationdate = (array) $this->nextdonationdate;
             $this->nextdonationdate = $this->nextdonationdate[0];
 
-
-            if (strtotime($this->nextdonationdate) <= $this->today)
-            {
+            if (strtotime($this->nextdonationdate) <= $this->today) {
                 $this->status = ['Aceptado'];
             } else {
                 $this->status = ['Rechazado', 'Outside the donation range'];
             }
-        }
-        elseif ($this->localDataDonor['COD_GENDER'] == 'M')
-        {
+        } elseif ($this->localDataDonor['COD_GENDER'] == 'M') {
             $this->nextdonationdate = Carbon::createFromFormat('d-m-Y', $this->date)->addMonths(3)->format('d-m-Y');
 
             $this->nextdonationdate = (array) $this->nextdonationdate;
             $this->nextdonationdate = $this->nextdonationdate[0];
 
-            if (strtotime($this->nextdonationdate) <= $this->today)
-            {
+            if (strtotime($this->nextdonationdate) <= $this->today) {
                 $this->status = ['Aceptado'];
-            }
-            else
-            {
+            } else {
                 $this->status = ['Rechazado', 'Outside the donation range'];
             }
         }
@@ -120,13 +101,12 @@ class ClickEvent extends Component
         $this->reset('size');
         $this->reset('weight');
 
-
         #iniciamos la instancia para hacer la consulta post
 
         $ch = curl_init();
         $headers = array(
             'Content-Type:application/json',
-            'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg=='
+            'Authorization: Basic YnNoZW1vY2VudHJvdmFsbGVkdXBhcjpwYXNzMjczKg==',
         );
 
         curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification
@@ -137,9 +117,9 @@ class ClickEvent extends Component
         $sihevi = json_decode(curl_exec($ch));
         $info = curl_getinfo($ch);
         curl_close($ch);
+        dd($sihevi);
 
-        if ( $sihevi->HistoricoDonaciones != null)
-        {
+        if ($sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;
         }
 
@@ -239,9 +219,7 @@ class ClickEvent extends Component
                 $this->insertion = 'no';
 
                 $this->errorMessage = "Refer to the blood bank";
-            }
-            else
-            {
+            } else {
                 $this->nextdonationdate = '123';
             }
 

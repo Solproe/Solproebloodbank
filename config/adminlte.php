@@ -403,7 +403,7 @@ return [
                                 [
                                     'text' => 'Delivery',
                                     'icon' => 'fas fa-truck fa-fw',
-                                    'route' => 'admin.validatereceived.index',
+                                    'route' => 'admin.warehouse.validatereceived.index',
 
                                 ],
 
