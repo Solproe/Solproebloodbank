@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\ValidateReceived\ValidateReceivedModel;
+use App\Models\Inventories\delivery\validatereceived;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,9 +17,9 @@ class Center extends Model
     ];
     protected $primaryKey = 'ID_CENTRE';
 
-    public function validateReceived()
+    public function validatereceived()
     {
-        return $this->hasMany(ValidateReceivedModel::class, 'ID_CENTRE');
+        return $this->hasMany(validatereceived::class, 'ID_CENTRE');
     }
 
     public function usersValidationBloodBanks()
