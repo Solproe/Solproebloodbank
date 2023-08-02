@@ -6,6 +6,7 @@ use App\Exports\ShippingExport;
 use App\Models\Center;
 use App\Models\delivery;
 use App\Models\Inventories\delivery\validatereceived;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -32,10 +33,24 @@ class FilterReportController extends Component
     {
 
     } */
-    public function pdf()
+
+    public function reportPDF()
     {
+        $deliveries = delivery::all();
+        $centres = Center::all();
+        $deliveryreports = validatereceived::filterElement($this->reportElementsShipping)->paginate(10);
+        $arrayTables = DB::select('describe validate_received');
+
+        $pdf = PDF::loadView('admin.inventories.delivery.reports.shippingPDF', compact('deliveries', 'centres', 'deliveryreports', 'arrayTables'))->output();
+        return response()->streamDownload(
+            fn() => print($pdf),
+            "ShippingReport-PDF.pdf"
+        );
+
+        /* return response()->stream($pdf, $status = 200, $this->reportElementsShipping, $arrayTables */
 
     }
+
     public function excel()
     {
         return Excel::download(new shippingExport($this->reportElementsShipping), 'shipping.xlsx');
@@ -44,15 +59,8 @@ class FilterReportController extends Component
     {
         $deliveries = delivery::all();
         $centres = Center::all();
-        $deliveryreports = validatereceived::filterElement($this->reportElementsShipping)->
-            /*  where('customer', '!=', '')
-        ->reportElement($this->reportElementsShipping)
-        ->latest('created_at') */
-            paginate(10);
+        $deliveryreports = validatereceived::filterElement($this->reportElementsShipping)->paginate(10);
         $arrayTables = DB::select('describe validate_received');
-        /*  $dat_entry = $donoreports->DAT_ENTRY;
-        $dat_register = Carbon::createFromFormat('Y-m-d h:i:s', $dat_entry)->format('d-m-Y');
-         */
 
         return view('livewire.admin.inventories.filter-report-controller', compact('deliveries', 'centres', 'deliveryreports', 'arrayTables'));
 

@@ -15,7 +15,7 @@ class ShippingReportController extends Controller
 
     public function import()
     {
-        return view('inventories.delivery.reports.exportshipping');
+//
     }
 
     public function exportshippingPost(Request $request)
@@ -26,4 +26,5 @@ class ShippingReportController extends Controller
             ->get();
         return redirect()->route('inventories.delivery.reports.exportshipping');
     }
+
 }

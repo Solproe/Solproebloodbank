@@ -45,16 +45,10 @@
                     <label class="ml-2">Reporting options
                         <div>
                             <div>
-                                <label class="ml-4" for="excel">
-                                    <input wire:click="excel" class="form-check-input" type="radio" name="excel"
-                                        id="excel">
-                                    Excel
-                                </label>
-                                <label class="ml-4">
-                                    <input wire:click="pdf" class="form-check-input" type="radio" name="pdf"
-                                        id="pdf">
-                                    PDF
-                                </label>
+                                <button wire:click="excel"
+                                    class="flex-row ml-1 mr-2 text-center btn btn-success btn-sm">EXCEL</button>
+                                <button wire:click="reportPDF"
+                                    class="flex-row  ml-1 mr-2 text-center btn btn-primary btn-sm">P D F</button>
                             </div>
                         </div>
                     </label>
