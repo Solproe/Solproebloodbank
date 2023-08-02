@@ -14,8 +14,8 @@
     <section class="header" style="top: -287px;">
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td colspan="2" class="text-center">
-                    <span style="font-size: 25px; font-weight: bold; text-align: center">Soluciones porfesionales
+                <td widht="100%" class="text-left text-company" style="text-align:center; padding-top:10px">
+                    <span style="font-size: 25px; font-weight: bold; text-align:center">Soluciones porfesionales
                         efectivas SAS</span>
                 </td>
             </tr>

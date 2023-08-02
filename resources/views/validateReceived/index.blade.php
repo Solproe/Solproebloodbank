@@ -178,11 +178,9 @@
                                 <div class="text-center col">
                                     <form action="{{ 'admin.warehouse.validatereceived.update' }}" method="PUT">
                                         <td width="10px" align="center">
-                                            {{--  <a class="far fa-edit btn btn-outline-info btn-xs"
+                                            <a class="far fa-edit btn btn-outline-info btn-xs"
                                                 href="{{ route('admin.warehouse.validatereceived.edit', $validate->id) }}">
-                                                Edit</a> --}}
-
-
+                                                Edit</a>
                                             <div class="modal fade" id="edit_delivery" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl" role="document">
@@ -213,7 +211,7 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <form
-                                                                                action="{{ route('admin.warehouse.validatereceived.update', $validateReceived, $id) }}"
+                                                                                action="{{ route('admin.warehouse.validatereceived.update', $validate) }}"
                                                                                 method="POST">
                                                                                 @csrf
                                                                                 <tr>
