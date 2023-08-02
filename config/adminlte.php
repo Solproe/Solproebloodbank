@@ -248,7 +248,11 @@ return [
                     'icon' => 'fas fa-registered fa-fw',
                     'active' => ['admin/Account_settings*'],
                 ],
-
+                [
+                    'text' => 'App Users',
+                    'route' => 'admin.appUsers.index',
+                    'icon' => 'far fa-user',
+                ],
                 [
                     'text' => 'Roles And Permissions',
                     'icon' => 'fas fa-gear fa-fw',
@@ -367,12 +371,6 @@ return [
                         ],
 
                         [
-                            'text' => 'App Users',
-                            'route' => 'admin.appUsers.index',
-                            'icon' => 'far fa-user',
-                        ],
-
-                        [
                             'text' => 'Supplies',
                             'icon' => 'fas fa-gifts fa-fw',
                             'route' => 'admin.inventories.supplies.index',
@@ -402,8 +400,36 @@ return [
                                 ],
                                 [
                                     'text' => 'Delivery',
-                                    'icon' => 'fas fa-truck fa-fw',
-                                    'route' => 'admin.validatereceived.index',
+                                    'icon' => 'fas fa-dolly fa-fw',
+                                    'submenu' => [
+                                        [
+                                            'text' => 'Shipping',
+                                            'icon' => 'fas fa-shipping-fast fa-fw',
+                                            'route' => 'admin.warehouse.validatereceived.index',
+                                        ],
+                                        [
+                                            'text' => 'Reports',
+                                            'icon' => 'fas fa-file-alt fa-fw',
+                                            'submenu' => [
+                                                [
+                                                    'text' => 'Export Shipping data',
+                                                    'icon' => 'fas fa-file-export',
+                                                    'route' => 'admin.inventories.delivery.export',
+                                                    'active' => ['admin/Management*'],
+
+                                                ],
+
+                                                [
+                                                    'text' => 'Import Shipping data',
+                                                    'icon' => 'fas fa-file-import',
+                                                    'route' => 'donor.Reports.import',
+                                                    'active' => ['admin/Management*'],
+
+                                                ],
+                                            ],
+
+                                        ],
+                                    ],
 
                                 ],
 

@@ -129,7 +129,14 @@ class ValidateReceivedController extends Controller
      */
     public function edit($id)
     {
-        //
+        $validateReceived = ValidateReceivedModel::where('id', $id)->first();
+
+        $centers = Center::all();
+
+        $duss = DB::select('describe delivery');
+
+        $deliveries = delivery::all();
+        return view('validateReceived.edit', compact('validateReceived', 'centers', 'deliveries'));
     }
 
     /**
@@ -141,7 +148,15 @@ class ValidateReceivedController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validateReceived = ValidateReceivedModel::where('id', $id)->first();
+
+        $centers = Center::all();
+
+        $duss = DB::select('describe delivery');
+
+        $deliveries = delivery::all();
+        dd($request);
     }
 
     /**

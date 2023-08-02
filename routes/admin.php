@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\accountings\Pettycashs;
 use App\Http\Controllers\Admin\appUsers\AppUsersController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\Admin\inventories\supplies\WarehouseController;
@@ -62,7 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.validatereceived');
+    Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.warehouse.validatereceived');
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
@@ -74,5 +75,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('reports/export/', [ReportController::class, 'export'])->name('donor.Reports.export');
 Route::get('reports/import', [ReportController::class, 'import'])->name('donor.Reports.import');
 Route::get('reports/modalvariable', [ReportController::class, 'modalvariable'])->name('donor.Reports.modalvariable');
-
 Route::post('reports/export-post', [ReportController::class, 'exportPost'])->name('donor.Reports.exportPost');
+
+/* Delivery reporting routes */
+Route::get('Shippingreports/export/', [ShippingReportController::class, 'export'])->name('admin.inventories.delivery.export');
+Route::get('Shippingreports/import', [ShippingReportControllerr::class, 'import'])->name('admin.inventories.delivery.import');
+Route::post('Shippingreportsreports/export-post', [ShippingReportController::class, 'exportPost'])->name('admin.inventories.delivery.exportPost');
