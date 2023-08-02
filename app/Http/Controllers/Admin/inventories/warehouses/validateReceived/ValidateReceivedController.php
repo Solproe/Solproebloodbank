@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\DB;
 
 class ValidateReceivedController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $search;
+    public $sort = 'ID_REQUESTORING';
+    public $direction = 'desc';
+
     public function index()
     {
+        /* S */
         $validateReceived = ValidateReceivedModel::orderBy('date', 'DESC')->get();
 
         $centers = Center::all();
@@ -62,7 +62,6 @@ class ValidateReceivedController extends Controller
             'time' => 'required',
             'customer' => 'required',
         ]);
-
         $delivery = delivery::where("id_delivery", $request->through)->first();
         $carbon = new Carbon();
         /*   $dateAndTime = Carbon::now("GMT-5", "Y-m-d H:m"); */
@@ -107,7 +106,7 @@ class ValidateReceivedController extends Controller
             dd($e);
         }
 
-        return redirect()->route('admin.validatereceived.index');
+        return redirect()->route('admin.warehouse.validatereceived.index');
     }
 
     /**
