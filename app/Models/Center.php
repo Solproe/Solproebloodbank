@@ -17,7 +17,7 @@ class Center extends Model
     ];
     protected $primaryKey = 'ID_CENTRE';
 
-    public function validatereceived()
+    public function validateReceived()
     {
         return $this->hasMany(validatereceived::class, 'ID_CENTRE');
     }

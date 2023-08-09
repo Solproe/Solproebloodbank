@@ -405,7 +405,7 @@ return [
                                         [
                                             'text' => 'Shipping',
                                             'icon' => 'fas fa-shipping-fast fa-fw',
-                                            'route' => 'admin.warehouse.validatereceived.index',
+                                            'route' => 'admin.inventories.delivery.validateReceived.index',
                                         ],
                                         [
                                             'text' => 'Reports',
@@ -436,14 +436,14 @@ return [
                                 [
                                     'text' => 'Transfers in warehouses',
                                     'icon' => 'fas fa-exchange-alt fa-fw',
-                                    'route' => 'admin.warehouse.transfer.index',
+                                    'url' => '#',
 
                                 ],
 
                                 [
                                     'text' => 'Request to warehouse',
                                     'icon' => 'fas fa-pallet fa-fw',
-                                    'route' => 'admin.inventories.warehouses.index',
+                                    'url' => '#',
                                     /* 'active' => ['admin/Management*'], */
                                 ],
                             ],
@@ -454,22 +454,6 @@ return [
             ],
 
         ],
-        /*  ['header' => 'Props'],
-    [
-    'text' => 'States',
-    'icon_color' => 'red',
-    'route' => 'admin.states.index',
-    ],
-    [
-    'text' => 'warning',
-    'icon_color' => 'yellow',
-    'url' => '#',
-    ],
-    [
-    'text' => 'information',
-    'icon_color' => 'cyan',
-    'url' => '#',
-    ], */
     ],
     /*
     |--------------------------------------------------------------------------

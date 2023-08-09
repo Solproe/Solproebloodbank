@@ -32,11 +32,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/v4-shims.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/fontawesome.js"></script>
     {{--  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script> --}}
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -46,7 +48,11 @@
         {{ $slot }}
     </div>
     <!-- Scripts -->
-
+    {{--  @include('sweetalert::alert') --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @yield('scripts')
+    @yield('js')
 </body>
 
 </html>

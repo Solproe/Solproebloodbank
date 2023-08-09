@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin\inventories\warehouses\validateReceived;
+namespace App\Http\Controllers\admin\inventories\delivery;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Models\delivery;
+use App\Models\Inventories\delivery\validatereceived;
 use App\Models\status\status;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
@@ -15,24 +16,30 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ValidateReceivedController extends Controller
+class ValidateRecivedController extends Controller
 {
     public $search;
-    public $sort = 'ID_REQUESTORING';
+    public $sort = '';
     public $direction = 'desc';
+    public $message = '';
+
+    /* public function boot()
+    {
+    paginator::useBootstrap();
+    } */
 
     public function index()
     {
-        /* S */
-        $validateReceived = ValidateReceivedModel::orderBy('date', 'DESC')->get();
 
+        $validateReceived = validatereceived::orderBy('created_at', 'DESC')->paginate(8);
+        /*   dd($validateReceived); */
         $centers = Center::all();
-
+        /*   dd($centers); */
         $duss = DB::select('describe delivery');
 
         $deliveries = delivery::all();
 
-        return view('validateReceived.index', compact('validateReceived', 'centers', 'deliveries'));
+        return view('admin.inventories.delivery.validateReceived.index', compact('validateReceived', 'centers', 'deliveries'));
     }
 
     /**
@@ -43,7 +50,7 @@ class ValidateReceivedController extends Controller
     public function create()
     {
 
-        return view('validateReceived.create', compact('date_delivery', 'time_delivery'));
+        /* return view('validateReceived.create', compact('date_delivery', 'time_delivery')); */
     }
 
     /**
@@ -106,7 +113,7 @@ class ValidateReceivedController extends Controller
             dd($e);
         }
 
-        return redirect()->route('admin.warehouse.validatereceived.index');
+        return redirect()->route('admin.inventories.delivery.validateReceived.index');
     }
 
     /**
@@ -128,14 +135,14 @@ class ValidateReceivedController extends Controller
      */
     public function edit($id)
     {
-        $validateReceived = ValidateReceivedModel::where('id', $id)->first();
+
+        $validateReceived = validatereceived::where('id', $id)->first();
 
         $centers = Center::all();
-
         $duss = DB::select('describe delivery');
 
         $deliveries = delivery::all();
-        return view('validateReceived.edit', compact('validateReceived', 'centers', 'deliveries'));
+        return view('admin.inventories.delivery.validateReceived.edit', compact('validateReceived', 'centers', 'deliveries'))->with('update', 'ok');
     }
 
     /**
@@ -145,32 +152,51 @@ class ValidateReceivedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, validatereceived $validateReceived)
     {
+        /*  $message = "";
+        $validateReceived = validatereceived::all();
 
-        $validateReceived = ValidateReceivedModel::where('id', $id)->first();
-
+        $validateReceived->fill($request->all());
         $centers = Center::all();
+        $deliveries = delivery::all(); */
 
-        $duss = DB::select('describe delivery');
+        if (request('customer') != null) {
 
-        $deliveries = delivery::all();
-        dd($request);
+            $validateReceived->customer = request('customer');
+
+            if (request('unities') != null) {
+                $validateReceived->unities = request('unities');
+            }
+            if (request('boxes' != null)) {
+                $validateReceived->boxes = request('boxes');
+            }
+            /*  dd($validateReceived->customer); */
+        }
+        if ($validateReceived->save()) {
+            /*     dd($validateReceived)->save(); */
+            return redirect()->route('admin.inventories.delivery.validateReceived.index')->with('update', 'ok');
+        } else {
+            return redirect()->route('admin.inventories.delivery.validateReceived.edit');
+        }
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $validateReceived = ValidateReceivedModel::where('id', $id)->first();
+        /*      dd($id); */
+        /* $requestooring = Requestoring::where('ID_REQUESTORIG', $id);
+        $requestooring->delete();
 
+        $requestorings = Requestoring::all();
+        $states = state::all();
+
+        return view('admin.requestorings.index', compact('requestorings', 'states'));
+         */
+
+        $validateReceived = validatereceived::where('id', $id);
         $validateReceived->delete();
 
-        return redirect()->route('admin.validatereceived.index');
+        return redirect()->route('admin.inventories.delivery.validateReceived.index')->with('delete', 'ok');
     }
-
 }

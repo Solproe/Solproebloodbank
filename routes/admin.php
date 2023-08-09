@@ -3,13 +3,11 @@
 use App\Http\Controllers\Admin\accountings\Pettycashs;
 use App\Http\Controllers\Admin\appUsers\AppUsersController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\inventories\delivery\ShippingReportController;
+use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
+use App\Http\Controllers\admin\inventories\delivery\ValidateRecivedController;
 use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
-use App\Http\Controllers\Admin\inventories\supplies\WarehouseController;
 use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
-use App\Http\Controllers\Admin\inventories\warehouses\validateReceived\ValidateReceivedController;
-use App\Http\Controllers\Admin\inventories\warehouse\warehouse_movement;
 use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
@@ -24,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer');
+    /* Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer'); */
 
     Route::post('data', [RegisterSecondLevel::class, 'create'])->name('data');
 
@@ -44,7 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('providers', ProveedorController::class)->names('admin.providers');
 
-    Route::resource('states', StateController::class)->names('admin.states');
+    /* Route::resource('states', StateController::class)->names('admin.states'); */
 
     Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
 
@@ -52,7 +50,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('donors', PersonController::class)->names('donors');
 
-    Route::resource('storages', WarehouseController::class)->names('admin.inventories.supplies.storages');
+    /* Route::resource('storages', WarehouseController::class)->names('admin.inventories.supplies.storages'); */
 
     Route::resource('warehouses', RequestController::class)->names('admin.inventories.warehouses');
 
@@ -64,24 +62,30 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validatereceived', ValidateReceivedController::class)->names('admin.warehouse.validatereceived');
+    Route::resource('validateReceived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
+    /* Route::delete('validateReceived', [ValidateRecivedController::class, 'delete'])->name('admin.inventories.delivery.validateReceived');
+    Route::get('validateReceived/{validate}/edit', [ValidateRecivedController::class, 'edit'])->name('admin.inventories.delivery.validateReceived');
+    Route::put('validateReceived/{validate}', [ValidateRecivedController::class, 'update'])->name('admin.inventories.delivery.validateReceived.update');
+    Route::post('validateReceived', [ValidateRecivedController::class, 'store'])->name('admin.inventories.delivery.validateReceived.store');
+    Route::get('validateReceived', [ValidateRecivedController::class, 'index'])->name('admin.inventories.delivery.validateReceived.index'); */
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
     Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
 
-});
-/* Donor reporting  Excel routes */
+    /* Donor reporting  Excel routes */
 
-Route::get('reports/export/', [ReportController::class, 'export'])->name('donor.Reports.export');
-Route::get('reports/import', [ReportController::class, 'import'])->name('donor.Reports.import');
-Route::get('reports/modalvariable', [ReportController::class, 'modalvariable'])->name('donor.Reports.modalvariable');
-Route::post('reports/export-post', [ReportController::class, 'exportPost'])->name('donor.Reports.exportPost');
+    Route::get('reports/export/', [ReportController::class, 'export'])->name('donor.Reports.export');
+    Route::get('reports/import', [ReportController::class, 'import'])->name('donor.Reports.import');
+    Route::get('reports/modalvariable', [ReportController::class, 'modalvariable'])->name('donor.Reports.modalvariable');
+    Route::post('reports/export-post', [ReportController::class, 'exportPost'])->name('donor.Reports.exportPost');
 
 /* Delivery reporting routes */
-Route::get('Shippingreports/export/', [ShippingReportController::class, 'export'])->name('admin.inventories.delivery.export');
-Route::get('Shippingreports/import', [ShippingReportControllerr::class, 'import'])->name('admin.inventories.delivery.import');
-Route::post('Shippingreportsreports/export-post', [ShippingReportController::class, 'exportPost'])->name('admin.inventories.delivery.exportPost');
+    Route::get('shippingreports/export/', [ShippingReportController::class, 'export'])->name('admin.inventories.delivery.export');
+    Route::get('shippingreports/import', [ShippingReportController::class, 'import'])->name('admin.inventories.delivery.import');
+    Route::post('shippingreportsreports/export-post', [ShippingReportController::class, 'exportPost'])->name('admin.inventories.delivery.exportPost');
 
 /* Report pdf */
-Route::get('report/pdf/', [ExportController::class, 'reportPDF']);
+    Route::get('report/pdf/', [ExportController::class, 'reportPDF']);
+
+});

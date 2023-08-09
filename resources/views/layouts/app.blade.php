@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -57,15 +57,22 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        {{--  <main>
             {{ $slot }}
-        </main>
+        </main> --}}
     </div>
 
     @stack('modals')
-
+    @yield('js')
+    {{--  @include('sweetalert::alert') --}}
     @livewireScripts
     <!-- Scripts -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    @yield('scripts')
+
 
 
 </body>
