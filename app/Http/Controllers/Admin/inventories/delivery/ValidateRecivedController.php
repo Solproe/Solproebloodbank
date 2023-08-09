@@ -7,12 +7,10 @@ use App\Models\Center;
 use App\Models\delivery;
 use App\Models\Inventories\delivery\validatereceived;
 use App\Models\status\status;
-use App\Models\ValidateReceived\ValidateReceivedModel;
 use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
 use App\Services\FirebaseService;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -82,7 +80,7 @@ class ValidateRecivedController extends Controller
 
         $RTdatabase = new FirebaseRealTimeDatabase($firebase->getFirebase(), "https://solproe-solproyectar.firebaseio.com/");
 
-        $validateReceived = new ValidateReceivedModel();
+        $validateReceived = new ValidateReceived();
 
         $consecutive = $request->unities . $request->boxes . time() . date('DMY');
 
@@ -104,14 +102,14 @@ class ValidateRecivedController extends Controller
 
         $validateReceived->through = $request->through;
 
-        try
+        /* try
         {
-            $validateReceived->save();
-            $messaging->send($validateReceived);
-            $RTdatabase->saveRequest("validateReceived", $validateReceived);
+        $validateReceived->save();
+        $messaging->send($validateReceived);
+        $RTdatabase->saveRequest("validateReceived", $validateReceived);
         } catch (Exception $e) {
-            dd($e);
-        }
+        dd($e);
+        } */
 
         return redirect()->route('admin.inventories.delivery.validateReceived.index');
     }

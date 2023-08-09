@@ -63,11 +63,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
     Route::resource('validateReceived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
-    /* Route::delete('validateReceived', [ValidateRecivedController::class, 'delete'])->name('admin.inventories.delivery.validateReceived');
-    Route::get('validateReceived/{validate}/edit', [ValidateRecivedController::class, 'edit'])->name('admin.inventories.delivery.validateReceived');
-    Route::put('validateReceived/{validate}', [ValidateRecivedController::class, 'update'])->name('admin.inventories.delivery.validateReceived.update');
-    Route::post('validateReceived', [ValidateRecivedController::class, 'store'])->name('admin.inventories.delivery.validateReceived.store');
-    Route::get('validateReceived', [ValidateRecivedController::class, 'index'])->name('admin.inventories.delivery.validateReceived.index'); */
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
