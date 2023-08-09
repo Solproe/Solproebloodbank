@@ -194,7 +194,7 @@
 
                                         <td width="10px" align="center">
                                             <a type="submit" class=" far fa-edit btn btn-outline-info btnEdit btn-sm"
-                                                href="{{ route('admin.inventories.delivery.validateReceived.edit', $validate) }}"class="d-inline form-update">
+                                                href="{{ route('admin.inventories.delivery.validateReceived.edit', $validate) }}">
                                             </a>
                                         </td>
                                         <td>
