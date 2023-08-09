@@ -2440,6 +2440,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v9.52.15",
             "source": {
                 "type": "git",
@@ -2450,6 +2451,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/e3350e87a52346af9cc655a3012d2175d2d05ad7",
                 "reference": "e3350e87a52346af9cc655a3012d2175d2d05ad7",
+=======
+            "version": "v9.52.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "5366a9035100f858589e1b43bbcb134ffcc81a73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5366a9035100f858589e1b43bbcb134ffcc81a73",
+                "reference": "5366a9035100f858589e1b43bbcb134ffcc81a73",
+>>>>>>> 284f268cbca3f49f6b22020fdcbf125434c1f949
                 "shasum": ""
             },
             "require": {
@@ -2634,7 +2647,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2023-08-08T14:28:40+00:00"
+=======
+            "time": "2023-08-02T14:58:02+00:00"
+>>>>>>> 284f268cbca3f49f6b22020fdcbf125434c1f949
         },
         {
             "name": "laravel/jetstream",
@@ -11816,5 +11833,9 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
+<<<<<<< HEAD
     "plugin-api-version": "2.3.0"
+=======
+    "plugin-api-version": "2.0.0"
+>>>>>>> 284f268cbca3f49f6b22020fdcbf125434c1f949
 }
