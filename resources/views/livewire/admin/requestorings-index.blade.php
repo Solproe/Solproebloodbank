@@ -54,25 +54,25 @@
 
                             {{-- CREATE BUTTONS --}}
                             <div class="text-center col">
-                                <td width="10px" align="center">
+                                <td width="4px" align="center">
                                     <a class="far fa-edit btn btn-outline-info btn-med"
                                         href="{{ route('admin.requestorings.edit', $requestoring->ID_REQUESTORIG) }}">
-                                        Edit</a>
+                                    </a>
                                 </td>
-                                <td width="10px" align="center">
+                                <td width="4px" align="center">
                                     <form action="{{ route('admin.requestorings.destroy', $requestoring) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
                                         {{-- <button type="submit" class="btn btn-outline-danger btn-med">Remove</button> --}}
                                         <a type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
-                                            Remove</a>
+                                        </a>
                                     </form>
                                 </td>
-                                <td width="10px" align="center">
+                                <td width="4px" align="center">
                                     <a class="far fa-chart-bar btn btn-outline-success btn-med"
                                         href="{{ route('admin.requestorings.edit', $requestoring->ID_REQUESTORIG) }}">
-                                        Statistics</a>
+                                    </a>
                                 </td>
                             </div>
                         </tr>

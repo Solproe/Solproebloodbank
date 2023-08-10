@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\Admin\providers\ProveedorController;
 use App\Http\Controllers\Admin\RequestoringController;
+use App\Http\Controllers\admin\stateController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
 use App\Http\Controllers\Donors\Reports\ReportController;
@@ -42,7 +43,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('providers', ProveedorController::class)->names('admin.providers');
 
-    /* Route::resource('states', StateController::class)->names('admin.states'); */
+    Route::resource('states', stateController::class)->names('admin.states');
 
     Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
 
@@ -62,7 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validateReceived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
+    Route::resource('validateRecived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
