@@ -63,7 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validateRecived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
+    Route::resource('validateReceived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
