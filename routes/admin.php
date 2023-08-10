@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\accountings\Pettycashs;
 use App\Http\Controllers\Admin\appUsers\AppUsersController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
-use App\Http\Controllers\admin\inventories\delivery\ValidateRecivedController;
+use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;
 use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
@@ -63,7 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('permissionsAdd', [Roles::class, 'editAddPermissions'])->name('admin.permissionsAdd');
 
-    Route::resource('validateReceived', ValidateRecivedController::class)->names('admin.inventories.delivery.validateReceived');
+    Route::resource('validateReceived', ValidateReceivedController::class)->names('admin.inventories.delivery.validateReceived');
 
     Route::resource('appUsers', AppUsersController::class)->names('admin.appUsers');
 
