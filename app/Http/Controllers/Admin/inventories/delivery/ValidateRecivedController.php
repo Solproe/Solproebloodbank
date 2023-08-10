@@ -124,10 +124,7 @@ class ValidateRecivedController extends Controller
     {
         //
     }
-    public function show3($id)
-    {
-        //
-    }
+
     /**
      * Show the form for editing the specified resource.
      *

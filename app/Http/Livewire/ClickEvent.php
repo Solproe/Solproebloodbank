@@ -117,7 +117,7 @@ class ClickEvent extends Component
         $sihevi = json_decode(curl_exec($ch));
         $info = curl_getinfo($ch);
         curl_close($ch);
-        dd($sihevi);
+        /*  dd($sihevi); */
 
         if ($sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;

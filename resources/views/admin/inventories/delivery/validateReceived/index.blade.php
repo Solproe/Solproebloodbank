@@ -52,31 +52,42 @@
                                                     @csrf
                                                     @method('POST')
                                                     <tr>
-                                                        <td class="text-center" width="8px">
-                                                            <select class="form-select justify-center"
+                                                        <td width="25%">
+                                                            <select
+                                                                class="form-select justify-center rounded-xl border-1 py-1.5
+                                                        text-gray-900 shadow-xl ring-1 ring-inset
+                                                        ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                        focus:ring-indigo-600 md:text-md md:leading-6"
                                                                 aria-label="Default select example" name="customer">
-                                                                <option selected>Select BloodBank</option>
+                                                                <option
+                                                                    class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                                                focus:ring-indigo-600 xl:text-xl xl:leading-6">
+                                                                    Select BloodBank</option>
                                                                 @foreach ($centers as $center)
-                                                                    <option value="{{ $center->ID_CENTRE }}">
+                                                                    <option
+                                                                        class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl value="{{ $center->ID_CENTRE }}">
                                                                         {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
-                                                        <td width="10px"><input type="number" name="unities"
+                                                        <td width="10px">
+                                                            <input type="number" name="unities"
                                                                 oninput="if( this.value.length > 3 )  this.value = this.value.slice(0,3)"
                                                                 onKeyPress="return onlyNumbers(event)"
                                                                 onKeyUp="losesfocus(this)"
-                                                                class="block w-full rounded-md border-0 py-1.5
-                                                                 text-gray-900 shadow-sm ring-1 ring-inset
+                                                                class="block w-full rounded-xl border-1 py-1.5
+                                                                 text-gray-900 shadow-xl ring-1 ring-inset
                                                                  ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
-                                                                 focus:ring-indigo-600 sm:text-sm sm:leading-6 text-right">
+                                                                 focus:ring-indigo-600 xl:text-xl xl:leading-6 text-right"
+                                                                style="width: 100%">
                                                         </td>
                                                         <td width="10px"><input type="number" name="boxes"
                                                                 oninput="if( this.value.length > 3 )  this.value = this.value.slice(0,3)"
                                                                 onKeyPress="onlyNumbers(event)" onKeyUp="losesfocus(this)"
-                                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset
+                                                                class="block w-full rounded-xl border-1 py-1.5 text-gray-900 shadow-xl ring-1 ring-inset
                                                                 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
-                                                                focus:ring-indigo-600 sm:text-sm sm:leading-6 text-right">
+                                                                focus:ring-indigo-600 xl:text-xl xl:leading-6 text-right"
+                                                                style="width: 100%">
                                                         </td>
 
                                                         {{--  Unscroll in numerical input --}}
