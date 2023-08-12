@@ -283,6 +283,22 @@ return [
         ],
 
         [
+            'text' => 'Promotion_recruitment',
+            'icon' => 'fas fa-fill-drip fa-fw',
+            'submenu' =>
+            [
+                [
+                    'text' => 'Consult',
+                    'route' => 'sihevi.consults.index',
+                    'icon' => 'fas fa-search fa-fw',
+                    'active' => ['admin/Donor*'],
+
+                ],
+            ],
+        ],
+
+        [
+
             'text' => 'Donors',
             'icon' => 'fas fa-people-arrows fa-fw',
             'submenu' =>
@@ -328,7 +344,7 @@ return [
         ],
         [
             'text' => 'Management',
-            'icon' => 'fas fa-compress fa-fw',
+            'icon' => 'fas fa-chart-line fa-fw',
             'submenu' =>
             [
                 [
@@ -399,7 +415,7 @@ return [
                                     'url' => '#',
                                 ],
                                 [
-                                    'text' => 'Delivery',
+                                    'text' => 'Deliveries',
                                     'icon' => 'fas fa-dolly fa-fw',
                                     'submenu' => [
                                         [

@@ -165,8 +165,8 @@
                             <th scope="col">Created Date</th>
                             <th scope="col">Received Date</th>
                             <th scope="col">News</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Sender</th>
+                            {{--   <th scope="col">User</th>
+                            <th scope="col">Sender</th> --}}
                             <th class="text-center" colspan="2">ACTION</th>
                         </tr>
                     </thead>
@@ -174,7 +174,7 @@
                         @if (isset($validateReceived) and $validateReceived != null)
                             @foreach ($validateReceived as $validate)
                                 <tr>
-                                    <th scope="row"> {{ $validate->center->DES_CENTRE ?? '' }} </th>
+                                    <td> {{ $validate->center->DES_CENTRE ?? '' }} </td>
                                     <td> {{ $validate->unities }} </td>
                                     <td> {{ $validate->boxes }} </td>
                                     <td> {{ $validate->status->status_name }} </td>
@@ -190,15 +190,15 @@
                                     @else
                                         <td> {{ $validate->news }} </td>
                                     @endif
-                                    <td>
+                                    {{--  <td>
                                         {{ $validate->users->name }}
-                                    </td>
+                                    </td> --}}
 
-                                    @if ($validate->sender == null)
+                                    {{-- @if ($validate->sender == null)
                                         <td> NULL </td>
                                     @else
                                         <td> {{ $validate->sender }} </td>
-                                    @endif
+                                    @endif --}}
 
                                     {{-- CREATE BUTTONS --}}
                                     <div class="text-center col">
