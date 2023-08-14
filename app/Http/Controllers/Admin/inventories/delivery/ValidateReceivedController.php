@@ -38,6 +38,7 @@ class ValidateReceivedController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
             'unities' => 'required',
             'boxes' => 'required',

@@ -116,7 +116,7 @@
                                             style="width: 100%" value="{{ $validateReceived->date }}">
                                     </td>
                                 </tr>
-                                {{--   </form> --}}
+                            </form>
                         </tbody>
                     </table>
                 </div>

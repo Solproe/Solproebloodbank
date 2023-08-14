@@ -25,19 +25,20 @@ class validatereceived extends Model
     ];
 
     protected $fillable = [
-        'create_at',
         'id',
         'consecutive',
-        'customer',
         'id_user',
         'date',
         'unities',
         'boxes',
+        'customer',
         'id_status',
         'received_date',
         'news',
         'through',
         'sender',
+        'create_at',
+        'update_at',
     ];
 
 /* Query Scopes */

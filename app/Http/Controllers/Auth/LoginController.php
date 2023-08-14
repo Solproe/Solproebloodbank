@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
@@ -39,10 +40,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('facebook')->user();
+    /* public function handleProviderCallback()
+{
+$user = Socialite::driver('facebook')->user();
 
-        // $user->token;
-    }
+// $user->token;
+} */
 }
