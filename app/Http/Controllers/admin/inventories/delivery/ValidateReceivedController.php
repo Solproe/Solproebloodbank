@@ -101,22 +101,22 @@ class ValidateReceivedController extends Controller
         $array = array();
 
             if (request('unities') != null) {
-                array_push($array, ["unities" => request('unities')]);
                 $validateReceived->unities = request('unities');
             }
+
             if (request('boxes') != null) {
-                array_push($array, ["boxes" => request('boxes')]);
                 $validateReceived->boxes = request('boxes');
             }
 
             if (request('customer') != null) {
-                array_push($array, ["customer" => request('customer')]);
                 $validateReceived->customer = request('customer');
             }
 
-            /*  dd($validateReceived->customer); */
+            if (request('through') != null) {
+                $validateReceived->through = request('through');
+            }
         
-        if ($validateReceived->update($array)) {
+        if ($validateReceived->update()) {
             return redirect()->route('admin.inventories.delivery.validateReceived.index')->with('update', 'ok');
         } else {
             return redirect()->route('admin.inventories.delivery.validateReceived.edit');
