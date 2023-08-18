@@ -50,17 +50,19 @@ class ValidateReceivedController extends Controller
 
         $delivery = delivery::where("id_delivery", $request->through)->first();
         $carbon = new Carbon();
-        $dateAndTime = $carbon->create($request->date . " " . $request->time . ":00");
-        $dateAndTime = $dateAndTime->addHours(intval($delivery->time_delivery));
+        /*  $date_created=$carbon->create($request->date); */
+        $Time_created = $carbon->create($request->time_created . ":00");
+
         $firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
         $messaging = new FirebaseMessaging($firebase->getFirebase());
         $RTdatabase = new FirebaseRealTimeDatabase($firebase->getFirebase(), "https://solproe-solproyectar.firebaseio.com/");
+
         $validateReceived = new ValidateReceived();
         $consecutive = $request->unities . $request->boxes . time() . date('DMY');
         $validateReceived->consecutive = $consecutive;
         $validateReceived->id_user = auth()->user()->id;
         $validateReceived->customer = $request->customer;
-        $validateReceived->date = $dateAndTime->toDateString() . " " . $dateAndTime->toTimeString();
+        $validateReceived->time_created = $Time_created->toTimeString();
         $validateReceived->unities = intval($request->unities);
         $validateReceived->boxes = intval($request->boxes);
         $status = status::where('status_name', 'sent')->first();

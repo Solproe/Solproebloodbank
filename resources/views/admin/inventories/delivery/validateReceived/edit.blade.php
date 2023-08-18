@@ -91,7 +91,7 @@
                                     text-gray-900 shadow-xl ring-1 ring-inset
                                     ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                     focus:ring-indigo-600 xl:text-xl xl:leading-6"
-                                            aria-label="Default select example" name="customer">
+                                            aria-label="Default select example" name="delivery">
                                             <option value="{{ $validateReceived->delivery->id_delivery }}">
                                                 {{ $validateReceived->delivery->des_delivery }}
                                             </option>

@@ -26,17 +26,18 @@ class validatereceivedFactory extends Factory
             }, */
             'consecutive' => Str::random(10),
             'id_user' => User::factory(),
-            'date' => $this->faker->DateTime()->format('d-m-Y H:i:s'),
-            'unities' => $this->faker->randomNumber(),
-            'boxes' => $this->faker->randomNumber(),
+            'time_created' => $this->faker->Time(),
+            'date_delivery' => $this->faker->dateTime()->format('Y-m-d'),
+            'unities' => $this->faker->randomElement([10, 15, 20, 25, 30, 40, 50, 60, 70, 80]),
+            'boxes' => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
             'customer' => $this->faker->randomElement(Center::pluck('ID_CENTRE')->toArray()),
             'id_status' => $this->faker->randomElement(status::pluck('id')->toArray()),
-            'received_date' => $this->faker->DateTime()->format('d-m-Y H:i:s'),
+            'received_date' => $this->faker->dateTime()->format('d-m-Y'),
             'news' => $this->faker->sentence(),
             'through' => $this->faker->randomElement(delivery::pluck('id_delivery')->toArray()),
             'sender' => $this->faker->sentence(),
-            'create_at' => $this->faker->DateTime()->format('d-m-Y H:i:s'),
-            'update_at' => $this->faker->DateTime()->format('d-m-Y H:i:s'),
+            'created_at' => $this->faker->dateTime()->format('d-m-Y'),
+            'updated_at' => $this->faker->dateTime()->format('d-m-Y'),
         ];
         return $validate;
     }

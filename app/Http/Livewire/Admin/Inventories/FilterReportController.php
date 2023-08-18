@@ -34,20 +34,22 @@ class FilterReportController extends Component
 
     } */
 
-    public function reportPDF()
+    public function pdf()
     {
+        $title = [
+            'title' => 'Report',
+        ];
         $deliveries = delivery::all();
         $centres = Center::all();
         $deliveryreports = validatereceived::filterElement($this->reportElementsShipping)->paginate(10);
         $arrayTables = DB::select('describe validate_received');
 
         $pdf = PDF::loadView('admin.inventories.delivery.reports.shippingPDF', compact('deliveries', 'centres', 'deliveryreports', 'arrayTables'))->output();
+
         return response()->streamDownload(
             fn() => print($pdf),
             "ShippingReport-PDF.pdf"
         );
-
-        /* return response()->stream($pdf, $status = 200, $this->reportElementsShipping, $arrayTables */
 
     }
 
@@ -55,6 +57,7 @@ class FilterReportController extends Component
     {
         return Excel::download(new shippingExport($this->reportElementsShipping), 'shipping.xlsx');
     }
+
     public function render()
     {
         $deliveries = delivery::all();

@@ -162,8 +162,8 @@
                             <th scope="col">Boxes</th>
                             <th scope="col">Status</th>
                             <th scope="col">Through</th>
-                            <th scope="col">Created Date</th>
-                            <th scope="col">Received Date</th>
+                            <th scope="col">Date Delivery</th>
+                            <th scope="col">Time Delivery</th>
                             <th scope="col">News</th>
                             {{--   <th scope="col">User</th>
                             <th scope="col">Sender</th> --}}
@@ -175,21 +175,23 @@
                             @foreach ($validateReceived as $validate)
                                 <tr>
                                     <td> {{ $validate->center->DES_CENTRE ?? '' }} </td>
-                                    <td> {{ $validate->unities }} </td>
-                                    <td> {{ $validate->boxes }} </td>
+                                    <td class="text-right"> {{ $validate->unities }} </td>
+                                    <td class="text-right"> {{ $validate->boxes }} </td>
                                     <td> {{ $validate->status->status_name }} </td>
                                     <td> {{ $validate->delivery->des_delivery }} </td>
-                                    <td> {{ $validate->created_at }} </td>
-                                    @if ($validate->date == null)
+                                    <td> {{ $validate->date_delivery }} </td>
+                                    <td> {{ $validate->time_created }} </td>
+                                    <td> {{ $validate->news }} </td>
+                                    {{--  @if ($validate->date == null)
                                         <td> NULL </td>
                                     @else
-                                        <td> {{ $validate->date }} </td>
+                                        <td> {{ $validate->time_created }} </td>
                                     @endif
                                     @if ($validate->news == null)
                                         <td> NULL </td>
                                     @else
-                                        <td> {{ $validate->news }} </td>
-                                    @endif
+
+                                    @endif --}}
                                     {{--  <td>
                                         {{ $validate->users->name }}
                                     </td> --}}

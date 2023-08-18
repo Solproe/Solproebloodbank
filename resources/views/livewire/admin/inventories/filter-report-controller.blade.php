@@ -1,5 +1,5 @@
 <div>
-    {{-- @dump($reportElementsShipping) --}}
+    @dump($reportElementsShipping)
     <div>
         <div class="card">
             <h6 class="mb-2 text-xl card-header">Filters for shipping</h6>
@@ -24,6 +24,7 @@
                             <input wire:model="reportElementsShipping.fromdate"type="date"
                                 aria-label="Sizing example input" aria-describedby="From:"
                                 class="border-2 rounded-md form-input input-lg">
+
                             <span class="ml-1 mr-2 input-group-text" id="">To:</span>
                             <input wire:model="reportElementsShipping.todate" type="date"
                                 aria-label="Sizing example input" aria-describedby="To:" class="rounded-md border-1">
@@ -47,7 +48,7 @@
                             <div>
                                 <button wire:click="excel"
                                     class="flex-row ml-1 mr-2 text-center btn btn-success btn-sm">EXCEL</button>
-                                <button wire:click="reportPDF"
+                                <button wire:click="pdf"
                                     class="flex-row  ml-1 mr-2 text-center btn btn-primary btn-sm">P D F</button>
                             </div>
                         </div>
@@ -114,26 +115,25 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">CREATED AT</th>
+                    <th scope="col" class="text-center">DATE DELIVERY</th>
                     <th scope="col">CUSTOMER</th>
                     <th scope="col">BOXES</th>
                     <th scope="col">UNITIES</th>
                     <th scope="col">THROUGH</th>
                     <th scope="col">STATUS</th>
                     <th scope="col">NEWS</th>
-                    <th scope="col">DATE RECEPTION</th>
+                    <th scope="col" class="text-center">DATE RECEPTION</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($deliveryreports as $deliveryreport)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td scope="row"
+                        {{-- <td scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        </td>
+                        </td> --}}
                         <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $deliveryreport->created_at }}
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                            {{ $deliveryreport->date_delivery }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $deliveryreport->center->DES_CENTRE }}
@@ -153,8 +153,9 @@
                         <td class="px-6 py-4">
                             {{ $deliveryreport->news }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $deliveryreport->date }}
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                            {{ $deliveryreport->time_created }}
                         </td>
                         {{--  <td class="px-6 py-4">
 
@@ -171,3 +172,13 @@
         {{ $deliveryreports->links() }}
     </div>
 </div>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<script>
+    function getDate(e) {
+
+        var fecha = moment(e.value);
+        console.log(e.value);
+        console.log(fecha.format("DD/MM/YYYY"));
+        echo.console.fecha
+    }
+</script>

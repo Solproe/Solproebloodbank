@@ -11,15 +11,11 @@
 </head>
 
 <body>
+    <h2 class="text-center">REPORT OF BLOOD UNITS COLLECTED AND SHIPPED</h2>
+    <br>
     <section class="header" style="top: -287px;">
         <table cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-                <td widht="100%" class="text-left text-company" style="text-align:center; padding-top:10px">
-                    <span style="font-size: 25px; font-weight: bold; text-align:center">Soluciones porfesionales
-                        efectivas SAS</span>
-                </td>
-            </tr>
-            <tr>
+            < <tr>
                 <td width="30%" style="vertical-align: top; 10px; position: relative">
                     <img src="{{ asset('assets/img/solproe.png') }}" alt="" class="invoce.logo">
                 </td>
@@ -30,16 +26,16 @@
                         </strong>
                     </span>
                 </td>
-            </tr>
-            <tr>
-                <td widht="70%" class="text-left text-company" style="vertical-align: top; padding-top:10px">
-                    <span style="font-size:16px">
-                        <strong>Customen:
-                            {{--   {{ $deliveryreport->center->DES_CENTRE }} --}}
-                        </strong>
-                    </span>
-                </td>
-            </tr>
+                </tr>
+                <tr>
+                    <td widht="70%" class="text-left text-company" style="vertical-align: top; padding-top:10px">
+                        <span style="font-size:16px">
+                            <strong>Customen:
+                                {{--   {{ $deliveryreport->center->DES_CENTRE }} --}}
+                            </strong>
+                        </span>
+                    </td>
+                </tr>
         </table>
     </section>
 

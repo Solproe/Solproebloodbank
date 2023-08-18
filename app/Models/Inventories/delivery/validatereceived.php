@@ -17,10 +17,11 @@ class validatereceived extends Model
 
     protected $primaryKey = 'id';
 
-    protected $attributes = ['validate_received'];
-
     protected $casts = [
-        'create_at' => 'datetime:d/m/Y',
+
+        'created_at' => 'date:d-m-Y',
+        'updated_at' => 'date:d-m-Y',
+        'received_date' => 'date:d-m-Y',
 
     ];
 
@@ -37,8 +38,8 @@ class validatereceived extends Model
         'news',
         'through',
         'sender',
-        'create_at',
-        'update_at',
+        'created_at',
+        'updated_at',
     ];
 
 /* Query Scopes */
@@ -48,14 +49,15 @@ class validatereceived extends Model
 
         $query->when($reportElementsShipping['center'] ?? null, function ($query, $center) {
             $query->where('customer', $center);
+
         })->when($reportElementsShipping['through'] ?? null, function ($query, $through) {
             $query->where('through', $through);
 
         })->when($reportElements['fromdate'] ?? null, function ($query, $fromdate) {
-            $query->where('created_to', '>=', $fromdate);
-
+            $query->where('Date_delivery', '>=', $fromdate);
+            dd($query);
         })->when($reportElements['todate'] ?? null, function ($query, $todate) {
-            $query->where('created_to', '<=', $todate);
+            $query->where('Date_delivery', '<=', $todate);
 
         });
 

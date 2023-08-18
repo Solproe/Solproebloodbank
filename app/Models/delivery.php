@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\ValidateReceived\ValidateReceivedModel;
+use App\Models\Inventories\delivery\validatereceived;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +19,6 @@ class delivery extends Model
 
     public function validate_received()
     {
-        return $this->hasMany(ValidateReceivedModel::class, 'id_delivery');
+        return $this->hasMany(validatereceived::class, 'id_delivery');
     }
 }
-

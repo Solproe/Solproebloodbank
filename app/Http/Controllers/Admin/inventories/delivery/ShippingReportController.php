@@ -13,9 +13,9 @@ class ShippingReportController extends Controller
         return view('admin.inventories.delivery.reports.exportshipping');
     }
 
-    public function import()
+    public function pdf()
     {
-//
+        return view('admin.inventories.delivery.reports.shippingPDF');
     }
 
     public function exportshippingPost(Request $request)

@@ -15,7 +15,6 @@ use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
 use App\Http\Controllers\Donors\Reports\ReportController;
 use App\Http\Controllers\donor\PersonController;
-use App\Http\Controllers\ExportController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
 use App\Http\Controllers\RolesAndPermissions\Roles;
 use App\Http\Controllers\sihevi\ConsultaController;
@@ -82,6 +81,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('shippingreportsreports/export-post', [ShippingReportController::class, 'exportPost'])->name('admin.inventories.delivery.exportPost');
 
 /* Report pdf */
-    Route::get('report/pdf/', [ExportController::class, 'reportPDF']);
+    Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
 
 });
