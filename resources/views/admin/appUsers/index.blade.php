@@ -54,8 +54,8 @@
                                                                 aria-label="Default select example" name="bloodBank">
                                                                 <option selected>Select BloodBank</option>
                                                                 @foreach ($centers as $center)
-                                                                    <option value="{{ $center->id_centre }}">
-                                                                        {{ $center->des_centre }}</option>
+                                                                    <option value="{{ $center->ID_CENTRE }}">
+                                                                        {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
@@ -110,7 +110,7 @@
                     @if (isset($appUsers) and $appUsers != null)
                         @foreach ($appUsers as $appUser)
                             <tr>
-                                <th scope="row"> {{ $appUser->center->des_centre }} </th>
+                                <th scope="row"> {{ $appUser->center->DES_CENTRE }} </th>
                                 <td> {{ $appUser->email }} </td>
                                 <td> {{ $appUser->phoneNumber }} </td>
                                 <td> {{ $appUser->identification }} </td>

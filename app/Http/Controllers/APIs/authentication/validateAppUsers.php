@@ -20,7 +20,7 @@ class validateAppUsers extends Controller
         {
             $center = Center::where('id_centre', $validateUser->id_centre)->first();
             $response = ["validateRes" => true,
-                        "bloodBank" => $center->des_centre];
+                        "bloodBank" => $center->DES_CENTRE];
             $response = json_encode($response);
             return $response;
         }
