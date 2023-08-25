@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\accountings\Pettycashs;
-use App\Http\Controllers\Admin\appUsers\AppUsersController;
+use App\Http\Controllers\admin\appUsers\AppUsersController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;

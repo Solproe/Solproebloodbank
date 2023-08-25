@@ -32,6 +32,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                            <form
+                                                    action="{{ route('admin.inventories.delivery.validateReceived.store') }}"
+                                                    method="POST">
                                 <div class="card">
                                     <div class="card_body">
                                         <table class="table table-striped table-bordered table-sm ">
@@ -46,9 +49,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <form
-                                                    action="{{ route('admin.inventories.delivery.validateReceived.store') }}"
-                                                    method="POST">
                                                     @csrf
                                                     @method('POST')
                                                     <tr>
@@ -65,7 +65,7 @@
                                                                     Select BloodBank</option>
                                                                 @foreach ($centers as $center)
                                                                     <option
-                                                                        class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl value="{{ $center->ID_CENTRE }}">
+                                                                        class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl" value="{{ $center->ID_CENTRE }}">
                                                                         {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
@@ -99,7 +99,7 @@
                                                             }
 
                                                             input[type=number] {
-                                                                -moz-appearance: textfield;
+                                                                appearance: textfield;
                                                             }
                                                         </style>
                                                         <td class="text-center" width="10px">
@@ -125,7 +125,6 @@
                                                                 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                                         </td>
                                                     </tr>
-                                                </form>
                                             </tbody>
                                         </table>
                                     </div>
@@ -147,6 +146,7 @@
                                         Save changes
                                     </button>
                                 </div>
+                            </form>
                             </div>
                         </div>
                     </div>

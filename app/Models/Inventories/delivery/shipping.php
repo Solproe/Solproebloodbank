@@ -17,6 +17,7 @@ class shipping extends Model
 
     protected $casts = [
         'create_at' => 'datetime:d/m/Y', // Change your format
+        'fromdate' => 'datetime',
         /* 'updated_at' => 'datetime:d/m/Y', */
     ];
 
@@ -30,14 +31,20 @@ class shipping extends Model
 
     public function scopereportElement($query, $reportElements)
     {
-        $query->when($reportElements['type_donor'] ?? null, function ($query, $type_donor) {
-            $query->where('ID_DONATIONTYPE', $type_donor);
+        $query->when($reportElementsShipping['center'] ?? null, function ($query, $center) {
+            $query->where('customer', $center);
 
-        })->when($reportElements['fromdate'] ?? null, function ($query, $fromdate) {
-            $query->where('DAT_ENTRY', '>=', $fromdate);
+        })->when($reportElementsShipping['through'] ?? null, function ($query, $through) {
+            $query->where('through', $through);
 
-        })->when($reportElements['todate'] ?? null, function ($query, $todate) {
-            $query->where('DAT_ENTRY', '<=', $todate);
+        })->when($filters['fromDate'] ?? null, function ($query, $fromDate) {
+
+            $query->where('date_delivery', '>=', $fromDate . ' 00:00:00');
+            dd($fromDate);
+
+        })->when($filters['toDate'] ?? null, function ($query, $toDate) {
+
+            $query->where('date_delivery', '<=', $toDate . ' 23:59:59');
 
         });
 

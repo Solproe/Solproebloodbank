@@ -22,7 +22,7 @@ class FirebaseMessaging
 
     public function send(RequestInterface $requests)
     {
-        $customer = Center::where("id_centre", $requests->customer)->first();
+        $customer = Center::where("ID_CENTRE", $requests->customer)->first();
         $customer = str_replace(" ", "", $customer->DES_CENTRE);
         $message = CloudMessage::withTarget('Topic', $customer)
             ->withNotification(Notification::create('Solproe', 'envio de productos'))

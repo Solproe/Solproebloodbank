@@ -6,10 +6,11 @@ use App\Models\Center;
 use App\Models\delivery;
 use App\Models\status\status;
 use App\Models\User;
+use App\Services\RequestInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class validatereceived extends Model
+class validatereceived extends Model implements RequestInterface
 {
     use HasFactory;
 
@@ -23,6 +24,7 @@ class validatereceived extends Model
         'updated_at' => 'date:d-m-Y',
         'received_date' => 'date:d-m-Y',
         'date_delivery' => 'dateTime',
+        'fromdate' => 'dateTime',
 
     ];
 
@@ -57,6 +59,7 @@ class validatereceived extends Model
         })->when($filters['fromDate'] ?? null, function ($query, $fromDate) {
 
             $query->where('date_delivery', '>=', $fromDate . ' 00:00:00');
+            dd($fromDate);
 
         })->when($filters['toDate'] ?? null, function ($query, $toDate) {
 

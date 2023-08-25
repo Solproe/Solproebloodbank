@@ -1,5 +1,5 @@
 <div>
-    @dump($reportElementsShipping)
+    {{--   @dump($reportElementsShipping) --}}
     <div>
         <div class="card">
             <h6 class="mb-2 text-xl card-header">Filters for shipping</h6>

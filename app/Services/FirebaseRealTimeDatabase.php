@@ -42,7 +42,7 @@ class FirebaseRealTimeDatabase
     {
         $customer = $data->customer;
         $center = Center::where('ID_CENTRE', $customer)->first();
-        $customer = str_replace(" ", "", $center->des_centre);
+        $customer = str_replace(" ", "", $center->DES_CENTRE);
         $this->reference = $this->database->getReference($ref)->getChild($customer);
 
         $date = substr($data->date, 0, 4) . "/" . substr($data->date, 5, 2) . "/" .

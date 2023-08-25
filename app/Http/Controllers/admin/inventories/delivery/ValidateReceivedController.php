@@ -11,6 +11,7 @@ use App\Services\FirebaseMessaging;
 use App\Services\FirebaseRealTimeDatabase;
 use App\Services\FirebaseService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,7 @@ class ValidateReceivedController extends Controller
 
     public function index()
     {
-        $validateReceived = validatereceived::orderBy('created_at', 'DESC')->paginate(8);
+        $validateReceived = validatereceived::orderBy('created_at', 'ASC')->paginate(8);
         $centers = Center::all();
         $duss = DB::select('describe delivery');
         $deliveries = delivery::all();
@@ -69,6 +70,16 @@ class ValidateReceivedController extends Controller
         $validateReceived->id_status = $status->id;
         $validateReceived->through = $request->through;
 
+    
+        try
+        {
+            $validateReceived->save();
+            $messaging->send($validateReceived);
+            $RTdatabase->saveRequest("validateReceived", $validateReceived);
+        } catch (Exception $e) {
+            dd($e);
+        }
+
         return redirect()->route('admin.inventories.delivery.validateReceived.index');
     }
 
@@ -82,28 +93,33 @@ class ValidateReceivedController extends Controller
         $validateReceived = validatereceived::where('id', $id)->first();
 
         $centers = Center::all();
-        $duss = DB::select('describe delivery');
 
         $deliveries = delivery::all();
+
         return view('admin.inventories.delivery.validateReceived.edit', compact('validateReceived', 'centers', 'deliveries'))->with('update', 'ok');
     }
 
     public function update(Request $request, validatereceived $validateReceived)
     {
-        if (request('customer') != null) {
-
-            $validateReceived->customer = request('customer');
+        $array = array();
 
             if (request('unities') != null) {
                 $validateReceived->unities = request('unities');
             }
-            if (request('boxes' != null)) {
+
+            if (request('boxes') != null) {
                 $validateReceived->boxes = request('boxes');
             }
-            /*  dd($validateReceived->customer); */
-        }
-        if ($validateReceived->save()) {
-            /*     dd($validateReceived)->save(); */
+
+            if (request('customer') != null) {
+                $validateReceived->customer = request('customer');
+            }
+
+            if (request('through') != null) {
+                $validateReceived->through = request('through');
+            }
+        
+        if ($validateReceived->update()) {
             return redirect()->route('admin.inventories.delivery.validateReceived.index')->with('update', 'ok');
         } else {
             return redirect()->route('admin.inventories.delivery.validateReceived.edit');
@@ -114,6 +130,7 @@ class ValidateReceivedController extends Controller
     {
         $validateReceived = validatereceived::where('id', $id);
         $validateReceived->delete();
+        //
 
         return redirect()->route('admin.inventories.delivery.validateReceived.index')->with('delete', 'ok');
     }

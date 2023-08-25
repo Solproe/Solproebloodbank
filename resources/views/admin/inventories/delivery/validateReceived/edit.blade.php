@@ -43,10 +43,6 @@
                                         ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                         focus:ring-indigo-600 md:text-md md:leading-6"
                                             aria-label="Default select example" name="customer">
-
-                                            <option value="{{ $validateReceived->center->ID_CENTRE ?? '' }}">
-                                                {{ $validateReceived->center->DES_CENTRE ?? '' }}
-                                            </option>
                                             @foreach ($centers as $center)
                                                 <option value="{{ $center->ID_CENTRE }}">{{ $center->DES_CENTRE }}</option>
                                             @endforeach
@@ -82,7 +78,7 @@
                                         }
 
                                         input[type=number] {
-                                            -moz-appearance: textfield;
+                                            appearance: textfield;
                                         }
                                     </style>
                                     <td class="text-center" width="15%"">
@@ -91,7 +87,11 @@
                                     text-gray-900 shadow-xl ring-1 ring-inset
                                     ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                     focus:ring-indigo-600 xl:text-xl xl:leading-6"
+<<<<<<< HEAD
                                             aria-label="Default select example" name="delivery">
+=======
+                                            aria-label="Default select example" name="through">
+>>>>>>> 52b6a4abbcffd0c0711b983ef5d9f4b3f59217c1
                                             <option value="{{ $validateReceived->delivery->id_delivery }}">
                                                 {{ $validateReceived->delivery->des_delivery }}
                                             </option>
@@ -116,7 +116,10 @@
                                             style="width: 100%" value="{{ $validateReceived->date }}">
                                     </td>
                                 </tr>
+<<<<<<< HEAD
                             </form>
+=======
+>>>>>>> 52b6a4abbcffd0c0711b983ef5d9f4b3f59217c1
                         </tbody>
                     </table>
                 </div>
