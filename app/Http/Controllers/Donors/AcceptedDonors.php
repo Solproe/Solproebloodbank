@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Donors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Donor\Person;
-use Illuminate\Http\Request;
 
 class AcceptedDonors extends Controller
 {

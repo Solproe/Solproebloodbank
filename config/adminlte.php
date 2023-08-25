@@ -248,7 +248,11 @@ return [
                     'icon' => 'fas fa-registered fa-fw',
                     'active' => ['admin/Account_settings*'],
                 ],
-
+                [
+                    'text' => 'App Users',
+                    'route' => 'admin.appUsers.index',
+                    'icon' => 'far fa-user',
+                ],
                 [
                     'text' => 'Roles And Permissions',
                     'icon' => 'fas fa-gear fa-fw',
@@ -279,6 +283,22 @@ return [
         ],
 
         [
+            'text' => 'Promotion_recruitment',
+            'icon' => 'fas fa-fill-drip fa-fw',
+            'submenu' =>
+            [
+                [
+                    'text' => 'Consult',
+                    'route' => 'sihevi.consults.index',
+                    'icon' => 'fas fa-search fa-fw',
+                    'active' => ['admin/Donor*'],
+
+                ],
+            ],
+        ],
+
+        [
+
             'text' => 'Donors',
             'icon' => 'fas fa-people-arrows fa-fw',
             'submenu' =>
@@ -286,7 +306,7 @@ return [
                 [
                     'text' => 'Consult',
                     'route' => 'sihevi.consults.index',
-                    'icon' => 'fas fa-users fa-fw',
+                    'icon' => 'fas fa-search fa-fw',
                     'active' => ['admin/Donor*'],
 
                 ],
@@ -295,18 +315,40 @@ return [
                     'text' => 'Register Donors',
                     'route' => 'donors.index',
                     'icon' => 'fas fa-users fa-fw',
-                    'active' => ['donor/Donor*'],
+                    /* 'active' => ['donor/Donor*'], */
+                ],
+                [
+                    'text' => 'Reports',
+                    'icon' => 'fas fa-file-alt fa-fw',
+                    'submenu' => [
+                        [
+                            'text' => 'Export donor data',
+                            'icon' => 'fas fa-file-export',
+                            'route' => 'donor.Reports.export',
+                            'active' => ['admin/Management*'],
+
+                        ],
+
+                        [
+                            'text' => 'Import donor data',
+                            'icon' => 'fas fa-file-import',
+                            'route' => 'donor.Reports.import',
+                            'active' => ['admin/Management*'],
+
+                        ],
+                    ],
 
                 ],
+
             ],
         ],
         [
             'text' => 'Management',
-            'icon' => 'fas fa-compress fa-fw',
+            'icon' => 'fas fa-chart-line fa-fw',
             'submenu' =>
             [
                 [
-                    'text' => 'Contabilidad',
+                    'text' => 'Accounting',
                     'icon' => 'fas fa-thin fa-book fa-fw',
                     'submenu' =>
                     [
@@ -343,6 +385,7 @@ return [
                             'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'],
                             'role' => ['Admin', 'System'],
                         ],
+
                         [
                             'text' => 'Supplies',
                             'icon' => 'fas fa-gifts fa-fw',
@@ -372,23 +415,51 @@ return [
                                     'url' => '#',
                                 ],
                                 [
-                                    'text' => 'Delivery',
-                                    'icon' => 'fas fa-truck fa-fw',
-                                    /*  'active' => ['admin/Management*'], */
-                                    'url' => '#',
+                                    'text' => 'Deliveries',
+                                    'icon' => 'fas fa-dolly fa-fw',
+                                    'submenu' => [
+                                        [
+                                            'text' => 'Shipping',
+                                            'icon' => 'fas fa-shipping-fast fa-fw',
+                                            'route' => 'admin.inventories.delivery.validateReceived.index',
+                                        ],
+                                        [
+                                            'text' => 'Reports',
+                                            'icon' => 'fas fa-file-alt fa-fw',
+                                            'submenu' => [
+                                                [
+                                                    'text' => 'Export Shipping data',
+                                                    'icon' => 'fas fa-file-export',
+                                                    'route' => 'admin.inventories.delivery.export',
+                                                    'active' => ['admin/Management*'],
+
+                                                ],
+
+                                                [
+                                                    'text' => 'Import Shipping data',
+                                                    'icon' => 'fas fa-file-import',
+                                                    'route' => 'donor.Reports.import',
+                                                    'active' => ['admin/Management*'],
+
+                                                ],
+                                            ],
+
+                                        ],
+                                    ],
+
                                 ],
 
                                 [
                                     'text' => 'Transfers in warehouses',
                                     'icon' => 'fas fa-exchange-alt fa-fw',
-                                    'route' => 'admin.warehouse.transfer.index',
+                                    'url' => '#',
 
                                 ],
 
                                 [
                                     'text' => 'Request to warehouse',
                                     'icon' => 'fas fa-pallet fa-fw',
-                                    'route' => 'admin.inventories.warehouses.index',
+                                    'url' => '#',
                                     /* 'active' => ['admin/Management*'], */
                                 ],
                             ],
@@ -399,22 +470,6 @@ return [
             ],
 
         ],
-        /*  ['header' => 'Props'],
-    [
-    'text' => 'States',
-    'icon_color' => 'red',
-    'route' => 'admin.states.index',
-    ],
-    [
-    'text' => 'warning',
-    'icon_color' => 'yellow',
-    'url' => '#',
-    ],
-    [
-    'text' => 'information',
-    'icon_color' => 'cyan',
-    'url' => '#',
-    ], */
     ],
     /*
     |--------------------------------------------------------------------------

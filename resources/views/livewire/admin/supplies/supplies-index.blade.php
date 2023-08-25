@@ -25,6 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @dd($supplies->supply_name)
                     @foreach ($supplies as $supply)
                         <tr>
 

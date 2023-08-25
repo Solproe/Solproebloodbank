@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\APIs\requestapi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Center;
 use App\Models\status\status;
 use App\Models\ValidateReceived\ValidateReceivedModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Nette\Utils\Arrays;
 
 class RequestController extends Controller
 {
 
     public function index()
     {
+        $dus = "dus";
         return true;
     }
 
@@ -28,40 +31,62 @@ class RequestController extends Controller
 
         $status = status::where('status_name', $request->status)->first();
 
-        $carbon = Carbon::now('GMT-5');
+        $date = Carbon::now('GMT-5', 'Y-m-d H:m');
 
         $res = ['status' => '200'];
 
         if ($request->status == 'received')
         {
-            $res = ['status' => 'ok'];
-
-            $res = json_encode($res);
+            $validateReceived->update(['news' => json_encode($request->annotation),
+                'received_date' => $date,
+                'id_status' => $status->id,
+                'sender' => $request->userName]);
             return $res;
-        }
-        elseif ($request->status == 'receivedAnnotation')
-        {
+        } elseif ($request->status == 'receivedAnnotation') {
             try
             {
-                $validateReceived->update(['id_status' => $status->id,
-                    'received_date' => strval($carbon),
-                    'news' => $request->annotation]);
-                $res = ['status' => 'ok'];
+                $validateReceived->update(['news' => json_encode($request->annotation),
+                    'received_date' => $date,
+                    'id_status' => $status->id,
+                    'sender' => $request->userName]);
 
-                $res = json_encode($res);
-                return $res;
-            }
-            catch (Exception $e)
-            {
-                return json_encode($e);
+                return true;
+            } catch (Exception $e) {
+                $d = ["status" => "error"];
+                $d = json_encode($d);
+
+                return true;
             }
         }
     }
 
     public function show(Request $request)
     {
-        $val = ['data' => 'data'];
-        $val = json_encode($val);
-        return $val;
+        $center = Center::all();
+
+        $data = [];
+
+        try
+        {
+            foreach ($center as $centre)
+            {
+                if (array_key_exists("bloodBankNames", $data))
+                {
+                    array_push($data["bloodBankNames"], $centre->des_centre);
+                }
+                else
+                {
+                    $data = ["bloodBankNames" => []];
+                    array_push($data["bloodBankNames"], $centre->des_centre);
+                }
+            }
+            $data = json_encode($data);
+        }
+        catch (Exception $e)
+        {
+            return $e;
+        }
+
+        return $data;
     }
 }

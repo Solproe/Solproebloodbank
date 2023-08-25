@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $this->firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
-
         $schedule->call(function ()
         {
+            $this->firebase = new FirebaseService(config('services.tugps24.db.solproe-solproyectar'));
+
             $validateReceived = ValidateReceivedModel::all();
 
             foreach ($validateReceived as $validate)
@@ -54,7 +54,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
-        })->everyThreeHours();
+        })->everyTwoMinutes();
 
 
     }
@@ -67,6 +67,10 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
+
+        $schedule = new Schedule();
+
+        $this->schedule($schedule);
 
         require base_path('routes/console.php');
     }

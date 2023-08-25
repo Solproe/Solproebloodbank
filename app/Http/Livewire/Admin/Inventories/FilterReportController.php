@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Inventories;
 
 use App\Exports\ShippingExport;
 use App\Models\Center;
+use App\Models\delivery;
 use App\Models\Inventories\delivery\validatereceived;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;

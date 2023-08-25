@@ -2,7 +2,6 @@
 
 namespace App\Models\Donor;
 
-use App\Models\Donor\Person as DonorPerson;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,9 +13,16 @@ class Person extends Model
 
     protected $primaryKey = 'ID_PERSON';
 
-    protected $fillable = [
+    protected $attributes = ['person'];
 
+    protected $casts = [
+        'DAT_ENTRY' => 'datetime:d/m/Y', // Change your format
+        /* 'updated_at' => 'datetime:d/m/Y', */
+    ];
+
+    protected $fillable = [
         'ID_PERSON',
+        'ID_DONORTYPE',
         'COD_DONOR',
         'COD_CIVILID',
         'DES_SURNAME',
@@ -32,16 +38,35 @@ class Person extends Model
         'COD_GROUP',
         'COD_RH',
         'DES_MOBILEPHONE',
-        'ID_DEFERREDRASON',
-        'DES_EMAIL',
         'ID_DEFERREDREASON',
+        'DES_EMAIL',
         'TPDOC',
         'DES_NAME1',
         'DES_NAME2',
         'DES_SURNAME1',
         'DES_SURNAME2',
-        'DAT_MODIFIED'
+        'DAT_MODIFIED',
+        'DES_DONATIONTYPE',
+        'ID_DONATIONTYPE',
+        'DAT_ENTRY',
     ];
+
+/* Query Scopes */
+
+    public function scopereportElement($query, $reportElements)
+    {
+        $query->when($reportElements['type_donor'] ?? null, function ($query, $type_donor) {
+            $query->where('ID_DONATIONTYPE', $type_donor);
+
+        })->when($reportElements['fromdate'] ?? null, function ($query, $fromdate) {
+            $query->where('DAT_ENTRY', '>=', $fromdate);
+
+        })->when($reportElements['todate'] ?? null, function ($query, $todate) {
+            $query->where('DAT_ENTRY', '<=', $todate);
+
+        });
+
+    }
 
     public function deferredreason()
     {
@@ -52,4 +77,15 @@ class Person extends Model
     {
         return $this->hasMany(Donation::class, 'ID_DONATION');
     }
+
+    public function donationtype()
+    {
+        return $this->belongsTo(DonationType::class, 'ID_DONATIONTYPE');
+    }
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
 }

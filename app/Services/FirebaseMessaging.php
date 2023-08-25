@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Center;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 
 require '../vendor/autoload.php';
-
 
 class FirebaseMessaging
 {
@@ -22,9 +22,11 @@ class FirebaseMessaging
 
     public function send(RequestInterface $requests)
     {
-        $message = CloudMessage::withTarget('Topic', $requests->customer)
-        ->withNotification(Notification::create('Solproe', 'envio de productos'))
-        ->withData(['consecutive' => $requests->consecutive]);
+        $customer = Center::where("ID_CENTRE", $requests->customer)->first();
+        $customer = str_replace(" ", "", $customer->DES_CENTRE);
+        $message = CloudMessage::withTarget('Topic', $customer)
+            ->withNotification(Notification::create('Solproe', 'envio de productos'))
+            ->withData(['consecutive' => $requests->consecutive]);
 
         $this->messaging->send($message);
     }
