@@ -22,6 +22,7 @@ class validatereceived extends Model
         'created_at' => 'date:d-m-Y',
         'updated_at' => 'date:d-m-Y',
         'received_date' => 'date:d-m-Y',
+        'date_delivery' => 'dateTime',
 
     ];
 
@@ -53,11 +54,13 @@ class validatereceived extends Model
         })->when($reportElementsShipping['through'] ?? null, function ($query, $through) {
             $query->where('through', $through);
 
-        })->when($reportElements['fromdate'] ?? null, function ($query, $fromdate) {
-            $query->where('Date_delivery', '>=', $fromdate);
-            dd($query);
-        })->when($reportElements['todate'] ?? null, function ($query, $todate) {
-            $query->where('Date_delivery', '<=', $todate);
+        })->when($filters['fromDate'] ?? null, function ($query, $fromDate) {
+
+            $query->where('date_delivery', '>=', $fromDate . ' 00:00:00');
+
+        })->when($filters['toDate'] ?? null, function ($query, $toDate) {
+
+            $query->where('date_delivery', '<=', $toDate . ' 23:59:59');
 
         });
 

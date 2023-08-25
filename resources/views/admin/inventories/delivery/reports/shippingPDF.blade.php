@@ -22,7 +22,7 @@
                 <td widht="70%" class="text-left text-company" style="vertical-align: top; padding-top:10px">
                     <span style="font-size:16px">
                         <strong>Consult Date:
-                            {{ \carbon\carbon::now()->format('d-m-Y') }}
+                            {{ \carbon\carbon::now()->format('dd-mm-YYYY') }}
                         </strong>
                     </span>
                 </td>
