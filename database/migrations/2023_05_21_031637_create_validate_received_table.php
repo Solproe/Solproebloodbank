@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->Time('time_created');
-            $table->string('date_delivery');
+            $table->date('date_delivery');
             $table->integer('unities');
             $table->integer('boxes');
             $table->string('customer');

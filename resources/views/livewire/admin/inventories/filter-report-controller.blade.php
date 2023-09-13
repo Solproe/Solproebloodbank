@@ -1,5 +1,5 @@
 <div>
-    @dump($reportElementsShipping)
+    {{--  @dump($reportElementsShipping) --}}
     <div>
         <div class="card">
             <h6 class="mb-2 text-xl card-header">Filters for shipping</h6>
@@ -127,13 +127,13 @@
             </thead>
             <tbody>
                 @foreach ($deliveryreports as $deliveryreport)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr class="bg-white border-b">
                         {{-- <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         </td> --}}
                         <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                            {{ $deliveryreport->date_delivery }}
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
+                            {{ $deliveryreport->date_delivery->toDateString() }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $deliveryreport->center->DES_CENTRE }}
@@ -154,7 +154,7 @@
                             {{ $deliveryreport->news }}
                         </td>
                         <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
                             {{ $deliveryreport->time_created }}
                         </td>
                         {{--  <td class="px-6 py-4">

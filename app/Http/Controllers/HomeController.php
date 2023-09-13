@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class HomeController extends Controller
 {
@@ -25,17 +24,5 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    }
-
-    public function data(){
-
-        return view('response');
-    }
-    public function register2() {
-
-        $regiter = new RegistersUsers();
-
-        $regiter->showRegistrationForm();
-
     }
 }

@@ -32,23 +32,22 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <form
-                                                    action="{{ route('admin.inventories.delivery.validateReceived.store') }}"
-                                                    method="POST">
-                                <div class="card">
-                                    <div class="card_body">
-                                        <table class="table table-striped table-bordered table-sm ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">BLOODBANK</th>
-                                                    <th class="text-center">UNITIES</th>
-                                                    <th class="text-center">BOXES</th>
-                                                    <th class="text-center">SHIPPING TRANSPORTATION</th>
-                                                    <th class="text-center">DELIVERY DATE</th>
-                                                    <th class="text-center">DELIVERY TIME</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                <form action="{{ route('admin.inventories.delivery.validateReceived.store') }}"
+                                    method="POST">
+                                    <div class="card">
+                                        <div class="card_body">
+                                            <table class="table table-striped table-bordered table-sm ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">BLOODBANK</th>
+                                                        <th class="text-center">UNITIES</th>
+                                                        <th class="text-center">BOXES</th>
+                                                        <th class="text-center">SHIPPING TRANSPORTATION</th>
+                                                        <th class="text-center">DELIVERY DATE</th>
+                                                        <th class="text-center">DELIVERY TIME</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
                                                     @csrf
                                                     @method('POST')
                                                     <tr>
@@ -65,7 +64,8 @@
                                                                     Select BloodBank</option>
                                                                 @foreach ($centers as $center)
                                                                     <option
-                                                                        class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl" value="{{ $center->ID_CENTRE }}">
+                                                                        class="form-select justify-center rounded-xl border-1 py-1.5  text-gray-900 shadow-xl"
+                                                                        value="{{ $center->ID_CENTRE }}">
                                                                         {{ $center->DES_CENTRE }}</option>
                                                                 @endforeach
                                                             </select>
@@ -125,28 +125,28 @@
                                                                 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                                         </td>
                                                     </tr>
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button"
-                                        class="btn btn-warning grounded-md
+                                    <div class="modal-footer">
+                                        <button type="button"
+                                            class="btn btn-warning grounded-md
                                         bg-yellow-300 px-3 py-2 text-sm
                                         font-semibold text-red shadow-sm
                                         hover:bg-white-100 focus-visible:outline
                                         focus-visible:outline-2  focus-visible:outline-offset-2 focus-visible:outline-yellow-100"
-                                        data-dismiss="modal">
-                                        Close
-                                    </button>
-                                    <button type="submit"
-                                        class="btn btn-primary rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold
+                                            data-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="submit"
+                                            class="btn btn-primary rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold
                                         text-white shadow-sm hover:bg-indigo-500 focus-visible:outline
                                         focus-visible:outline-2  focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Save changes
-                                    </button>
-                                </div>
-                            </form>
+                                            Save changes
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                                     <td class="text-right"> {{ $validate->boxes }} </td>
                                     <td> {{ $validate->status->status_name }} </td>
                                     <td> {{ $validate->delivery->des_delivery }} </td>
-                                    <td> {{ $validate->date_delivery }} </td>
+                                    <td> {{ $validate->date_delivery->toDateString() }} </td>
                                     <td> {{ $validate->time_created }} </td>
                                     <td> {{ $validate->news }} </td>
                                     {{--  @if ($validate->date == null)

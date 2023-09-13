@@ -234,36 +234,46 @@ return [
 
         // Sidebar items:
         [],
-
+        [
+            'type' => 'sidebar-menu-search',
+            'text' => 'search', // Placeholder for the underlying input.
+            'id' => 'sidebarMenuSearch', // ID attribute for the underlying input (optional).
+        ],
         [
             'text' => 'Account_settings',
             'icon' => 'fas fad fa-cogs fa-fw',
-            'can' => 'register.users',
+            /* 'can' => 'register.users', */
             'role' => ['HHRR', 'System'],
             'submenu' =>
             [
                 [
                     'text' => 'Register _users',
                     'route' => 'register2',
-                    'icon' => 'fas fa-registered fa-fw',
-                    'active' => ['admin/Account_settings*'],
+                    /* 'can' => 'register.users', */
+                    'role' => ['HHRR', 'System'],
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'active' => ['admin/Account_settings*'], */
                 ],
                 [
                     'text' => 'App Users',
                     'route' => 'admin.appUsers.index',
-                    'icon' => 'far fa-user',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'can' => 'register.users', */
+                    'role' => ['HHRR', 'System'],
                 ],
                 [
                     'text' => 'Roles And Permissions',
-                    'icon' => 'fas fa-gear fa-fw',
-                    'can' => 'register.users',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'can' => 'register.users', */
                     'role' => ['HHRR', 'System'],
                     'submenu' =>
                     [
                         [
                             'text' => 'Permissions',
                             'route' => 'RolesAndPermissions.Permissions.index',
-                            'icon' => 'fas fa-registered fa-fw',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*   'can' => 'register.users', */
+                            'role' => ['HHRR', 'System'],
                             'active' => ['admin/Account_settings*'],
 
                         ],
@@ -271,7 +281,9 @@ return [
                         [
                             'text' => 'Roles',
                             'route' => 'RolesAndPermissions.Roles.index',
-                            'icon' => 'fas fa-registered fa-fw',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*  'can' => 'register.users', */
+                            'role' => ['HHRR', 'System'],
                             'active' => ['admin/Account_settings*'],
 
                         ],
@@ -290,9 +302,14 @@ return [
                 [
                     'text' => 'Consult',
                     'route' => 'sihevi.consults.index',
-                    'icon' => 'fas fa-search fa-fw',
-                    'active' => ['admin/Donor*'],
-
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'active' => ['admin/Donor*'], */
+                ],
+                [
+                    'text' => 'Capture in days',
+                    'route' => 'sihevi.consults.index',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'active' => ['admin/Donor*'], */
                 ],
             ],
         ],
@@ -306,7 +323,7 @@ return [
                 [
                     'text' => 'Consult',
                     'route' => 'sihevi.consults.index',
-                    'icon' => 'fas fa-search fa-fw',
+                    'icon' => 'fas fa-fw fa-horizontal-rule',
                     'active' => ['admin/Donor*'],
 
                 ],
@@ -314,26 +331,26 @@ return [
                 [
                     'text' => 'Register Donors',
                     'route' => 'donors.index',
-                    'icon' => 'fas fa-users fa-fw',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                     /* 'active' => ['donor/Donor*'], */
                 ],
                 [
                     'text' => 'Reports',
-                    'icon' => 'fas fa-file-alt fa-fw',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                     'submenu' => [
                         [
                             'text' => 'Export donor data',
-                            'icon' => 'fas fa-file-export',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                             'route' => 'donor.Reports.export',
-                            'active' => ['admin/Management*'],
+                            /* 'active' => ['admin/Management*'], */
 
                         ],
 
                         [
                             'text' => 'Import donor data',
-                            'icon' => 'fas fa-file-import',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                             'route' => 'donor.Reports.import',
-                            'active' => ['admin/Management*'],
+                            /*  'active' => ['admin/Management*'], */
 
                         ],
                     ],
@@ -349,13 +366,13 @@ return [
             [
                 [
                     'text' => 'Accounting',
-                    'icon' => 'fas fa-thin fa-book fa-fw',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                     'submenu' =>
                     [
                         [
                             'text' => 'Petty cash',
-                            'icon' => 'fas fa-light fa-cash-register fa-fw',
-                            'active' => ['admin/Management*'],
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*  'active' => ['admin/Management*'], */
                             'route' => 'admin.accountings.pettycash.index',
                         ],
                     ],
@@ -364,15 +381,15 @@ return [
                 [
                     'text' => 'Customers',
                     'route' => 'admin.requestorings.index',
-                    'icon' => 'fab fa-intercom fa-fw ',
-                    'active' => ['admin/Management*'],
-                    'can' => ['customers.index', 'customers.create', 'customers.edit', 'customers.delete'],
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    /*  'active' => ['admin/Management*'], */
+                    /*  'can' => ['customers.index', 'customers.create', 'customers.edit', 'customers.delete'], */
                     'role' => ['Admin', 'System'],
                 ],
 
                 [
                     'text' => 'Inventories',
-                    'icon' => 'fas fa-warehouse fa-fw',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                     /* 'active' => ['admin/Management*'], */
                     'submenu' =>
                     [
@@ -380,56 +397,56 @@ return [
                         [
                             'text' => 'Providers',
                             'route' => 'admin.providers.index',
-                            'icon' => 'fas fa-handshake fa-fw',
-                            'active' => ['admin/Management*'],
-                            'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'],
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /* 'active' => ['admin/Management*'], */
+                            /* 'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'], */
                             'role' => ['Admin', 'System'],
                         ],
 
                         [
                             'text' => 'Supplies',
-                            'icon' => 'fas fa-gifts fa-fw',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                             'route' => 'admin.inventories.supplies.index',
-                            'active' => ['admin/Management*'],
-                            'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'],
+                            /*  'active' => ['admin/Management*'], */
+                            /*  'can' => ['providers.index', 'providers.create', 'providers.edit', 'providers.delete'], */
                             'role' => ['Admin', 'System'],
                         ],
 
                         [
                             'text' => 'Referrals',
-                            'icon' => 'fas fa-arrow-right fa-fw',
-                            'active' => ['admin/Management*'],
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*  'active' => ['admin/Management*'], */
                         ],
 
                         [
 
                             'text' => 'Storage',
-                            'icon' => "fas fa-archive",
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                             'submenu' =>
                             [
 
                                 [
                                     'text' => 'Storage movement',
-                                    'icon' => 'fas fa-warehouse fa-fw',
+                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                     /*  'active' => ['admin/Management*'], */
                                     'url' => '#',
                                 ],
                                 [
                                     'text' => 'Deliveries',
-                                    'icon' => 'fas fa-dolly fa-fw',
+                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                     'submenu' => [
                                         [
                                             'text' => 'Shipping',
-                                            'icon' => 'fas fa-shipping-fast fa-fw',
+                                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                                             'route' => 'admin.inventories.delivery.validateReceived.index',
                                         ],
                                         [
                                             'text' => 'Reports',
-                                            'icon' => 'fas fa-file-alt fa-fw',
+                                            'icon' => 'fas fa-fw fa-horizontal-rule ',
                                             'submenu' => [
                                                 [
                                                     'text' => 'Export Shipping data',
-                                                    'icon' => 'fas fa-file-export',
+                                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                                     'route' => 'admin.inventories.delivery.export',
                                                     'active' => ['admin/Management*'],
 
@@ -437,7 +454,7 @@ return [
 
                                                 [
                                                     'text' => 'Import Shipping data',
-                                                    'icon' => 'fas fa-file-import',
+                                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                                     'route' => 'donor.Reports.import',
                                                     'active' => ['admin/Management*'],
 
@@ -451,14 +468,14 @@ return [
 
                                 [
                                     'text' => 'Transfers in warehouses',
-                                    'icon' => 'fas fa-exchange-alt fa-fw',
+                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                     'url' => '#',
 
                                 ],
 
                                 [
                                     'text' => 'Request to warehouse',
-                                    'icon' => 'fas fa-pallet fa-fw',
+                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
                                     'url' => '#',
                                     /* 'active' => ['admin/Management*'], */
                                 ],

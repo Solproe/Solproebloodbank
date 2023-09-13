@@ -119,10 +119,10 @@
         </thead>
         <tbody>
             @foreach ($donoreports as $donoreport)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <tr class="bg-white border-b">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     </td>
-                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $donoreport->COD_CIVILID }}
                     </td>
                     <td class="px-6 py-4">

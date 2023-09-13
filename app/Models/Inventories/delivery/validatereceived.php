@@ -56,14 +56,13 @@ class validatereceived extends Model implements RequestInterface
         })->when($reportElementsShipping['through'] ?? null, function ($query, $through) {
             $query->where('through', $through);
 
-        })->when($filters['fromDate'] ?? null, function ($query, $fromDate) {
-
-            $query->where('date_delivery', '>=', $fromDate . ' 00:00:00');
+        })->when($reportElementsShipping['fromDate'] ?? null, function ($query, $fromDate) {
+            $query->where('date_delivery', '>=', $fromDate);
             dd($fromDate);
 
-        })->when($filters['toDate'] ?? null, function ($query, $toDate) {
+        })->when($reportElementsShipping['toDate'] ?? null, function ($query, $toDate) {
 
-            $query->where('date_delivery', '<=', $toDate . ' 23:59:59');
+            $query->where('date_delivery', '<=', $toDate);
 
         });
 

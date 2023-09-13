@@ -24,8 +24,8 @@ class FilterReportController extends Component
         'center' => '',
         'id_status' => '',
         'through' => '',
-        'fromdate' => '',
-        'todate' => '',
+        'fromDate' => '',
+        'toDate' => '',
         'listCheck' => [],
     ];
 

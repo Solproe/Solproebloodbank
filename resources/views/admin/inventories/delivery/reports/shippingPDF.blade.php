@@ -55,32 +55,32 @@
             </thead>
             <tbody>
                 @foreach ($deliveryreports as $deliveryreport)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-10 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                    <tr class="bg-white border-b">
+                        <td class="px-10 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->created_at }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->boxes }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->unities }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->delivery->des_delivery }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->status->status_name }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->date }}
                         </td>
-                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap dark:text-white text-center"
+                        <td class="px-6 py-4  text-gray-900 whitespace-nowrap text-center"
                             style="font-size: x-small; text-align:center">
                             {{ $deliveryreport->news }}
                         </td>

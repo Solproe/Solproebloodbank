@@ -87,11 +87,7 @@
                                     text-gray-900 shadow-xl ring-1 ring-inset
                                     ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                     focus:ring-indigo-600 xl:text-xl xl:leading-6"
-<<<<<<< HEAD
-                                            aria-label="Default select example" name="delivery">
-=======
                                             aria-label="Default select example" name="through">
->>>>>>> 52b6a4abbcffd0c0711b983ef5d9f4b3f59217c1
                                             <option value="{{ $validateReceived->delivery->id_delivery }}">
                                                 {{ $validateReceived->delivery->des_delivery }}
                                             </option>
@@ -116,10 +112,6 @@
                                             style="width: 100%" value="{{ $validateReceived->date }}">
                                     </td>
                                 </tr>
-<<<<<<< HEAD
-                            </form>
-=======
->>>>>>> 52b6a4abbcffd0c0711b983ef5d9f4b3f59217c1
                         </tbody>
                     </table>
                 </div>
