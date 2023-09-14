@@ -31,4 +31,4 @@ Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 
 Route::post('validate', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validate');
 
-Route::post('validate', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
+Route::post('getData', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
