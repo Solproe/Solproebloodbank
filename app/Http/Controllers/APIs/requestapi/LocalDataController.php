@@ -20,7 +20,7 @@ class LocalDataController extends Controller
 
         $matriz = json_encode($matriz);
 
-        //error in format
+        //error in formats
 
         return $matriz;
     }
