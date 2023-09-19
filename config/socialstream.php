@@ -14,7 +14,7 @@ return [
     | routes that it registers with the application. When necessary, you may
     | modify these middleware; however, this default value is usually sufficient.
     |
-    */
+     */
 
     'middleware' => ['web'],
 
@@ -27,10 +27,13 @@ return [
     | Out of the box, Socialstream provides support for all of the OAuth
     | providers that are supported by Laravel Socialite.
     |
-    */
+     */
 
     'providers' => [
         Providers::github(),
+        Providers::facebook(),
+        Providers::google(),
+
     ],
 
     /*
@@ -42,7 +45,7 @@ return [
     | by removing them from this array. You're free to only remove some of
     | these features or you can even remove all of these if you need to.
     |
-    */
+     */
 
     'features' => [
         // Features::createAccountOnFirstLogin(),

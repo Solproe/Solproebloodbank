@@ -1,64 +1,99 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('adminlte::page')
 
-        <x-validation-errors class="mb-4" />
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
+@section('title', 'BloodBank')
+
+@section('content_header')
+    <h1>User Registration</h1>
+@stop
+
+@section('content')
+
+    <div class="mt-1 mb-2 border rounded card-body card container-fluid border-info col-md-6">
+
+
+        {{--  <x-authentication-card> --}}
+        {{--  <x-slot name="logo">
+                <x-authentication-card-logo />
+            </x-slot> --}}
+
+        <x-validation-errors class="mb-1" />
+
+        <div class="mb-2 text-lg card-header">{{ __('Please enter user information') }}</div>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+            <div class="mb-2 row">
+                <x-label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</x-label>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
+                <div class="col-md-6">
+                    <x-input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                        name="name" value="" required autocomplete="name" autofocus />
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-            @endif
+            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+            <div class="mb-3 row">
+                <x-label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</x-label>
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+                <div class="col-md-6">
+                    <x-input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        name="email" value="" required autocomplete="email" />
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <x-label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</x-label>
+
+                <div class="col-md-6">
+                    <x-input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                        name="password" required autocomplete="new-password" />
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <x-label for="password-confirm"
+                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</x-label>
+
+                <div class="col-md-6">
+                    <x-input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                        required autocomplete="new-password" />
+                </div>
+            </div>
+
+            <div class="mb-0 row">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="float-right btn btn-primary">
+                        {{ __('Register') }}
+                    </button>
+                </div>
             </div>
         </form>
+
 
         @if (JoelButcher\Socialstream\Socialstream::show())
             <x-socialstream />
         @endif
-    </x-authentication-card>
-</x-guest-layout>
+
+        {{--  </x-authentication-card> --}}
+    </div>
+@endsection

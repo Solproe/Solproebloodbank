@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
         </h2>
     </x-slot>
@@ -13,21 +13,15 @@
                 <x-section-border />
             @endif
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()) && ! is_null($user->password))
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
 
                 <x-section-border />
-            @else
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.set-password-form')
-                </div>
-
-                <x-section-border />
             @endif
 
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication() && ! is_null($user->password))
+            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.two-factor-authentication-form')
                 </div>
@@ -35,22 +29,11 @@
                 <x-section-border />
             @endif
 
-            @if (JoelButcher\Socialstream\Socialstream::show())
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.connected-accounts-form')
-                </div>
-            @endif
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.logout-other-browser-sessions-form')
+            </div>
 
-
-            @if ( ! is_null($user->password))
-                <x-section-border />
-
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.logout-other-browser-sessions-form')
-                </div>
-            @endif
-
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures() && ! is_null($user->password))
+            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
                 <x-section-border />
 
                 <div class="mt-10 sm:mt-0">
