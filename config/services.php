@@ -50,6 +50,7 @@ return [
         'client_id' => env('GOOGLE_OAUTH_ID'),
         'client_secret' => env('GOOGLE_OAUTH_KEY'),
         'redirect' => '/google-callback',
+
     ],
     'linkedin' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
