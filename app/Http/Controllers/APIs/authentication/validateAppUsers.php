@@ -4,6 +4,7 @@ namespace App\Http\Controllers\APIs\authentication;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
+use App\Models\RecordingGetIn;
 use Illuminate\Http\Request;
 use App\Models\usersValidationBloodBank;
 
@@ -15,6 +16,14 @@ class validateAppUsers extends Controller
                                                         'phoneNumber' => $request->number])->first();
 
         $response = [];
+
+        $recording = new RecordingGetIn();
+
+        $recording->email = $request->email;
+
+        $recording->phoneNumber = $request->number;
+
+        $recording->save();
 
         if (isset($validateUser->email) && $validateUser->email != null)
         {
