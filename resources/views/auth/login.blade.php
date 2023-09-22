@@ -19,6 +19,7 @@
             @csrf
 
             <div>
+                <br>
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required
                     autofocus />
@@ -49,28 +50,31 @@
                     {{ __('Login') }}
                 </x-button>
             </div>
+
+            <div class="flex items-center justify-center mt-4">
+                <br>
+                <span>Or login with social media</span>
+            </div>
+            <div class="flex items-center justify-center mt-4">
+                <!-- Facebook -->
+                <a style="color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f fa-lg mr-3"></i></a>
+
+                <!-- Twitter -->
+                <a style="color:
+                        #55acee;" href="#!" role="button"><i
+                        class="fab fa-twitter fa-lg mr-3"></i></a>
+
+                <!-- Google -->
+                <a href="{{ url('/login-google') }}" style="color: #dd4b39;" href="#!" role="button"><i
+                        class="fab fa-google fa-lg mr-3"></i></a>
+
+                <!-- Instagram -->
+                <a style="color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
+
+            </div>
+            <br>
         </form>
-        <div class="mt-4 text-center panel-footer">
 
-            <!-- Facebook -->
-            <a href="{{ url('login-facebook') }}">
-                <i class="fab fa-facebook-f fa-2x" style="color: #3b5998;"> </i>
-            </a>
 
-            <!-- Twitter -->
-            <i class="fab fa-twitter fa-2x" style="color: #55acee;"></i>
-
-            <!-- Google -->
-            <a href="{{ url('login/google') }}">
-                <i class="fab fa-google fa-2x" style="color: #dd4b39;"></i>
-            </a>
-
-            <!-- Whatsapp -->
-            <i class="fab fa-whatsapp fa-2x" style="color: #25d366;"></i>
-        </div>
-
-        @if (JoelButcher\Socialstream\Socialstream::show())
-            <x-socialstream />
-        @endif
     </x-authentication-card>
 @endsection

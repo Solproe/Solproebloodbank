@@ -53,13 +53,20 @@
                 SAS</p>
         </div>
         <div class="ml-8 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading text-5xl">We're sorry!</h4>
+                <p>Oh yes, you read this important alert message correctly. You are not registered in our file systems,
+                    therefore you are not allowed access.</p>
+                <hr>
+                <p class="mb-0">
+                    Please contact Human Talent Management to process your access authorization......Thank you
+                </p>
+            </div>
         </div>
         @if (Route::has('login'))
-            <div class="text-center">
-                <br>
+            <div class="text-center text-2xl">
                 <a href="{{ route('dashboard') }}" class="fs-1 underline">
-                    <h1>login</h1>
+                    <h6>Back</h6>
                 </a>
                 <!--<a href="{{ route('home') }}" class="text-sm text-gray-700 underline">Dashboard</a>-->
 
@@ -67,6 +74,7 @@
         @endif
     </div>
     <footer>
+        <br>
         <p class="ml-8 text-center text-sm text-gray-500 sm:text-right sm:ml-0">copyright © All rights reserved</p>
     </footer>
 </body>

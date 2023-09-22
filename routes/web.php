@@ -32,39 +32,32 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 Auth::routes();
 
-/* Route::get('/login-facebook', function () {
-return Socialite::driver('facebook')->redirect();
-});
-
-Route::get('/facebook-callback', function () {
-$user = Socialite::driver('facebook')->user();
-dd($user);
-}); */
-
 Route::get('/login-google', function () {
+    /* return Socialite::driver('google')->stateless()->user(); */
     return Socialite::driver('google')->redirect();
 });
 
-Route::get('/callback-google', function () {
+Route::get('/google-callback', function () {
     $user = Socialite::driver('google')->user();
-    dd($user);
-    // $user->token
-});
+    $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'google')->first();
 
-Route::get('/auth/callback', function () {
-    $githubUser = Socialite::driver('github')->user();
+    if ($userExists) {
+        auth::login($userExists);
+    } else {
+        return view('auth.passwords.Alerts.Alert_doesnt_exist');
+        /*  throw validationException::withMessages([
+        'email' => __('auth.failed'),
+        ]); */
 
-    $user = User::updateOrCreate([
-        'github_id' => $githubUser->id,
-    ], [
-        'name' => $githubUser->name,
-        'email' => $githubUser->email,
-        'github_token' => $githubUser->token,
-        'github_refresh_token' => $githubUser->refreshToken,
+        /* $userNew = User::create([
+    'name' => $user->name,
+    'email' => $user->email,
+    'avatar' => $user->avatar,
+    'socialmedia_id' => $user->id,
+    'socialmedia_auth' => 'google',
     ]);
-
-    Auth::login($user);
-
+    auth::login($userNew); */
+    }
     return redirect('/dashboard');
 });
 

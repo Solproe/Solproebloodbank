@@ -27,6 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
         'socialmedia_id',
+        'avatar',
+        'socialmedia_auth',
     ];
 
     /**
@@ -39,6 +41,9 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'avatar',
+        'socialmedia_id',
+        'socialmedia_auth',
     ];
 
     /**
