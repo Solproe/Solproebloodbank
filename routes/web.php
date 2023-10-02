@@ -33,7 +33,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/login-google', function () {
-    /* return Socialite::driver('google')->stateless()->user(); */
     return Socialite::driver('google')->redirect();
 });
 
@@ -45,9 +44,6 @@ Route::get('/google-callback', function () {
         auth::login($userExists);
     } else {
         return view('auth.passwords.Alerts.Alert_doesnt_exist');
-        /*  throw validationException::withMessages([
-        'email' => __('auth.failed'),
-        ]); */
 
         /* $userNew = User::create([
     'name' => $user->name,
@@ -59,6 +55,28 @@ Route::get('/google-callback', function () {
     auth::login($userNew); */
     }
     return redirect('/dashboard');
+});
+
+Route::get('/login-facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/facebook-callbank', function () {
+
+    try {
+        dd($user = Socialite::driver('facebook')->user());
+
+        $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
+        if ($userExists) {
+            auth::login($userExists);
+        } else {
+            return view('auth.passwords.Alerts.Alert_doesnt_exist');
+        }
+        return redirect('/dashboard');
+    } catch (Exception $e) {
+        dd($e->getMessage());
+    }
+
 });
 
 Auth::routes();

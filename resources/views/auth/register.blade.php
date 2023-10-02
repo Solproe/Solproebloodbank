@@ -87,12 +87,31 @@
                     </button>
                 </div>
             </div>
+            <div class="flex items-center justify-center mt-4">
+                <br>
+                <span>Or Register with social media</span>
+            </div>
+            <div class="flex items-center justify-center mt-4">
+
+                <!-- Facebook -->
+                <a href="{{ url('/login-facebook') }}" style="color: #3b5998;" href="#!" role="button"><i
+                        class="fab fa-facebook-f fa-lg mr-3"></i></a>
+
+                <!-- Twitter -->
+                <a style="color:
+                        #55acee;" href="#!" role="button"><i
+                        class="fab fa-twitter fa-lg mr-3"></i></a>
+
+                <!-- Google -->
+                <a href="{{ url('/login-google') }}" style="color: #dd4b39;" href="#!" role="button"><i
+                        class="fab fa-google fa-lg mr-3"></i></a>
+
+                <!-- Instagram -->
+                <a style="color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
+
+            </div>
+            <br>
         </form>
-
-
-        @if (JoelButcher\Socialstream\Socialstream::show())
-            <x-socialstream />
-        @endif
 
         {{--  </x-authentication-card> --}}
     </div>
