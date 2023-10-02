@@ -12,8 +12,7 @@ class validateAppUsers extends Controller
 {
     public function validateBloodBankUsers(Request $request)
     {
-        $validateUser = usersValidationBloodBank::where(['email' => $request->email,
-                                                        'phoneNumber' => $request->number])->first();
+        $validateUser = usersValidationBloodBank::where(['email' => $request->email])->first();
 
         $response = [];
 
@@ -21,7 +20,7 @@ class validateAppUsers extends Controller
 
         $recording->email = $request->email;
 
-        $recording->phoneNumber = $request->number;
+        $recording->phoneNumber = "none";
 
         $recording->save();
 
@@ -35,8 +34,7 @@ class validateAppUsers extends Controller
         }
         else
         {
-            $response = ["validateRes" => false,
-                        "bloodBank" => strlen($request->number)];
+            $response = ["validateRes" => false];
             $response = json_encode($response);
             return $response;
         }
