@@ -63,7 +63,6 @@ Route::get('/login-facebook', function () {
 
 Route::get('/facebook-callback', function () {
 
-    try {
         $user = Socialite::driver('facebook')->user();
         $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
         if ($userExists) {
@@ -72,9 +71,6 @@ Route::get('/facebook-callback', function () {
             return view('auth.passwords.Alerts.Alert_doesnt_exist');
         }
         return redirect('/dashboard');
-    } catch (Exception $e) {
-        dd($e->getMessage());
-    }
 
 });
 
