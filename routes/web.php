@@ -63,8 +63,9 @@ Route::get('/login-facebook', function () {
 
 Route::get('/facebook-callbank', function () {
 
+
+    dd($user = Socialite::driver('facebook')->user());
     try {
-        dd($user = Socialite::driver('facebook')->user());
 
         $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
         if ($userExists) {
