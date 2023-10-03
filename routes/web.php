@@ -61,7 +61,7 @@ Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-Route::get('/facebook-callbank', function () {
+Route::get('/login/facebook/callback', function () {
 
     dd($user = Socialite::driver('facebook')->user());
     try {
