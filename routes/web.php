@@ -73,7 +73,7 @@ Route::get('/facebook-callback', function () {
         }
         return redirect('/dashboard');
     } catch (Exception $e) {
-        dd($e->getMessage());
+        dd("error");
     }
 
 });
