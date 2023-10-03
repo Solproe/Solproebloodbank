@@ -63,7 +63,6 @@ Route::get('/login-facebook', function () {
 
 Route::get('/facebook-callbank', function () {
 
-
     dd($user = Socialite::driver('facebook')->user());
     try {
 

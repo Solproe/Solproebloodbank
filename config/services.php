@@ -1,5 +1,7 @@
 <?php
 
+use PSpell\Config;
+
 return [
 
     /*
@@ -43,7 +45,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_OAUTH_ID'),
         'client_secret' => env('FACEBOOK_OAUTH_SECRET'),
-        'redirect' => 'https://solproe.com/facebook-callback',
+        'redirect' => Config('app.url') . '/login/facebook/callback',
     ],
 
     'google' => [
