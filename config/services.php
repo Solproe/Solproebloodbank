@@ -44,7 +44,7 @@ return [
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_OAUTH_ID'),
-        'client_secret' => env('FACEBOOK_OAUTH_SECRET'),
+        'client_secret' => env('FACEBOOK_OAUTH_KEY'),
         'redirect' => Config('app.url') . '/facebook-callback',
     ],
 
