@@ -37,7 +37,7 @@ Route::get('/login-google', function () {
 });
 
 Route::get('/google-callback', function () {
-    $user = Socialite::driver('google')->user();
+    dd($user = Socialite::driver('google')->user());
     $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'google')->first();
 
     if ($userExists) {
@@ -80,25 +80,3 @@ Route::get('/facebook-callbank', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -17,32 +18,32 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    /*  protected $redirectTo = RouteServiceProvider::HOME; */
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    /* public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-    }
+    $this->middleware('guest')->except('logout');
+    } */
 
-    public function redirectToProvider()
+    public function authenticate(Request $request)
     {
-        return Socialite::driver('google')->redirect();
-    }
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('google')->user();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return Redirect()->intended('dashboard');
+        }
 
-        // $user->token;
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }
