@@ -61,10 +61,9 @@ Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-Route::get('/facebook-callback', function (Request $request) {
+Route::get('/facebook-callback', function () {
 
-    dd($request);
-    $user = Socialite::driver('facebook');
+    $user = Socialite::driver('facebook-callback');
     dd($user);
     $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
     if ($userExists) {
