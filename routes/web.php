@@ -61,17 +61,18 @@ Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-Route::get('/facebook-callback', function () {
+Route::get('/facebook-callback', function (Request $request) {
 
-        $user = Socialite::driver('facebook');
-        dd($user);
-        $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
-        if ($userExists) {
-            auth::login($userExists);
-        } else {
-            return view('auth.passwords.Alerts.Alert_doesnt_exist');
-        }
-        return redirect('/dashboard');
+    dd($request);
+    $user = Socialite::driver('facebook');
+    dd($user);
+    $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
+    if ($userExists) {
+        auth::login($userExists);
+    } else {
+        return view('auth.passwords.Alerts.Alert_doesnt_exist');
+    }
+    return redirect('/dashboard');
 
 });
 
