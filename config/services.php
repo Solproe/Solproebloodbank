@@ -1,5 +1,7 @@
 <?php
 
+use PSpell\Config;
+
 return [
 
     /*
@@ -42,8 +44,13 @@ return [
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_OAUTH_ID'),
+<<<<<<< HEAD
         'client_secret' => env('FACEBOOK_OAUTH_SECRET'),
         'redirect' => Config('app.url') . '/login/facebook/callback',
+=======
+        'client_secret' => env('FACEBOOK_OAUTH_KEY'),
+        'redirect' => Config('app.url') . '/facebook-callback',
+>>>>>>> a7f716cf08ad0fa376dfd7b30b2868edbced82eb
     ],
 
     'google' => [

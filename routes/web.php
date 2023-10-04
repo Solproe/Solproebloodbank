@@ -61,21 +61,16 @@ Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-Route::get('/facebook-callbank', function () {
+Route::get('/facebook-callback', function () {
 
-    try {
-        dd($user = Socialite::driver('facebook')->user());
-
-        $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
-        if ($userExists) {
-            auth::login($userExists);
-        } else {
-            return view('auth.passwords.Alerts.Alert_doesnt_exist');
-        }
-        return redirect('/dashboard');
-    } catch (Exception $e) {
-        dd($e->getMessage());
+    $user = Socialite::driver('facebook')->user();
+    $userExists = user::where('socialmedia_id', $user->id)->where('socialmedia_auth', 'facebook')->first();
+    if ($userExists) {
+        auth::login($userExists);
+    } else {
+        return view('auth.passwords.Alerts.Alert_doesnt_exist');
     }
+    return redirect('/dashboard');
 
 });
 
