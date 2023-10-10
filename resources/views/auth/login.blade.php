@@ -58,12 +58,12 @@
             <div class="flex items-center justify-center mt-4">
                 <!-- Facebook -->
                 <a style="color: #3b5998;" href="{{ url('/login-facebook') }}" role="button"><i
-                        class="fab fa-facebook-f fa-lg mr-3"></i></a>
+                        class="fab fa-facebook-f fa-2lg mr-3"></i></a>
 
                 <!-- Twitter -->
-                <a style="color:
+                {{--  <a style="color:
                         #55acee;" href="#!" role="button"><i
-                        class="fab fa-twitter fa-lg mr-3"></i></a>
+                        class="fab fa-twitter fa-lg mr-3"></i></a> --}}
 
                 <!-- Google -->
                 <a href="{{ url('/login-google') }}" style="color: #dd4b39;" href="#!" role="button"><i
