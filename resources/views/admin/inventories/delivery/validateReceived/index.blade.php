@@ -179,7 +179,7 @@
                                     <td class="text-right"> {{ $validate->boxes }} </td>
                                     <td> {{ $validate->status->status_name }} </td>
                                     <td> {{ $validate->delivery->des_delivery }} </td>
-                                    <td> {{ $validate->date_delivery }} </td>
+                                    <td> {{ $validate->date }} </td>
                                     <td> {{ $validate->time_created }} </td>
                                     <td> {{ $validate->news }} </td>
                                     {{--  @if ($validate->date == null)
