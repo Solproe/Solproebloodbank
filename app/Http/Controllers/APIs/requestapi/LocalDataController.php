@@ -15,8 +15,15 @@ class LocalDataController extends Controller
         $person = new DatabaseModel();
 
         $matriz = $person->connectRemoteDatabase($request->identification);
-        
-        $matriz = ["localData" => $matriz];
+
+        if ($matriz != false)
+        {
+            $matriz = ["localData" => $matriz];
+        }
+        else 
+        {
+            $matriz = ["empty" => true];
+        }
 
         $matriz = json_encode($matriz);
 
