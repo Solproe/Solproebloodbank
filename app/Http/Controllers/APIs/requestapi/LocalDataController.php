@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs\requestapi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Center;
 use App\Models\Remote\DatabaseModel;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,14 @@ class LocalDataController extends Controller
     public function getPatientData(Request $request)
     {
 
-        $person = new DatabaseModel();
+        $databaseModel = new DatabaseModel();
 
-        $matriz = $person->connectRemoteDatabase($request->identification);
+        $center = Center::where('ID_CENTRE', $request->ID_CENTRE)->first();
+
+        $databaseModel->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER,
+            $center->DB_PASSWD);
+
+        $matriz = $databaseModel->requestPatientData($request->identification);
 
         if ($matriz != false)
         {
@@ -31,4 +37,6 @@ class LocalDataController extends Controller
 
         return $matriz;
     }
+
+    
 }

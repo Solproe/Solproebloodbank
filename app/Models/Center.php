@@ -14,6 +14,12 @@ class Center extends Model
         'ID_CENTRE',
         'COD_CENTRE',
         'DES_CENTRE',
+        'TAX_IDENTIFICATION',
+        'ADDRESS',
+        'PUBLIC_IP',
+        'DB_NAME',
+        'DB_USER',
+        'DB_PASSWD'
     ];
     protected $primaryKey = 'ID_CENTRE';
 
