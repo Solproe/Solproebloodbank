@@ -255,14 +255,6 @@ return [
                     /*  'active' => ['admin/Account_settings*'], */
                 ],
                 [
-                    'text' => 'Register _users',
-                    'route' => 'register2',
-                    /* 'can' => 'register.users', */
-                    'role' => ['HHRR', 'System'],
-                    'icon' => 'fas fa-fw fa-horizontal-rule ',
-                    /*  'active' => ['admin/Account_settings*'], */
-                ],
-                [
                     'text' => 'App Users',
                     'route' => 'admin.appUsers.index',
                     'icon' => 'fas fa-fw fa-horizontal-rule ',

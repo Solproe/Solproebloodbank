@@ -19,7 +19,6 @@ class RequestoringController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:customers.index')->only('index');
         $this->middleware('can:customers.create')->only('create');
         $this->middleware('can:customers.edit')->only('edit', 'update');
         $this->middleware('can:customers.delete')->only('delete');
