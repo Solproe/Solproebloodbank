@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\Admin\providers\ProveedorController;
-use App\Http\Controllers\Admin\RequestoringController;
+use App\Http\Controllers\admin\RequestoringController;
 use App\Http\Controllers\admin\stateController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
