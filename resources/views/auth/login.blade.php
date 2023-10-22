@@ -50,29 +50,6 @@
                     {{ __('Login') }}
                 </x-button>
             </div>
-
-            <div class="flex items-center justify-center mt-4">
-                <br>
-                <span>Or login with social media</span>
-            </div>
-            <div class="flex items-center justify-center mt-4">
-                <!-- Facebook -->
-                <a style="color: #3b5998;" href="{{ url('/login-facebook') }}" role="button"><i
-                        class="fab fa-facebook-f fa-2lg mr-3"></i></a>
-
-                <!-- Twitter -->
-                {{--  <a style="color:
-                        #55acee;" href="#!" role="button"><i
-                        class="fab fa-twitter fa-lg mr-3"></i></a> --}}
-
-                <!-- Google -->
-                <a href="{{ url('/login-google') }}" style="color: #dd4b39;" href="#!" role="button"><i
-                        class="fab fa-google fa-lg mr-3"></i></a>
-
-                <!-- Instagram -->
-                <a style="color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
-
-            </div>
             <br>
         </form>
 

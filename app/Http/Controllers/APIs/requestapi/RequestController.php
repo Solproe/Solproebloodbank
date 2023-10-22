@@ -81,7 +81,7 @@ class RequestController extends Controller
 
     public function getCentersList(Request $request)
     {
-        $centers = Center::all(['ID_CENTRE', 'COD_CENTRE', 'DES_CENTRE']);
+        $centers = Center::where('DB_USER', '!=', null)->get();
 
         $centers = json_encode(['listCenter' => $centers]);
 
