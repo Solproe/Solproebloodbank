@@ -255,6 +255,12 @@ return [
                     /*  'active' => ['admin/Account_settings*'], */
                 ],
                 [
+                    'text' => 'Center',
+                    'route' => 'admin.center.index',
+                    'role' => ['HHRR', 'System'],
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                ],
+                [
                     'text' => 'App Users',
                     'route' => 'admin.appUsers.index',
                     'icon' => 'fas fa-fw fa-horizontal-rule ',

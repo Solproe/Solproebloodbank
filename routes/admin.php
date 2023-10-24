@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\accountings\Pettycashs;
 use App\Http\Controllers\admin\appUsers\AppUsersController;
+use App\Http\Controllers\admin\center\CenterController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;
@@ -83,4 +84,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 /* Report pdf */
     Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
 
+    Route::resource('center', CenterController::class)->names('admin.center');
 });
