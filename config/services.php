@@ -54,11 +54,11 @@ return [
         'redirect' => '/google-callback',
 
     ],
-    'linkedin' => [
-        'client_id' => env('LINKEDIN_CLIENT_ID'),
-        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => env('LINKEDIN_CALLBACK_URL'),
-        'scopes' => ['r_emailaddress', 'r_liteprofile'],
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_OAUTH_ID'),
+        'client_secret' => env('INSTAGRAM_OAUTH_KEY'),
+        'redirect' => Config('app.url') . '/instagram-callback',
+
     ],
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),

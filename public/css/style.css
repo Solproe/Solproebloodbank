@@ -1,0 +1,14 @@
+/* input format for uploading files */
+.subir {
+    padding: 5 px 10 px;
+    background:greenyellow;
+    color:black;
+    border: 0 px solid #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.subir:hover {
+    color: #fff;
+    background: #f7cb15;
+}

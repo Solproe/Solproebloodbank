@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
-require '../vendor/autoload.php';
+require './vendor/autoload.php';
 
-interface RequestInterface {
+interface RequestInterface
+{
 
     public function send();
 }

@@ -68,7 +68,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -226,6 +226,12 @@ return [
 
     'menu' => [
         // Navbar items:
+        [
+            'text' => 'Register with social media',
+            'topnav_user' => true,
+            'route' => 'register2',
+
+        ],
 
         [
             'type' => 'fullscreen-widget',
@@ -248,7 +254,7 @@ return [
             [
                 [
                     'text' => 'Register _users',
-                    'route' => 'register2',
+                    'url' => '#',
                     /* 'can' => 'register.users', */
                     'role' => ['HHRR', 'System'],
                     'icon' => 'fas fa-fw fa-horizontal-rule ',
@@ -360,10 +366,31 @@ return [
             ],
         ],
         [
+
             'text' => 'Management',
             'icon' => 'fas fa-chart-line fa-fw',
             'submenu' =>
             [
+
+                [
+                    'text' => 'Human talent',
+                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    'submenu' =>
+                    [
+                        [
+                            'text' => 'Human capital',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            'submenu' =>
+                            [
+                                [
+                                    'text' => 'Staff file',
+                                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                                    'route' => 'register2',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 [
                     'text' => 'Accounting',
                     'icon' => 'fas fa-fw fa-horizontal-rule ',

@@ -27,10 +27,26 @@ Route::post('/forgot-password', function (Request $request) {
     : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Auth::routes();
+
+/* Auth::routes(['verify' => true]); */
+
+/* Route::get('profile', function () {
+// Only verified users may enter...
+})->middleware('verified'); */
+
+/* Route::get('/email/verify', function () {
+return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice'); */
+
+/* Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+$request->fulfill();
+
+return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify'); */
 
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
@@ -43,16 +59,16 @@ Route::get('/google-callback', function () {
     if ($userExists) {
         auth::login($userExists);
     } else {
-        return view('auth.passwords.Alerts.Alert_doesnt_exist');
+        /*  return view('auth.passwords.Alerts.Alert_doesnt_exist'); */
 
-        /* $userNew = User::create([
-    'name' => $user->name,
-    'email' => $user->email,
-    'avatar' => $user->avatar,
-    'socialmedia_id' => $user->id,
-    'socialmedia_auth' => 'google',
-    ]);
-    auth::login($userNew); */
+        $userNew = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'socialmedia_id' => $user->id,
+            'socialmedia_auth' => 'google',
+        ]);
+        auth::login($userNew);
     }
     return redirect('/dashboard');
 });

@@ -20,15 +20,13 @@ use App\Http\Controllers\RolesAndPermissions\Roles;
 use App\Http\Controllers\sihevi\ConsultaController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     /* Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer'); */
 
     Route::post('data', [RegisterSecondLevel::class, 'create'])->name('data');
 
-    Route::get('register2', function () {
-        return view('auth.register');
-    })->name('register2');
+    Route::get('register2', [RegisterSecondLevel::class, 'index'])->name('register2');
 
     Route::resource('Permissions', Permissions::class)->names('RolesAndPermissions.Permissions');
 

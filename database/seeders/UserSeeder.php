@@ -2,13 +2,16 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use Spatie\Permission\Traits\HasRoles;
 
 class UserSeeder extends Seeder
 {
+
+    use HasRoles;
+
     /**
      * Run the database seeds.
      *
@@ -18,7 +21,7 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Gerencia',
-            'email' => 'Gerencia@gmail.com',
+            'email' => 'gerencia@solproe.com',
             'password' => Hash::make('gerenciasolproe'),
         ])->assignRole('System');
 
@@ -30,7 +33,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Systems',
-            'email' => 'Systems@gmail.com',
+            'email' => 'Systems@solproe.com',
             'password' => Hash::make('gerenciasolproe'),
         ])->assignRole('System');
 
