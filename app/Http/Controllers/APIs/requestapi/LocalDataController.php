@@ -15,7 +15,7 @@ class LocalDataController extends Controller
 
         $databaseModel = new DatabaseModel();
 
-        $center = Center::where('ID_CENTRE', $request->codCenter)->first();
+        $center = Center::where('COD_CENTRE', $request->codCenter)->first();
 
         $databaseModel->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER,
             $center->PASSWD);
