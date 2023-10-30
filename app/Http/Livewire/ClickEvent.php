@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Center;
 use App\Models\Remote\DatabaseModel;
 use App\Models\sihevi\consult\Consult;
 use Illuminate\Support\Carbon;
@@ -125,9 +126,14 @@ class ClickEvent extends Component
 
         $this->diferido = (array) $sihevi->InformacionDiferido;
         /*   dd($sihevi); */
+
         $person = new DatabaseModel();
 
-        $matriz = $person->connectRemoteDatabase($this->identification);
+        $center = Center::where("ID_CENTRE", "=", 3)->first();
+
+        $person->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER, $center->PASSWD);
+
+        $matriz = $person->requestPatientData($this->identification);
 
         $this->today = (array) Carbon::now();
 
