@@ -9,13 +9,24 @@ use Illuminate\Database\Eloquent\Model;
 class Center extends Model
 {
     use HasFactory;
+
     protected $table = 'centre';
+
     protected $fillabel = [
         'ID_CENTRE',
         'COD_CENTRE',
         'DES_CENTRE',
+        'TAX_IDENTIFICATION',
+        'ADDRESS',
+        'PUBLIC_IP',
+        'DB_NAME',
+        'DB_USER',
+        'PASSWD'
     ];
+
     protected $primaryKey = 'ID_CENTRE';
+
+    protected $guarded = [];
 
     public function validateReceived()
     {

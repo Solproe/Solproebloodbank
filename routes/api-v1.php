@@ -5,6 +5,7 @@ use App\Http\Controllers\APIs\requestapi\LocalDataController;
 use App\Http\Controllers\APIs\requestapi\RequestController;
 use App\Http\Controllers\APIs\requestapi\validate;
 use App\Models\usersValidationBloodBank;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 Route::post('validate', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validate');
 
 Route::post('getData', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
+
+Route::get('getListCenter', [RequestController::class, 'getCentersList'])->name('v1.getListCenter');

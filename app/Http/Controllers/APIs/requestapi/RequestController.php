@@ -4,8 +4,8 @@ namespace App\Http\Controllers\APIs\requestapi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
+use App\Models\Inventories\delivery\validatereceived;
 use App\Models\status\status;
-use App\Models\ValidateReceived\ValidateReceivedModel;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,20 +14,9 @@ use Nette\Utils\Arrays;
 class RequestController extends Controller
 {
 
-    public function index()
-    {
-        $dus = "dus";
-        return true;
-    }
-
-    public function store(Request $request)
-    {
-        return ["res" => "hi baby"];
-    }
-
     public function update(Request $request, $id)
     {
-        $validateReceived = ValidateReceivedModel::where('consecutive', $id)->first();
+        $validateReceived = validatereceived::where('consecutive', $id)->first();
 
         $status = status::where('status_name', $request->status)->first();
 
@@ -88,5 +77,14 @@ class RequestController extends Controller
         }
 
         return $data;
+    }
+
+    public function getCentersList(Request $request)
+    {
+        $centers = Center::where('DB_USER', '!=', null)->get();
+
+        $centers = json_encode(['listCenter' => $centers]);
+
+        return $centers;
     }
 }

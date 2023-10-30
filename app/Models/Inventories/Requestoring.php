@@ -2,8 +2,8 @@
 
 namespace App\Models\Inventories;
 
+use App\Models\countriesstatestowns\states;
 use App\Models\Inventories\Town;
-use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,7 +35,7 @@ class Requestoring extends Model
 
     public function states()
     {
-        return $this->belongsTo(state::class, 'ID_STATE');
+        return $this->belongsTo(states::class, 'ID_STATE');
         /*  return $this->belongsTo(state::class, 'ID_STATE') */
     }
     public function towns()

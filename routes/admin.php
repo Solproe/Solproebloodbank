@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\Admin\accountings\Pettycashs;
+use App\Http\Controllers\admin\accountings\Pettycashs;
 use App\Http\Controllers\admin\appUsers\AppUsersController;
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\admin\center\CenterController;
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;
-use App\Http\Controllers\Admin\inventories\orders\SuppliesOrder;
-use App\Http\Controllers\Admin\inventories\supplies\SupplyController;
-use App\Http\Controllers\Admin\inventories\warehouses\RequestController;
-use App\Http\Controllers\Admin\providers\ProveedorController;
-use App\Http\Controllers\Admin\RequestoringController;
+use App\Http\Controllers\admin\inventories\orders\SuppliesOrder;
+use App\Http\Controllers\admin\inventories\supplies\SupplyController;
+use App\Http\Controllers\admin\inventories\warehouses\RequestController;
+use App\Http\Controllers\admin\providers\ProveedorController;
+use App\Http\Controllers\admin\RequestoringController;
 use App\Http\Controllers\admin\stateController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
+use App\Http\Controllers\countriesstatestowns\CountriesController;
 use App\Http\Controllers\Donors\Reports\ReportController;
 use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
@@ -66,6 +68,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('whatsapp', [ApiManager::class, 'store'])->name('whatsapp');
 
+    /* countries states towns routes */
+
+    Route::resource('countries', CountriesController::class)->names('admin.centers');
+
     /* Donor reporting  Excel routes */
 
     Route::get('reports/export/', [ReportController::class, 'export'])->name('donor.Reports.export');
@@ -80,5 +86,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 /* Report pdf */
     Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
-
+    Route::resource('center', CenterController::class)->names('admin.center');
 });

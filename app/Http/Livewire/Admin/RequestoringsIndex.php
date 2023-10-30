@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\countriesstatestowns\states;
 use App\Models\Inventories\Requestoring;
 use App\Models\Inventories\Town;
-use App\Models\State;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -28,7 +28,7 @@ class RequestoringsIndex extends Component
     public function render()
     {
 
-        $states = state::all();
+        $states = states::all();
         $requestorings = Requestoring::where('DES_REQUESTORIG', 'LIKE', '%' . $this->search . '%')
             ->orwhere('NIT', 'LIKE', '%' . $this->search . '%')
             ->orwhere('des_area', 'LIKE', '%' . $this->search . '%')

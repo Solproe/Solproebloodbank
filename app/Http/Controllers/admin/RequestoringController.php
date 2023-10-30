@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\countriesstatestowns\states;
 use App\Models\Inventories\Requestoring;
 use App\Models\Inventories\Town;
 use App\Models\regimen;
@@ -19,7 +20,6 @@ class RequestoringController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:customers.index')->only('index');
         $this->middleware('can:customers.create')->only('create');
         $this->middleware('can:customers.edit')->only('edit', 'update');
         $this->middleware('can:customers.delete')->only('delete');
@@ -28,7 +28,7 @@ class RequestoringController extends Controller
     public function index()
     {
         $requestorings = Requestoring::all();
-        $states = state::all();
+        $states = states::all();
 
         return view('admin.requestorings.index', compact('requestorings', 'states'));
     }

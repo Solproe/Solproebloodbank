@@ -249,23 +249,36 @@ return [
             'text' => 'Account_settings',
             'icon' => 'fas fad fa-cogs fa-fw',
             /* 'can' => 'register.users', */
-            'role' => ['HHRR', 'System'],
+            /*   'role' => ['HHRR', 'System'], */
             'submenu' =>
             [
                 [
-                    'text' => 'Register _users',
-                    'url' => '#',
-                    /* 'can' => 'register.users', */
-                    'role' => ['HHRR', 'System'],
+                    'text' => 'App solproe',
                     'icon' => 'fas fa-fw fa-horizontal-rule ',
-                    /*  'active' => ['admin/Account_settings*'], */
-                ],
-                [
-                    'text' => 'App Users',
-                    'route' => 'admin.appUsers.index',
-                    'icon' => 'fas fa-fw fa-horizontal-rule ',
-                    /*  'can' => 'register.users', */
-                    'role' => ['HHRR', 'System'],
+                    'submenu' =>
+                    [
+                        [
+                            'text' => 'Register _users',
+                            'url' => '#',
+                            /* 'can' => 'register.users', */
+                            'role' => ['HHRR', 'System'],
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*  'active' => ['admin/Account_settings*'], */
+                        ],
+                        [
+                            'text' => 'Center',
+                            'route' => 'admin.center.index',
+                            'role' => ['HHRR', 'System'],
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                        ],
+                        [
+                            'text' => 'App Users',
+                            'route' => 'admin.appUsers.index',
+                            'icon' => 'fas fa-fw fa-horizontal-rule ',
+                            /*  'can' => 'register.users', */
+                            'role' => ['HHRR', 'System'],
+                        ],
+                    ],
                 ],
                 [
                     'text' => 'Roles And Permissions',
