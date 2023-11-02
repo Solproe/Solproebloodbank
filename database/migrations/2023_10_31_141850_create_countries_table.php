@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('password')->nullable()->change();
-            $table->string('avatar')->nullable();
-            $table->string('socialmedia_id')->nullable();
-            $table->string('socialmedia_auth')->nullable();
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('countryname');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('countries');
     }
 };

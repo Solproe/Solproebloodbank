@@ -28,21 +28,22 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('admin.centers.index') }}">
+                                        <form action="{{ route('admin.center.store') }}" method="POST">
+                                            @csrf
                                             <div class="input-group mb-3">
-                                                <input type="text" id="tax"
+                                                <input type="text" id="tax" name="TAX_IDENTIFICATION"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
                                                     placeholder="Tax identification" required>
-                                                <input type="text" id="name"
+                                                <input type="text" id="name" name="DES_CENTRE"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-48
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
                                                     placeholder="Name" required>
-                                                <input type="text" id="nickname"
+                                                <input type="text" id="nickname" name="COD_CENTRE"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -50,7 +51,7 @@
                                                     placeholder="Nickname" required>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="text" id="address"
+                                                <input type="text" id="address" name="ADDRESS"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -58,38 +59,16 @@
                                                     placeholder="Address" required>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select id="country"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
-                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="country" required>
-                                                    <option selected>Choose country</option>
-                                                    @foreach ($countries as $country)
-                                                        <option value="id">{{ $country->countryname }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <select id="state" wire:model='selectedState'
+                                                <select id="state" wire:model='selectedState' name="TOWN"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                          focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                          dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
                                                     placeholder="state" required>
-                                                    <option selected>Choose state</option>
-                                                    @foreach ($states as $state)
-                                                        <option value="$state->ID_STATES">{{ $state->statename }}</option>
+                                                    <option selected>Choose Town</option>
+                                                    @foreach ($towns as $town)
+                                                        <option value="{{ $town->ID_TOWN}}">{{ $town->name }}</option>
                                                     @endforeach
-                                                </select>
-                                                <select id="town"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
-                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="town" required>
-                                                    <option selected>Choose town</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
                                                 </select>
                                             </div>
                                             <div class="input-group mb-3">
@@ -98,32 +77,32 @@
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="Public IP" required>
+                                                    placeholder="Public IP">
                                                 <input type="text" id="db_name"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-48
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="Db name" required>
+                                                    placeholder="Db name">
                                                 <input type="text" id="db_user"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="Db user" required>
+                                                    placeholder="Db user">
                                                 <input type="text" id="passwd"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="Password" required>
+                                                    placeholder="Password">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -145,10 +124,10 @@
                     <tbody>
                         @foreach ($centers as $center)
                             <tr>
-                                <td class="text-right">{{ $center->TAX_IDENTIFICATION }}</td>
-                                <td class="col-sm-2" width="10px" class="text-left">{{ $center->DES_CENTRE }}</td>
+                                <td class="text-center">{{ $center->TAX_IDENTIFICATION }}</td>
+                                <td class="col-md-6 text-center" width="10px" class="text-left">{{ $center->DES_CENTRE }}</td>
                                 <td class="text-left">{{ $center->COD_CENTRE }}</td>
-                                <td class="text-left">{{ $center->PUBLIC_IP }}</td>
+                                <td class="text-center">{{ $center->PUBLIC_IP }}</td>
                                 {{-- CREATE UPDATE MODAL --}}
                                 <div class="text-center col">
                                     <td width="4px" align="center">
@@ -157,24 +136,105 @@
                                         </button>
                                     </td>
                                     <div class="modal" tabindex="-1" id="modal-center">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Modal title</h5>
+                                                    <h5 class="modal-title">Modal to create blood banks</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Modal body text goes here.</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <form action="{{ route('admin.center.update', $center) }}" method="POST">
+                                                        @csrf
+                                                        @method("PUT")
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" id="tax" name="TAX_IDENTIFICATION"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="{{ $center->TAX_IDENTIFICATION}}">
+                                                            <input type="text" id="name" name="DES_CENTRE"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-48
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="{{ $center->DES_CENTRE}}">
+                                                            <input type="text" id="nickname" name="COD_CENTRE"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control"
+                                                                placeholder="{{ $center->COD_CENTRE}}">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" id="address" name="ADDRESS"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="{{ $center->ADDRESS }}">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <select id="state" wire:model='selectedState' name="TOWN"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                     focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                     dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                     dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="{{ $center->Towns}}">
+                                                                <option selected>Choose Town</option>
+                                                                @foreach ($towns as $town)
+                                                                    <option value="{{ $town->ID_TOWN}}">{{ $town->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" id="ip"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="Public IP">
+                                                            <input type="text" id="db_name"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-48
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="Db name">
+                                                            <input type="text" id="db_user"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="Db user">
+                                                            <input type="text" id="passwd"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                             focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                             dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
+                                                                placeholder="Password">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <td>
+                                        <div class="text-center col">
+                                            <form action="{{ route('admin.center.destroy', $center) }}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </div>
                             </tr>
                         @endforeach

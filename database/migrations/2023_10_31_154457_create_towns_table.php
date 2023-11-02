@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('token', function (Blueprint $table) {
-            $table->id();
-            $table->string('whatsapp');
-            $table->string('sihevi');
-            $table->string('messenger');
-            $table->string('instagram');
-            $table->string('ID_CENTRE');
-            $table->timestamps();
+        Schema::create('towns', function (Blueprint $table) {
+            $table->unsignedBigInteger('ID_TOWN')->autoIncrement();
+            $table->unsignedBigInteger('ID_STATE');
+            $table->foreign('ID_STATE')->references('ID_STATE')->on('states');
+            $table->string('name');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('token');
+        Schema::dropIfExists('towns');
     }
 };

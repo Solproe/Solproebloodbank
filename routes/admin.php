@@ -70,7 +70,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     /* countries states towns routes */
 
-    Route::resource('countries', CountriesController::class)->names('admin.centers');
+    //Route::resource('countries', CountriesController::class)->names('admin.centers');
 
     /* Donor reporting  Excel routes */
 

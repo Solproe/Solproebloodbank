@@ -10,7 +10,7 @@ use App\Services\RequestInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class validatereceived extends Model implements RequestInterface
+class validatereceived extends Model
 {
     use HasFactory;
 

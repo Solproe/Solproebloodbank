@@ -11,17 +11,22 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('centre', function (Blueprint $table) {
-
+            $table->unsignedBigInteger('ID_CENTRE')->autoIncrement();
+            $table->string('COD_CENTRE');
+            $table->string('DES_CENTRE');
             $table->string('TAX_IDENTIFICATION')->nullable();
             $table->string('ADDRESS')->nullable();
             $table->string('PUBLIC_IP')->nullable();
             $table->string('DB_NAME')->nullable();
             $table->string('DB_USER')->nullable();
             $table->string('PASSWD')->nullable();
-
+            $table->unsignedBigInteger('town');
+            $table->foreign('TOWN')->references('ID_TOWN')->on('towns');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('CENTRE');
     }
 };

@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('centre', function (Blueprint $table) {
-
-            $table->string('TAX_IDENTIFICATION')->nullable();
-            $table->string('ADDRESS')->nullable();
-            $table->string('PUBLIC_IP')->nullable();
-            $table->string('DB_NAME')->nullable();
-            $table->string('DB_USER')->nullable();
-            $table->string('PASSWD')->nullable();
-
+        Schema::create('token', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('token');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('token');
     }
 };

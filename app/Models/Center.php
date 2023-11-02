@@ -21,7 +21,8 @@ class Center extends Model
         'PUBLIC_IP',
         'DB_NAME',
         'DB_USER',
-        'PASSWD'
+        'PASSWD',
+        'Town'
     ];
 
     protected $primaryKey = 'ID_CENTRE';

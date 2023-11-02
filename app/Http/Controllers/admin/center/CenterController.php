@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Models\countriesstatestowns\countries;
 use App\Models\countriesstatestowns\states;
+use App\Models\countriesstatestowns\Town;
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
@@ -23,7 +24,8 @@ class CenterController extends Controller
         $centers = Center::all();
         $countries = countries::all();
         $states = states::all();
-        return view('admin.centers.index', compact('centers', 'countries', 'states'));
+        $towns = Town::all();
+        return view('admin.centers.index', compact('centers', 'towns'));
     }
 
     public function create(Request $request)
@@ -39,14 +41,31 @@ class CenterController extends Controller
         $center->TAX_IDENTIFICATION = $request->TAX_IDENTIFICATION;
         $center->COD_CENTRE = $request->COD_CENTRE;
         $center->DES_CENTRE = $request->DES_CENTRE;
-        $center->TAX_IDENTIFICATION = $request->TAX_IDENTIFICATION;
         $center->ADDRESS = $request->ADDRESS;
-        $center->PUBLIC_IP = $request->PUBLIC_IP;
-        $center->DB_NAME = $request->DB_NAME;
-        $center->DB_USER = $request->DB_USER;
-        $center->PASSWD = $request->PASSWD;
+        if (isset($request->PUBLIC_IP) and $request->PUBLIC_IP != null)
+        {
+            $center->PUBLIC_IP = $request->PUBLIC_IP;
+        }
+        if (isset($request->DB_NAME) and $request->DB_NAME != null)
+        {
+            $center->DB_NAME = $request->DB_NAME;
+        }
+        if (isset($request->DB_USER) and $request->DB_USER != null)
+        {
+            $center->DB_USER = $request->DBUSER;
+        }
+        if (isset($request->PASSWD) and $request->PASSWD)
+        {
+            $center->PASSWD = $request->PASSWD;
+        }
+        if (isset($request->TOWN) and $request->TOWN != null)
+        {
+            $center->TOWN = $request->TOWN;
+        }     
 
         $center->save();
+
+        return redirect()->route('admin.center.index');
     }
 
     public function update(Request $request, $id)
@@ -77,6 +96,9 @@ class CenterController extends Controller
         if (isset($request->PASSWD) and $request->PASSWD != null) {
             $data["PASSWD"] = $request->PASSWD;
         }
+        if (isset($request->Town) and $request->Town != null) {
+            $data['Town'] = $request->Town;
+        }
 
         $center = Center::where('ID_CENTRE', $id)->first()
             ->update($data);
@@ -86,7 +108,9 @@ class CenterController extends Controller
 
     public function destroy($id)
     {
-        $center = Center::where('ID_CENTRE', $id);
+        $center = Center::where('ID_CENTRE', intval($id))->first();
+
+        $center->delete();
 
         return redirect()->route('admin.center.index');
     }
