@@ -53,7 +53,7 @@
                                                                 <option selected>Select BloodBank</option>
                                                                 @foreach ($centers as $center)
                                                                     <option value="{{ $center->ID_CENTRE }}">
-                                                                        {{ $center->DES_CENTRE }}</option>
+                                                                        {{$center->DES_CENTRE}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </td>
