@@ -5,38 +5,70 @@ namespace App\Http\Controllers\APIs\authentication;
 use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Models\RecordingGetIn;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\usersValidationBloodBank;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class validateAppUsers extends Controller
 {
     public function validateBloodBankUsers(Request $request)
     {
-        $validateUser = usersValidationBloodBank::where(['email' => $request->email])->first();
+        $user = User::where(['email' => $request->email])->first();
+
+        $validateUser = usersValidationBloodBank::where('id_user', $user->id)->first();
 
         $response = [];
 
-        $recording = new RecordingGetIn();
-
-        $recording->email = $request->email;
-
-        $recording->phoneNumber = "none";
-
-        $recording->save();
-
-        if (isset($validateUser->email) && $validateUser->email != null)
+        if (isset($user->email) and isset($request->password))
         {
-            $center = Center::where('id_centre', $validateUser->id_centre)->first();
-            $response = ["validateRes" => true,
-                        "bloodBank" => $center->DES_CENTRE];
-            $response = json_encode($response);
-            return $response;
+            $credentials= $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+
+            if (Auth::attempt($credentials)) {
+
+                $response = [
+                    "logged" => true,
+                    "bloodBank" => $validateUser->center->DES_CENTRE
+                ];
+
+                $recording = new RecordingGetIn();
+
+                $recording->email = $request->email;
+
+                $recording->save();
+            }
+            else
+            {
+                $response = ["logged" => false];
+            }
         }
         else
         {
-            $response = ["validateRes" => false];
-            $response = json_encode($response);
-            return $response;
+            if (isset($validateUser->id_centre))
+            {
+                $response = [
+                    "logged" => true,
+                    "bloodBank" => $validateUser->center->DES_CENTRE
+                ];
+
+                $recording = new RecordingGetIn();
+
+                $recording->email = $request->email;
+
+                $recording->save();
+            }
+            else
+            {
+                $response = ["logged" => false];
+            }
         }
+
+        $response = json_encode($response);
+
+        return $response;
     }
 }

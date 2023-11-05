@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\appUsers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
+use App\Models\User;
 use App\Models\usersValidationBloodBank;
 use Exception;
 use Illuminate\Http\Request;
@@ -28,13 +29,11 @@ class AppUsersController extends Controller
     {
         $validation = new usersValidationBloodBank();
 
+        $user = User::where('email', $request->email)->first();
+
         $validation->id_centre = $request->bloodBank;
 
-        $validation->email = $request->email;
-
-        $validation->phoneNumber = $request->phoneNumber;
-
-        $validation->identification = $request->identification;
+        $validation->id_user = $user->id;
 
         try
         {

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('recording_get_in', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->string('phoneNumber');
+            $table->string('phoneNumber')->nullable();
             $table->timestamps();
         });
     }

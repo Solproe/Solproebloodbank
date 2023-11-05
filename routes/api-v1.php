@@ -30,7 +30,7 @@ Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('
 
 Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 
-Route::post('validate', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.validate');
+Route::post('authUser', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.authUser');
 
 Route::post('getData', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
 

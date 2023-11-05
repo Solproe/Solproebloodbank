@@ -12,9 +12,7 @@ class usersValidationBloodBank extends Model
     protected $fillable = [
         'id',
         'id_centre',
-        'email',
-        'phoneNumber',
-        'identification'
+        'id_user',
     ];
 
     protected $primaryKey = 'id';
@@ -22,5 +20,10 @@ class usersValidationBloodBank extends Model
     public function center()
     {
         return $this->belongsTo(Center::class, 'id_centre');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

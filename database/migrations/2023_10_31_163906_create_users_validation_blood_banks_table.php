@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_centre');
             $table->foreign('id_centre')->references('ID_CENTRE')->on('centre');
-            $table->string('email');
-            $table->string('phoneNumber');
-            $table->string('identification');
+            $table->unsignedBigInteger("id_user");
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

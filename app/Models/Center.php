@@ -34,9 +34,9 @@ class Center extends Model
         return $this->hasMany(validatereceived::class, 'ID_CENTRE');
     }
 
-    public function usersValidationBloodBanks()
+    public function usersValidationBloodBank()
     {
-        return $this->hasMany(usersValidationBloodBank::class, 'ID_CENTRE');
+        return $this->hasOne(usersValidationBloodBank::class, 'id', 'ID_CENTRE');
     }
 
 }
