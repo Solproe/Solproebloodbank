@@ -59,6 +59,10 @@ class AppUsersController extends Controller
 
     public function destroy($id)
     {
+        $appUser = usersValidationBloodBank::where('id', $id)->first();
 
+        $appUser->delete();
+
+        return redirect()->route('admin.appUsers.index');
     }
 }

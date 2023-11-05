@@ -228,7 +228,7 @@
                                         <div class="text-center col">
                                             <form action="{{ route('admin.center.destroy', $center) }}" method="POST">
                                                 @csrf
-                                                @method("DELETE")
+                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger">
                                                     delete
                                                 </button>

@@ -26,6 +26,8 @@
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
+                            <form action="{{ route('admin.appUsers.store') }}" method="POST">
+                                @csrf
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">
                                     Record delivery</h5>
@@ -44,8 +46,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <form action="{{ route('admin.appUsers.store') }}" method="POST">
-                                                    @csrf
                                                     <tr>
                                                         <td class="text-center" width="8px">
                                                             <select class="form-select justify-center"
@@ -75,6 +75,7 @@
                                     class="btn btn-primary rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2  focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save
                                     changes</button>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,6 @@
                     <tr>
                         <th scope="col">Blood Bank</th>
                         <th scope="col">Email</th>
-                        
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -100,11 +100,20 @@
                             <tr>
                                 <th scope="row"> {{ $appUser->center->DES_CENTRE }} </th>
                                 <td> {{ $appUser->user->email }} </td>
-                                <td> duss </td>
+                                <td>
+                                    <div class="col">
+                                        <form action="{{ route('admin.appUsers.destroy', $appUser) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     @endif
-
                 </tbody>
             </table>
         </div>
