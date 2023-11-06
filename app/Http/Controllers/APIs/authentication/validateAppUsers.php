@@ -30,7 +30,6 @@ class validateAppUsers extends Controller
         $user = User::where(['email' => $request->email])->first();
 
         $response = ["success"];
-        $this->middleware(['auth:sanctum']);
 
         if (isset($user->id) and $user->id != null)
         {
