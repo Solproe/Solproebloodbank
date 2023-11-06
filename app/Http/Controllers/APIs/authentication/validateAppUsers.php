@@ -19,9 +19,12 @@ class validateAppUsers extends Controller
 
         if ($this->middleware(['auth:sanctum']))
         {
-            $response = ["logged"];
+            $response = ["logged" => true];
             $response = json_encode($response);
             return $response;
+        }
+        else {
+            $response = ["logged" => false];
         }
     }
 
@@ -37,13 +40,13 @@ class validateAppUsers extends Controller
 
             if (isset($user->email) and isset($request->password))
             {
-                $credentials= $request->validate([
+                $credentials = $request->validate([
                     'email' => ['required', 'email'],
                     'password' => ['required'],
                 ]);
     
-                if (Auth::attempt($credentials)) {
-
+                if (Auth::attempt($credentials)) 
+                {
                     $user1 = new User();
 
                     $user1->email = $request->email;
