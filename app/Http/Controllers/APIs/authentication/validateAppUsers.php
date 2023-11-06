@@ -19,9 +19,9 @@ class validateAppUsers extends Controller
 
         if (isset(auth()->user()->email) and strtolower(auth()->user()->email) == strtolower($request->email))
         {
-            $response = ["logged" => true];
-            $response = json_encode($response);
-            return $response;
+            $response = [
+                "logged" => true,
+            ];
         }
         else {
             $response = ["logged" => false];
