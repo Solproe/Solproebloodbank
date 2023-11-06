@@ -24,16 +24,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('store', [RequestController::class, 'store'])->name('v1.store');
+Route::group(['middleware:api'], function () {
+    Route::post('store', [RequestController::class, 'store'])->name('v1.store');
 
-Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('v1.update');
+    Route::put('update/{consecutive}', [RequestController::class, 'update'])->name('v1.update');
 
-Route::get('show', [RequestController::class, 'show'])->name('v1.show');
+    Route::get('show', [RequestController::class, 'show'])->name('v1.show');
 
-Route::post('authUser', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.authUser');
+    Route::post('authUser', [validateAppUsers::class, 'validateBloodBankUsers'])->name('v1.authUser');
 
-Route::post('isLogged', [validateAppUsers::class, 'isLogged'])->name('v1.isLogged');
+    Route::post('isLogged', [validateAppUsers::class, 'isLogged'])->name('v1.isLogged');
 
-Route::post('getData', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
+    Route::post('logOut', [validateAppUsers::class, 'logOut'])->name('v1.logOut');
 
-Route::get('getListCenter', [RequestController::class, 'getCentersList'])->name('v1.getListCenter');
+    Route::post('getData', [LocalDataController::class, 'getPatientData'])->name('v1.getData');
+
+    Route::get('getListCenter', [RequestController::class, 'getCentersList'])->name('v1.getListCenter');
+});
+
+

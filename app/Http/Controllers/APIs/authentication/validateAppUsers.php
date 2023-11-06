@@ -17,7 +17,7 @@ class validateAppUsers extends Controller
     {
         $response = [];
 
-        if ($this->middleware(['auth:sanctum']))
+        if (isset(auth()->user()->email) and strtolower(auth()->user()->email) == strtolower($request->email))
         {
             $response = ["logged" => true];
             $response = json_encode($response);
@@ -26,6 +26,9 @@ class validateAppUsers extends Controller
         else {
             $response = ["logged" => false];
         }
+
+        $response = json_encode($response);
+        return $response;
     }
 
     public function validateBloodBankUsers(Request $request)
@@ -61,7 +64,7 @@ class validateAppUsers extends Controller
                         "user" => $user,
                     ];
 
-                    Auth::login($user1);
+                    $request->session()->regenerate();
     
                     $recording = new RecordingGetIn();
     
@@ -82,6 +85,8 @@ class validateAppUsers extends Controller
                         "success" => true,
                         "bloodBank" => $validateUser->center->DES_CENTRE
                     ];
+
+                    $request->session()->regenerate();
     
                     $recording = new RecordingGetIn();
     
@@ -110,5 +115,19 @@ class validateAppUsers extends Controller
 
             return $response;
         }
+    }
+
+    public function logOut(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        Auth::logout($user);
+
+        $response = ["logged" => false];
+        $response = json_encode($response);
+
+        $r = $request->flush();
+
+        return $response;
     }
 }
