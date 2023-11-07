@@ -63,6 +63,7 @@ class validateAppUsers extends Controller
                         "success" => true,
                         "bloodBank" => $validateUser->center->DES_CENTRE,
                         "user" => $user,
+                        "session" => $request->header(),
                     ];
 
                     $request->session()->regenerate();
