@@ -25,6 +25,7 @@ class validateAppUsers extends Controller
         }
         else {
             $response = ["logged" => false];
+            session()->flush();
         }
 
         $response = json_encode($response);
