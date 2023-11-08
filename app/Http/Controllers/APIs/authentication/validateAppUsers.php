@@ -134,7 +134,7 @@ class validateAppUsers extends Controller
         $user = new User();
         $user->email = $request->email;
 
-        Auth::guard($this->getGuard())->logout();
+        Auth::logout();
 
         $response = [
             "logOut" => true,
