@@ -132,7 +132,10 @@ class validateAppUsers extends Controller
         $user->email = $request->email;
         auth()->logOut();
 
-        $response = ["logOut" => true];
+        $response = [
+            "logOut" => true,
+            "message" => "happen?",
+        ];
         $response = json_encode($response);
 
         $r = $request->flush();
