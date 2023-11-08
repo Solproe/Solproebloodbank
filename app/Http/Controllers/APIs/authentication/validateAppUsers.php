@@ -8,10 +8,13 @@ use App\Models\RecordingGetIn;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\usersValidationBloodBank;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
 class validateAppUsers extends Controller
 {
+
+    use AuthenticatesUsers;
 
     public function isLogged(Request $request)
     {
@@ -130,7 +133,8 @@ class validateAppUsers extends Controller
     {
         $user = new User();
         $user->email = $request->email;
-        Auth::logout();
+
+        Auth::guard($this->getGuard())->logout();
 
         $response = [
             "logOut" => true,
@@ -138,9 +142,7 @@ class validateAppUsers extends Controller
         ];
         $response = json_encode($response);
 
-        $request->session()->regenerate();
-
-        $r = $request->flush();
+        $request->flush();
 
         return $response;
     }
