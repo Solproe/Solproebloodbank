@@ -16,11 +16,20 @@ class validateAppUsers extends Controller
     public function isLogged(Request $request)
     {
         $response = [];
-
+        
         if (isset(auth()->user()->email) and strtolower(auth()->user()->email) == strtolower($request->email))
         {
+            $user = User::where("email", $request->email)->first();
+
+            $user1 = new User();
+
+            $user1->email = $user->email;
+
+            $user1->name = $user->name;
+
             $response = [
                 "logged" => true,
+                "user" => $user,
             ];
         }
         else {
@@ -54,8 +63,6 @@ class validateAppUsers extends Controller
                     $user1 = new User();
 
                     $user1->email = $request->email;
-
-                    $user1->password = $request->password;
 
                     $user1->name = $user->name;
 
@@ -123,9 +130,9 @@ class validateAppUsers extends Controller
     {
         $user = new User();
         $user->email = $request->email;
-        Auth::logout($user);
+        auth()->logOut();
 
-        $response = ["logged" => false];
+        $response = ["logOut" => true];
         $response = json_encode($response);
 
         $r = $request->flush();
