@@ -36,7 +36,8 @@ class validateAppUsers extends Controller
             ];
         }
         else {
-            $response = ["logged" => false];
+            $response = [
+                "logged" => false];
             session()->flush();
         }
 
@@ -86,7 +87,10 @@ class validateAppUsers extends Controller
                 }
                 else
                 {
-                    $response = ["success" => false];
+                    $response = [
+                        "success" => false,
+                        "message" => "Invalid Credentials",
+                    ];
                 }
             }
             else
