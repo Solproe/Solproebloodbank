@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\countriesstatestowns\Town;
 use App\Models\Inventories\delivery\validatereceived;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,7 @@ class Center extends Model
         'DB_NAME',
         'DB_USER',
         'PASSWD',
-        'Town'
+        'town'
     ];
 
     protected $primaryKey = 'ID_CENTRE';
@@ -39,4 +40,8 @@ class Center extends Model
         return $this->hasOne(usersValidationBloodBank::class, 'id', 'ID_CENTRE');
     }
 
+    public function towns()
+    {
+        return $this->belongsTo(Town::class, 'town', 'ID_TOWN');
+    }
 }

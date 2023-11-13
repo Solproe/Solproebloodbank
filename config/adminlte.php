@@ -253,8 +253,13 @@ return [
             'submenu' =>
             [
                 [
+                    'text' => 'Token',
+                    'route' => 'admin.token.index',
+                    'icon' => 'fas fa-unlock-alt'
+                ],
+                [
                     'text' => 'App solproe',
-                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    'icon' => 'fas fa-mobile-alt',
                     'submenu' =>
                     [
                         [
@@ -282,7 +287,7 @@ return [
                 ],
                 [
                     'text' => 'Roles And Permissions',
-                    'icon' => 'fas fa-fw fa-horizontal-rule ',
+                    'icon' => 'fas fa-user-tag',
                     /*  'can' => 'register.users', */
                     'role' => ['HHRR', 'System'],
                     'submenu' =>

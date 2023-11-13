@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\providers;
 
 use App\Http\Controllers\Controller;
+use App\Models\countriesstatestowns\states;
 use App\Models\countriesstatestowns\Town as CountriesstatestownsTown;
 use App\Models\provider\Provider;
 use App\Models\regimen;
@@ -25,7 +26,7 @@ class ProveedorController extends Controller
 
     public function index()
     {
-        $states = State::all();
+        $states = states::all();
         $towns = CountriesstatestownsTown::all();
         $providers = Provider::all();
         return view('admin.providers.index', compact('states', 'providers'));
@@ -41,7 +42,7 @@ class ProveedorController extends Controller
 
     public function create(Request $request)
     {
-        $states = state::orderby('ID_STATE')->pluck('name', 'ID_STATE');
+        $states = states::orderby('ID_STATE')->pluck('name', 'ID_STATE');
         $towns = CountriesstatestownsTown::orderby('name')->pluck('name', 'ID_TOWN');
         $regimens = regimen::orderby('id_regimens')->pluck('name');
         $digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

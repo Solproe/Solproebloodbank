@@ -2,6 +2,7 @@
 
 namespace App\Models\countriesstatestowns;
 
+use App\Models\Center;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,11 @@ class Town extends Model
     {
         return $this->belongsTo(Requestoring::class, 'ID_TOWN');
 
+    }
+
+    public function center()
+    {
+        return $this->hasMany(Center::class, 'town', 'ID_TOWN');
     }
 
 }

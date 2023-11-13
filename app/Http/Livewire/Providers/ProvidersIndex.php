@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Providers;
 
+use App\Models\countriesstatestowns\states;
+use App\Models\countriesstatestowns\Town as CountriesstatestownsTown;
 use App\Models\Inventories\Town;
 use App\Models\provider\Provider;
 use App\Models\State;
@@ -27,7 +29,7 @@ class ProvidersIndex extends Component
     public function render()
     {
 
-        $states = state::all();
+        $states = states::all();
         $providers = Provider::all();
         /* $providers = Provider::where('name', 'LIKE', '%' . $this->search . '%')
         ->orwhere('tax_identification', 'LIKE', '%' . $this->search . '%') */
@@ -42,7 +44,7 @@ class ProvidersIndex extends Component
 
     public function updatedselectedEstado($ID_STATE)
     {
-        $this->towns = town::where('ID_STATE', 'ID_STATE')->get();
+        $this->towns = CountriesstatestownsTown::where('ID_STATE', 'ID_STATE')->get();
     }
 
     public function order($sort)

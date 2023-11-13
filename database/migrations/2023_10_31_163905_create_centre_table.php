@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('DB_USER')->nullable();
             $table->string('PASSWD')->nullable();
             $table->unsignedBigInteger('town');
-            $table->foreign('TOWN')->references('ID_TOWN')->on('towns');
+            $table->foreign('town')->references('ID_TOWN')->on('towns');
             $table->timestamps();
         });
     }

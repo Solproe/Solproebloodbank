@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Providers;
 
+use App\Models\countriesstatestowns\Town as CountriesstatestownsTown;
 use App\Models\Inventories\Town;
 use App\Models\regimen;
 use App\Models\State;
@@ -27,7 +28,7 @@ class ProvidersCreate extends Component
 
     public function updatedselectedState()
     {
-        $this->towns = Town::where('ID_STATE', $this->selectedState)->get();
+        $this->towns = CountriesstatestownsTown::where('ID_STATE', $this->selectedState)->get();
 
     }
 }

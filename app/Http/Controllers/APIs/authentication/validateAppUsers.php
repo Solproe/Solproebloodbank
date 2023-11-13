@@ -24,15 +24,21 @@ class validateAppUsers extends Controller
         {
             $user = User::where("email", $request->email)->first();
 
+            $validateUser = usersValidationBloodBank::where("id_user", $user->id)->first();
+
             $user1 = new User();
 
             $user1->email = $user->email;
 
             $user1->name = $user->name;
 
+            $center = $validateUser->center();
+
+
             $response = [
                 "logged" => true,
-                "user" => $user,
+                "user" => $user1,
+                "center" => $center,
             ];
         }
         else {
@@ -45,16 +51,17 @@ class validateAppUsers extends Controller
         return $response;
     }
 
+
     public function validateBloodBankUsers(Request $request)
     {
         $user = User::where(['email' => $request->email])->first();
 
+        $validateUser = usersValidationBloodBank::where("id_user", $user->id)->first();
+
         $response = ["success"];
 
-        if (isset($user->id) and $user->id != null)
+        if (isset($validateUser->id_user) and $validateUser->id_user != null)
         {
-            $validateUser = usersValidationBloodBank::where('id_user', $user->id)->first();
-
             if (isset($user->email) and isset($request->password))
             {
                 $credentials = $request->validate([
@@ -64,17 +71,21 @@ class validateAppUsers extends Controller
     
                 if (Auth::attempt($credentials)) 
                 {
-                    $user1 = new User();
+                    $validateUser->user->email = $request->email;
 
-                    $user1->email = $request->email;
+                    $validateUser->user->name = $user->name;
 
-                    $user1->name = $user->name;
+                    
+
+                    $center = $validateUser->center;
+                    $center->town = $center->towns->name;
+
+                    $center->token = "abc";
 
                     $response = [
                         "success" => true,
-                        "bloodBank" => $validateUser->center->DES_CENTRE,
-                        "user" => $user,
-                        "session" => $request->header(),
+                        "user" => $validateUser->user,
+                        "center" => $validateUser->center,
                     ];
 
                     $request->session()->regenerate();
@@ -95,11 +106,12 @@ class validateAppUsers extends Controller
             }
             else
             {
-                if (isset($validateUser->id_centre))
+                if (isset($validateUser->id_centre) and $validateUser->id_centre != null)
                 {
                     $response = [
                         "success" => true,
-                        "bloodBank" => $validateUser->center->DES_CENTRE
+                        "user" => $validateUser->user,
+                        "center" => $validateUser->center,
                     ];
 
                     $request->session()->regenerate();
@@ -132,6 +144,7 @@ class validateAppUsers extends Controller
             return $response;
         }
     }
+
 
     public function logOut(Request $request)
     {

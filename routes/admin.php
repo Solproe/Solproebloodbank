@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\admin\providers\ProveedorController;
 use App\Http\Controllers\admin\RequestoringController;
 use App\Http\Controllers\admin\stateController;
+use App\Http\Controllers\admin\token\TokenController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
 use App\Http\Controllers\countriesstatestowns\CountriesController;
@@ -87,4 +88,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 /* Report pdf */
     Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
     Route::resource('center', CenterController::class)->names('admin.center');
+    Route::resource('token', TokenController::class)->names('admin.token');
+
 });

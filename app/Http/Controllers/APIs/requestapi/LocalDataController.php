@@ -37,6 +37,4 @@ class LocalDataController extends Controller
 
         return $matriz;
     }
-
-    
 }
