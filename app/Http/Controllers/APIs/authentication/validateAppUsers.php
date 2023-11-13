@@ -34,6 +34,8 @@ class validateAppUsers extends Controller
 
             $center = $validateUser->center();
 
+            $center->token = "abc";
+
 
             $response = [
                 "logged" => true,
@@ -74,8 +76,6 @@ class validateAppUsers extends Controller
                     $validateUser->user->email = $request->email;
 
                     $validateUser->user->name = $user->name;
-
-                    
 
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
