@@ -52,7 +52,7 @@ class CenterController extends Controller
         }
         if (isset($request->DB_USER) and $request->DB_USER != null)
         {
-            $center->DB_USER = $request->DBUSER;
+            $center->DB_USER = $request->DB_USER;
         }
         if (isset($request->PASSWD) and $request->PASSWD)
         {
