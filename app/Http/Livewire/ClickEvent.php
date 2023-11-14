@@ -129,7 +129,7 @@ class ClickEvent extends Component
 
         $person = new DatabaseModel();
 
-        $center = Center::where("ID_CENTRE", "=", 3)->first();
+        $center = Center::where("ID_CENTRE", "=", 5)->first();
 
         $person->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER, $center->PASSWD);
 
