@@ -144,7 +144,7 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="{{ route('admin.center.update', $center->ID_CENTRE) }}" method="POST">
+                                                    <form action="{{ route('admin.center.update', $center) }}" method="POST">
                                                         @csrf
                                                         @method("PUT")
                                                         <div class="input-group mb-3">
