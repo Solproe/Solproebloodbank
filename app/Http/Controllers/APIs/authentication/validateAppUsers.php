@@ -35,7 +35,7 @@ class validateAppUsers extends Controller
 
             $user1->name = $user->name;
 
-            $center = $validateUser->center();
+            $center = $validateUser->center;
 
             $center->token = $token->token;
 
@@ -76,14 +76,13 @@ class validateAppUsers extends Controller
     
                 if (Auth::attempt($credentials)) 
                 {
+                    $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
                     $validateUser->user->email = $request->email;
-
                     $validateUser->user->name = $user->name;
 
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
-
-                    $center->token = "abc";
+                    $center->token = $token->token;
 
                     $response = [
                         "success" => true,
@@ -111,10 +110,13 @@ class validateAppUsers extends Controller
             {
                 if (isset($validateUser->id_centre) and $validateUser->id_centre != null)
                 {
+                    $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
+                    $center = $validateUser->center;
+                    $center->token = $token->token;
                     $response = [
                         "success" => true,
                         "user" => $validateUser->user,
-                        "center" => $validateUser->center,
+                        "center" => $center,
                     ];
 
                     $request->session()->regenerate();
