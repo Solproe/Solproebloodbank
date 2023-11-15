@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\admin\token;
 
 use App\Http\Controllers\Controller;
-use App\Models\ApiWhatsapp\Token;
+use App\Models\Token;
 use App\Models\Center;
+use Egulias\EmailValidator\Warning\TLD;
 use Illuminate\Http\Request;
 
 class TokenController extends Controller
@@ -19,12 +20,22 @@ class TokenController extends Controller
 
     public function create()
     {
-
+        
     }
 
     public function store(Request $request)
     {
-        
+
+        $token = new Token();
+        if (isset($request->type) and $request->type == "center")
+        {
+            $token->name = $request->COD_CENTER;
+            $token->token = $request->token;
+        }
+
+        $token->save();
+
+        return redirect()->route('admin.token.index');
     }
 
     public function edit()

@@ -33,7 +33,7 @@
                                             <div class="input-group mb-3">
                                             </div>
                                             <div class="input-group mb-3">
-                                                <select id="state" wire:model='selectedState' name="name"
+                                                <select id="state" wire:model='selectedState' name="type"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                          focus:ring-blue-500 focus:border-blue-500 block w-2
                                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -45,14 +45,14 @@
                                                 </select>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="text" id="ip"
+                                                <input type="text" id="token" name="token"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
-                                                    placeholder="Token">
+                                                    placeholder="Token" required>
                                                 
-                                                <select id="centers" wire:model='selectedState' name="center"
+                                                <select id="centers" wire:model='selectedState' name="COD_CENTER"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                          focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -87,8 +87,8 @@
                 <tbody>
                     @foreach ($tokens as $token)
                         <tr>
-                            <td class="text-center">token</td>
-                            <td class="col-md-6 text-center" width="10px" class="text-left">name</td>
+                            <td class="text-center">{{ $token->token }}</td>
+                            <td class="col-md-6 text-center" width="10px" class="text-left">{{ $token->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

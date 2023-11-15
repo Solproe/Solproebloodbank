@@ -5,6 +5,7 @@ namespace App\Http\Controllers\APIs\authentication;
 use App\Http\Controllers\Controller;
 use App\Models\Center;
 use App\Models\RecordingGetIn;
+use App\Models\Token;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\usersValidationBloodBank;
@@ -26,6 +27,8 @@ class validateAppUsers extends Controller
 
             $validateUser = usersValidationBloodBank::where("id_user", $user->id)->first();
 
+            $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
+
             $user1 = new User();
 
             $user1->email = $user->email;
@@ -34,7 +37,7 @@ class validateAppUsers extends Controller
 
             $center = $validateUser->center();
 
-            $center->token = "abc";
+            $center->token = $token->token;
 
 
             $response = [
