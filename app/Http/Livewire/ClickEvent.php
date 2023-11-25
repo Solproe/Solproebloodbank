@@ -120,7 +120,7 @@ class ClickEvent extends Component
         curl_close($ch);
         /*  dd($sihevi); */
 
-        if ($sihevi->HistoricoDonaciones != null) {
+        if (isset($sihevi->HistoricoDonaciones) and $sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;
         }
 

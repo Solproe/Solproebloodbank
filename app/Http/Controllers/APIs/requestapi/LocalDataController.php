@@ -28,7 +28,7 @@ class LocalDataController extends Controller
         }
         else 
         {
-            $matriz = ["empty" => true];
+            $matriz = ["empty" => true, "request" => $request->codCenter];
         }
 
         $matriz = json_encode($matriz);
