@@ -124,6 +124,11 @@ class ClickEvent extends Component
             $this->historico = $sihevi->HistoricoDonaciones;
         }
 
+        if (isset($sihevi->InformacionDiferimientoTemporal) && $sihevi->InformacionDiferimientoTemporal->NUM_IDENTIFICACION != null)
+        {
+            
+        }
+
         $this->diferido = (array) $sihevi->InformacionDiferido;
         /*   dd($sihevi); */
 

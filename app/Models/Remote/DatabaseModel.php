@@ -4,6 +4,7 @@ namespace App\Models\Remote;
 
 use App\Models\Remote\ConsultRemoteFilter;
 use App\Http\Controllers\Donor\ConsultFilter;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PDO;
@@ -18,11 +19,17 @@ class DatabaseModel extends Model
 
     public function createConnection(String $ip, String $dbName, String $user, String $passwd)
     {
-        $this->pdo = new PDO(
-            'mysql:host=' . $ip . '; ' . 'dbname=' . $dbName . '; ' . 'charset=utf8',
-            $user,
-            $passwd
-        );
+        try {
+            $this->pdo = new PDO(
+                'mysql:host=' . $ip . '; ' . 'dbname=' . $dbName . '; ' . 'charset=utf8',
+                $user,
+                $passwd
+            );
+        }
+        catch (Exception $e) {
+            return $e;
+        }
+        
     }
 
     #aqui nos conectamos con una base de datos remota
