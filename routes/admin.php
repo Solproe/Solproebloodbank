@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     /* Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer'); */
 
-    Route::post('data', [RegisterSecondLevel::class, 'create'])->name('data');
+    Route::post('data', [RegisterSecondLevel::class, 'create'])->name('admin.data');
 
     Route::get('register2', [RegisterSecondLevel::class, 'index'])->name('register2');
 

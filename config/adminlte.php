@@ -264,7 +264,7 @@ return [
                     [
                         [
                             'text' => 'Register _users',
-                            'url' => '#',
+                            'route' => 'register2',
                             /* 'can' => 'register.users', */
                             'role' => ['HHRR', 'System'],
                             'icon' => 'fas fa-fw fa-horizontal-rule ',
