@@ -19,11 +19,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Gerencia',
-            'email' => 'gerencia@solproe.com',
-            'password' => Hash::make('gerenciasolproe'),
-        ])->assignRole('System');
 
         User::create([
             'name' => 'prueba',
