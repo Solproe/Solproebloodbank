@@ -7,6 +7,7 @@ use App\Models\status\status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Inventories\storage\warehouse_movement;
 
 class Order_Request extends Model
 {
@@ -14,7 +15,6 @@ class Order_Request extends Model
     protected $table = 'order_request';
 
     protected $fillable = [
-
         'id',
         'status',
         'id_applicant',
@@ -34,11 +34,6 @@ class Order_Request extends Model
     public function warehouse()
     {
         return $this->hasMany(warehouse_movement::class, 'id');
-    }
-
-    public function shopping()
-    {
-        return $this->hasMany(ShoppingSupplies::class, 'id');
     }
 
     public function user()

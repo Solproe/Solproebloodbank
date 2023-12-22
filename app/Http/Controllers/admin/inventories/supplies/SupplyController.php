@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\inventories\supplies;
 use App\Http\Controllers\Controller;
 use App\Models\Inventories\supplies\supplies;
 use App\Models\process\step_process;
+use App\Models\provider\Provider;
 use App\Models\status\status;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,7 @@ class SupplyController extends Controller
     {
         $supplies = supplies::all();
         $status = status::all();
-        $process = step_process::all();
-        return view('admin.inventories.supplies.index', compact('supplies', 'process', 'status'));
+        return view('admin.inventories.supplies.index', compact('supplies', 'status'));
     }
     /**
      * Show the form for creating a new resource.
@@ -36,6 +36,7 @@ class SupplyController extends Controller
     public function create()
     {
         $status = status::all();
+        $providers = Provider::all();
         return view('admin.inventories.supplies.create', compact('status'));
     }
     /**

@@ -17,18 +17,17 @@ return new class extends Migration
             $table->id();
             $table->string('tax_identification');
             $table->string('check_digital');
-            $table->string('id_regimens');
+            $table->unsignedBigInteger('id_regimens');
+            $table->foreign('id_regimens')->references('id')->on('regimens');
             $table->string('name');
             $table->string('address');
             $table->string('legal_representative');
-            $table->string('CITIZENSHIO_CARD');
+            $table->string('CITIZENSHIP_CARD');
             $table->string('phones');
             $table->string('LANDLINE');
             $table->string('email');
-            $table->unsignedBigInteger('ID_STATE');
-            $table->foreign('ID_STATE')->references('id')->on('providers');
             $table->unsignedBigInteger('ID_TOWN');
-            $table->foreign('ID_TOWN')->references('id')->on('providers');
+            $table->foreign('ID_TOWN')->references('ID_TOWN')->on('towns');
             $table->timestamps();
         });
     }

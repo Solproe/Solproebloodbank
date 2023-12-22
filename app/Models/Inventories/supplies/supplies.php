@@ -5,6 +5,7 @@ namespace App\Models\Inventories\supplies;
 use App\Models\Inventories\Order\ShoppingSupplies;
 use App\Models\Inventories\Order\SuppliesOrder;
 use App\Models\Inventories\storage\warehouse_movement;
+use App\Models\provider\Provider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\status\status;
@@ -15,11 +16,11 @@ class supplies extends Model
     protected $table = 'supplies';
 
     protected $fillable= [
-
         'id',
         'supply_cod',
         'supply_name',
         'supply_description',
+        'provider',
         'status'
     ];
     public function status_id()
@@ -37,9 +38,8 @@ class supplies extends Model
         return $this->hasMany(warehouse_movement::class, 'id');
    }
 
-   public function shopping()
+   public function provider()
    {
-        return $this->hasMany(ShoppingSupplies::class, 'id');
+    return $this->belongsTo(Provider::class, 'id');
    }
-
 }

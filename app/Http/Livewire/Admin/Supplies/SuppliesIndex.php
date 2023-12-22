@@ -9,12 +9,16 @@ use Livewire\Component;
 
 class SuppliesIndex extends Component
 {
+
+    public $supplies;
+    public $status;
+
+
     public function render()
     {
         $supplies = supplies::all();
         $status = status::all();
-        $process = step_process::all();
 
-        return view('livewire.admin.supplies.supplies-index', compact('supplies', 'status', 'process'));
+        return view('livewire.admin.supplies.supplies-index');
     }
 }

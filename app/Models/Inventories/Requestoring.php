@@ -3,7 +3,7 @@
 namespace App\Models\Inventories;
 
 use App\Models\countriesstatestowns\states;
-use App\Models\Inventories\Town;
+use App\Models\countriesstatestowns\Town as CountriesstatestownsTown;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,7 +40,7 @@ class Requestoring extends Model
     }
     public function towns()
     {
-        return $this->belongsTo(Town::class, 'ID_TOWN');
+        return $this->belongsTo(CountriesstatestownsTown::class, 'ID_TOWN');
         /* return $this->hasMany(town::class, 'ID_TOWN'); */
     }
 

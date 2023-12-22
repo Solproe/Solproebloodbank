@@ -2,21 +2,20 @@
 
 namespace App\Models\provider;
 
-use App\Models\Inventories\Town;
+use App\Models\countriesstatestowns\Town;
 use App\Models\State;
 use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
     /* use HasFactory; */
-    protected $table = 'providers';
+    protected $table = 'provider';
     protected $fillable = [
         'tax_identification',
         'id_regimens',
         'check_digital',
         'name',
         'ID_TOWN',
-        'ID_STATE',
         'address',
         'phones',
         'mobile',

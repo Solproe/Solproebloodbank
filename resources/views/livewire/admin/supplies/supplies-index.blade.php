@@ -25,36 +25,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @dd($supplies->supply_name)
+                    @if (isset($supplies) and $supplies != null)
                     @foreach ($supplies as $supply)
-                        <tr>
+                    <tr>
 
-                            <td width="10px">{{ $supply->supply_name }}</td>
-                            <td class="col-md-4" width="12px">{{ $supply->supply_description }}</td>
-                            <td width="10px">{{ $supply->status_id->status_name }}</td>
+                        <td width="10px">{{ $supply->supply_name }}</td>
+                        <td class="col-md-4" width="12px">{{ $supply->supply_description }}</td>
+                        <td width="10px">{{ $supply->status_id->status_name }}</td>
 
-                            <div class="text-center col">
-                                <td width="10%" align="center">
-                                    <a class="far fa-edit btn btn-outline-info btn-med"
-                                        href="{{ route('admin.inventories.supplies.edit', $supply) }}"> Edit</a>
-                                </td>
-                                <td width="10px" align="center">
-                                    <form action="{{ route('admin.inventories.supplies.destroy', $supply->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
-                                            Remove</button>
-                                    </form>
-                                </td>
-                                <td width="10px" align="center">
-                                    <a class="far fa-chart-bar btn btn-outline-success btn-med"
-                                        href="{{ route('admin.inventories.supplies.edit', $supply->id) }}">
-                                        Statistics</a>
-                                </td>
-                            </div>
-                        </tr>
-                    @endforeach
+                        <div class="text-center col">
+                            <td width="10%" align="center">
+                                <a class="far fa-edit btn btn-outline-info btn-med"
+                                    href="{{ route('admin.inventories.supplies.edit', $supply) }}"> Edit</a>
+                            </td>
+                            <td width="10px" align="center">
+                                <form action="{{ route('admin.inventories.supplies.destroy', $supply->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
+                                        Remove</button>
+                                </form>
+                            </td>
+                            <td width="10px" align="center">
+                                <a class="far fa-chart-bar btn btn-outline-success btn-med"
+                                    href="{{ route('admin.inventories.supplies.edit', $supply->id) }}">
+                                    Statistics</a>
+                            </td>
+                        </div>
+                    </tr>
+                @endforeach    
+                    @endif
+                    
                 </tbody>
             </table>
         </div>

@@ -44,8 +44,9 @@
             </div>
         </div>
     </div>
-    <div class="mt-2 ml-4 form-row">
+    <div class="mt-2 ml-4 form-row mb-3">
+        {!! form::submit('Supplies Create', ['class' => 'btn btn-success']) !!}
+        {!! form::close() !!}
     </div>
-    {!! form::submit('Supplies Create', ['class' => 'btn btn-success float-right mb-4 mr-2']) !!}
-    {!! form::close() !!}
+    
 </div>
