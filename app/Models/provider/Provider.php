@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
     /* use HasFactory; */
-    protected $table = 'provider';
+    protected $table = 'providers';
     protected $fillable = [
         'tax_identification',
         'id_regimens',

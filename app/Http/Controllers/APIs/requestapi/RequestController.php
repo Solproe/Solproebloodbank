@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Nette\Utils\Arrays;
+use Illuminate\Support\Facades\DB;
 
 class RequestController extends Controller
 {
@@ -81,7 +82,9 @@ class RequestController extends Controller
 
     public function getCentersList(Request $request)
     {
-        $centers = Center::where('DB_USER', '!=', null)->select('COD_CENTRE')->get();
+        //$centers = Center::where('DB_USER', '!=', null)->select('COD_CENTRE')->get();
+
+        $centers = DB::connection('huav')->table('centre')->select('DES_CENTRE')->get();
 
         $centers = json_encode(['listCenter' => $centers]);
 
