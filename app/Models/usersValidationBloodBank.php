@@ -13,6 +13,7 @@ class usersValidationBloodBank extends Model
         'id',
         'id_centre',
         'id_user',
+        'token',
     ];
 
     protected $primaryKey = 'id';
@@ -25,5 +26,10 @@ class usersValidationBloodBank extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function token()
+    {
+        return $this->belongsTo(Token::class, 'token', 'id');
     }
 }

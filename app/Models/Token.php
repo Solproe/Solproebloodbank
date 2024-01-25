@@ -16,4 +16,9 @@ class Token extends Model
         'whatsapp',
         'name',
     ];
+
+    public function usersValidation()
+    {
+        return $this->hasOne(usersValidationBloodBank::class, 'id', 'token');
+    }
 }

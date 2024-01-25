@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('DES_CENTRE');
             $table->string('TAX_IDENTIFICATION')->nullable();
             $table->string('ADDRESS')->nullable();
+            $table->string('DOMAIN_NAME')->nullable();
             $table->string('PUBLIC_IP')->nullable();
             $table->string('DB_NAME')->nullable();
             $table->string('DB_USER')->nullable();

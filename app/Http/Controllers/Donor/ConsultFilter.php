@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Donor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Donor\Offer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,29 +34,32 @@ class ConsultFilter extends Controller
 
         /* dd($person); */
 
-        if ($person != null) {
-
+        if ($person != null) 
+        {
             #iteramos para conocer el ultimo registro por fecha
 
-            foreach ($person as $people) {
-                if ($counter == 0) {
-
+            foreach ($person as $people) 
+            {
+                if ($counter == 0) 
+                {
                     $last_date = $people->DAT_OFFER;
-                } else {
-
-                    if (strtotime(date($this->ConvertirFormatoFecha($last_date))) > strtotime(date($people->DAT_OFFER))) {
-
+                } 
+                else 
+                {
+                    if (strtotime(date($this->ConvertirFormatoFecha($last_date))) > strtotime(date($people->DAT_OFFER))) 
+                    {
                         $this->data = $people;
-                    } else {
-
+                    } 
+                    else 
+                    {
                         $this->data = $people;
 
                         $last_date = $people->DAT_OFFER;
                     }
                 }
 
-                if (strtotime(date($this->ConvertirFormatoFecha($last_date))) <= strtotime(date($people->DAT_OFFER))) {
-
+                if (strtotime(date($this->ConvertirFormatoFecha($last_date))) <= strtotime(date($people->DAT_OFFER))) 
+                {
                     $this->data = $people;
                 }
 
@@ -63,10 +67,10 @@ class ConsultFilter extends Controller
             }
            /*  Extract the date of the last offer with temporary deferral and converting dates */
            
-            if ($this->data->ID_DEFERREDREASON != null) {
-                $this->deferred = DB::table('offer')
+            if ($this->data->ID_DEFERREDREASON != null) 
+            {
+                $this->deferred = Offer::where('offer.ID_OFFER', $this->data->ID_OFFER)
                     ->join('deferredreason', 'offer.ID_DEFERREDREASON', '=', 'deferredreason.ID_DEFERREDREASON')
-                    ->where('offer.ID_OFFER', $this->data->ID_OFFER)
                     ->select(
                         'deferredreason.COD_DEFERREDTYPE',
                         'deferredreason.DES_DEFERREDREASON',
@@ -75,8 +79,8 @@ class ConsultFilter extends Controller
                     )
                     ->get();
 
-                foreach ($this->deferred as $deferred) {
-
+                foreach ($this->deferred as $deferred) 
+                {
                     if ($deferred->COD_DEFERREDTYPE == 'T') {
                         $carbon = new Carbon();
                         $fecha1 = $deferred->DAT_OFFER;
@@ -86,7 +90,9 @@ class ConsultFilter extends Controller
                     }
                 }
                 return [$this->data, $this->deferred];
-            } else {
+            } 
+            else 
+            {
                 $donation = DB::table('donation')
                     ->join('donationtype', 'donation.ID_DONATIONTYPE', '=', 'donationtype.ID_DONATIONTYPE')
                     ->where('donation.ID_PERSON', $this->data->ID_PERSON)
