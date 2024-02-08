@@ -18,10 +18,12 @@ class CenterController extends Controller
     public $regimens;
     public $selectedState;
     public $selectedTown;
+    public $centers;
 
     public function index()
     {
-        $centers = Center::all();
+        $this->centers = Center::all();
+        $centers = $this->centers;
         $countries = countries::all();
         $states = states::all();
         $towns = Town::all();
@@ -42,9 +44,14 @@ class CenterController extends Controller
         $center->COD_CENTRE = $request->COD_CENTRE;
         $center->DES_CENTRE = $request->DES_CENTRE;
         $center->ADDRESS = $request->ADDRESS;
+        
         if (isset($request->PUBLIC_IP) and $request->PUBLIC_IP != null)
         {
             $center->PUBLIC_IP = $request->PUBLIC_IP;
+        }
+        if (isset($request->DOMAIN) and $request->DOMAIN != null)
+        {
+            $center->DOMAIN_NAME = $request->DOMAIN;
         }
         if (isset($request->DB_NAME) and $request->DB_NAME != null)
         {
@@ -104,6 +111,15 @@ class CenterController extends Controller
             ->update($data);
 
         return redirect()->route('admin.center.index');
+    }
+
+    public function edit($id)
+    {
+        $center = Center::where('ID_CENTRE', $id);
+
+        $towns = Town::all();
+
+        return view('admin.centers.edit', compact('center', 'towns'));
     }
 
     public function destroy($id)

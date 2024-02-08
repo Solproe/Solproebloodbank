@@ -4,6 +4,7 @@ namespace App\Models\countriesstatestowns;
 
 use App\Models\Center;
 use App\Models\Inventories\Requestoring;
+use App\Models\provider\Provider;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,4 +37,8 @@ class Town extends Model
         return $this->hasMany(Center::class, 'town', 'ID_TOWN');
     }
 
+    public function providers()
+    {
+        return $this->hasMany(Provider::class, 'id');
+    }
 }

@@ -9,6 +9,11 @@ class countries extends Model
 {
     use HasFactory;
 
+    public $fillable = [
+        'id',
+        'countryname',
+    ];
+
     //Relacion uno a muchos
 
     public function states()

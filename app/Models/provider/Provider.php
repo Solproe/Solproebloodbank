@@ -2,6 +2,7 @@
 
 namespace App\Models\provider;
 
+use App\Models\countriesstatestowns\states;
 use App\Models\countriesstatestowns\Town;
 use App\Models\State;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,7 @@ class Provider extends Model
     ];
     public function states()
     {
-        return $this->belongsTo(state::class, 'ID_STATE');
+        return $this->belongsTo(states::class, 'ID_STATE');
         /*  return $this->belongsTo(state::class, 'ID_STATE') */
     }
 

@@ -57,6 +57,12 @@
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                                  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
                                                     placeholder="Address" required>
+                                                    <input type="text" id="nickname" name="DOMAIN"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                 focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
+                                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                                 dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control"
+                                                    placeholder="Domain">
                                             </div>
                                             <div class="input-group mb-3">
                                                 <select id="state" wire:model='selectedState' name="TOWN"
@@ -225,6 +231,14 @@
                                         </div>
                                     </div>
                                     <td>
+                                        <div class="text-center col">
+                                            <form action="{{ route('admin.center.edit', $center->ID_CENTRE)}}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-warning">
+                                                    edit
+                                                </button>
+                                            </form>
+                                        </div>
                                         <div class="text-center col">
                                             <form action="{{ route('admin.center.destroy', $center) }}" method="POST">
                                                 @csrf

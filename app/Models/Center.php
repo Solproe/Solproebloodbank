@@ -19,6 +19,7 @@ class Center extends Model
         'DES_CENTRE',
         'TAX_IDENTIFICATION',
         'ADDRESS',
+        'DOMAIN',
         'PUBLIC_IP',
         'DB_NAME',
         'DB_USER',
