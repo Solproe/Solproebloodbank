@@ -2,6 +2,7 @@
 
 namespace App\Models\Inventories\Order;
 
+use App\Models\status\status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,12 +23,17 @@ class RequestOrder extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'id_applicant');
+        return $this->belongsTo(User::class, 'id_applicant', 'id');
     }
 
     public function suppliesorder()
     {
         return $this->hasMany(RequestOrder::class, 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(status::class, 'status', 'id');
     }
 
     public function warehouse()

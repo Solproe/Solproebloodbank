@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\countriesstatestowns\countries;
+use App\Models\countriesstatestowns\states;
 use Illuminate\Http\Request;
+use NunoMaduro\Collision\Adapters\Phpunit\State;
 
-use App\Models\State;
-
-
-
-
-
-class stateController extends Controller
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +17,11 @@ class stateController extends Controller
      */
     public function index()
     {
-        $estados = State::all();
-        return view('admin.states.index',compact('estados'));
+        $states = states::all();
+
+        $countries = countries::all();
+
+        return view('admin.states.index',compact('states', 'countries'));
     }
 
     /**
@@ -42,9 +42,11 @@ class stateController extends Controller
      */
     public function store(Request $request)
     {
-        $estados = State::all();
-        return view('admin.providers.create', compact('estados'));
-        
+        $state = new states($request->all());
+
+        $state->save();
+
+        return redirect()->route('admin.states.index');
     }
 
     /**
@@ -64,10 +66,11 @@ class stateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(State $estados)
-
+    public function edit($id)
     {
-        Return view('admin.states.index', compact('estado'));
+        $state = states::where('ID_STATE', $id);
+
+        Return view('admin.states.edit', compact('state'));
     }
 
     /**
@@ -79,7 +82,7 @@ class stateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

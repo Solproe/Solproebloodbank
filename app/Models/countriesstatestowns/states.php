@@ -11,7 +11,7 @@ class states extends Model
 
     protected $table = "states";
 
-    protected $promaryKey = "ID_TOWNS";
+    protected $primaryKey = "ID_STATE";
 
     protected $fillable = [
         'ID_STATE',
@@ -19,9 +19,15 @@ class states extends Model
         'statename',
     ];
 
+    protected $guarded = [
+        'updated_at',
+        'created_at'
+    ];
+
+
     public function countries()
     {
-        return $this->belongsTo(countries::class, 'id');
+        return $this->belongsTo(countries::class, 'country', 'id');
     }
 
     public function towns()

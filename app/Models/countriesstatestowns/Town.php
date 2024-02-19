@@ -22,7 +22,7 @@ class Town extends Model
 
     public function states()
     {
-        return $this->belongsTo(states::class, 'ID_STATE');
+        return $this->belongsTo(states::class, 'ID_STATE', 'ID_STATE');
 
     }
 

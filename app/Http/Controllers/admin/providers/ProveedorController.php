@@ -42,11 +42,11 @@ class ProveedorController extends Controller
 
     public function create(Request $request)
     {
-        $states = states::orderby('ID_STATE')->pluck('name', 'ID_STATE');
-        $towns = CountriesstatestownsTown::orderby('name')->pluck('name', 'ID_TOWN');
-        $regimens = regimen::orderby('id_regimens')->pluck('name');
+        $towns = CountriesstatestownsTown::all();
+
         $digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        return view('admin.providers.create', compact('states', 'towns', 'regimens', 'digits'));
+
+        return view('admin.providers.create', compact('towns', 'digits'));
     }
 
     public function store(Request $request)
@@ -54,12 +54,10 @@ class ProveedorController extends Controller
         $request->validate([
             'tax_identification' => 'required|unique:providers',
             'check_digital' => 'required',
-            'id_regimens' => 'required',
             'ID_TOWN' => 'required',
             'name' => 'required',
             'legal_representative' => 'required',
             'CITIZENSHIP_CARD' => 'required',
-            'ID_STATE' => 'required',
             'address' => 'required',
             'phones' => 'required',
             'LANDLINE' => 'required',
@@ -133,7 +131,7 @@ class ProveedorController extends Controller
         $provider->delete();
 
         $providers = Provider::all();
-        $states = state::all();
+        $states = states::all();
 
         return view('admin.providers.index', compact('providers', 'states'));
 

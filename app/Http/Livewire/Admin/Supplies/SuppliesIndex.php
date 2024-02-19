@@ -9,15 +9,14 @@ use Livewire\Component;
 
 class SuppliesIndex extends Component
 {
-
-    public $supplies;
-    public $status;
+    public $allSupplies;
+    public $allStatus;
 
 
     public function render()
     {
-        $supplies = supplies::all();
-        $status = status::all();
+        $this->allSupplies = supplies::all();
+        $this->allStatus = status::all();
 
         return view('livewire.admin.supplies.supplies-index');
     }

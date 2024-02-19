@@ -12,6 +12,9 @@ class RequestSuppliesIndex extends Component
 
     public function render()
     {
+
+        
+
         return view('livewire.admin.warehouse.request-supplies-index');
     }
 }

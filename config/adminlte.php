@@ -253,6 +253,37 @@ return [
             'submenu' =>
             [
                 [
+                    'text' => 'Status',
+                    'route' => 'status.index',
+                    'icon' => 'fas fa-check'
+                ],
+
+                [
+                    'text' => 'Geography',
+                    'icon' => 'fas fa-globe',
+                    'submenu' => 
+                    [
+                        [
+                            'text' => 'Countries',
+                            'icon' => 'fas fa-flag',
+                            'route' => 'admin.countries.index'
+                        ],
+
+                        [
+                            'text' => 'States',
+                            'icon' => 'fas fa-map',
+                            'route' => 'admin.states.index'
+                        ],
+
+                        [
+                            'text' => 'Cities',
+                            'icon' => 'fas fa-city',
+                            'route' => 'admin.towns.index'
+                        ]
+                    ]
+                ],
+
+                [
                     'text' => 'Token',
                     'route' => 'admin.token.index',
                     'icon' => 'fas fa-unlock-alt'
@@ -514,14 +545,14 @@ return [
                                 [
                                     'text' => 'Transfers in warehouses',
                                     'icon' => 'fas fa-fw fa-horizontal-rule ',
-                                    'url' => '#',
+                                    'route' => 'admin.inventories.suppliesorder.index',
 
                                 ],
 
                                 [
                                     'text' => 'Request to warehouse',
                                     'icon' => 'fas fa-fw fa-horizontal-rule ',
-                                    'url' => '#',
+                                    'route' => 'admin.inventories.warehouses.index',
                                     /* 'active' => ['admin/Management*'], */
                                 ],
                             ],

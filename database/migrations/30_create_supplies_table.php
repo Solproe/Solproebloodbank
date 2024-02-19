@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreign('created_by')->references('id')->on('users');
             $table->unsignedBigInteger('status');
             $table->foreign('status')->references('id')->on('status');
+            $table->unsignedBigInteger('provider');
+            $table->foreign('provider')->references('id')->on('providers');
             $table->timestamps();
         });
     }

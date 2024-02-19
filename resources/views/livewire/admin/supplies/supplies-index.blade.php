@@ -25,8 +25,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (isset($supplies) and $supplies != null)
-                    @foreach ($supplies as $supply)
+                    @if (isset($allSupplies) and $allSupplies != null)
+                    @foreach ($allSupplies as $supply)
                     <tr>
 
                         <td width="10px">{{ $supply->supply_name }}</td>

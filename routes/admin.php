@@ -3,6 +3,8 @@
 use App\Http\Controllers\admin\accountings\Pettycashs;
 use App\Http\Controllers\admin\appUsers\AppUsersController;
 use App\Http\Controllers\admin\center\CenterController;
+use App\Http\Controllers\admin\CitiesController;
+use App\Http\Controllers\admin\CountriesController as AdminCountriesController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;
@@ -11,11 +13,10 @@ use App\Http\Controllers\admin\inventories\supplies\SupplyController;
 use App\Http\Controllers\admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\admin\providers\ProveedorController;
 use App\Http\Controllers\admin\RequestoringController;
-use App\Http\Controllers\admin\stateController;
+use App\Http\Controllers\admin\StateController as AdminStateController;
 use App\Http\Controllers\admin\token\TokenController;
 use App\Http\Controllers\ApiWhatsapp\ApiManager;
 use App\Http\Controllers\Auth\RegisterSecondLevel;
-use App\Http\Controllers\countriesstatestowns\CountriesController;
 use App\Http\Controllers\Donors\Reports\ReportController;
 use App\Http\Controllers\donor\PersonController;
 use App\Http\Controllers\RolesAndPermissions\Permissions;
@@ -42,8 +43,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('requestorings', RequestoringController::class)->names('admin.requestorings');
 
     Route::resource('providers', ProveedorController::class)->names('admin.providers');
-
-    Route::resource('states', stateController::class)->names('admin.states');
 
     Route::resource('consults', ConsultaController::class)->names('sihevi.consults');
 
@@ -89,5 +88,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
     Route::resource('center', CenterController::class)->names('admin.center');
     Route::resource('token', TokenController::class)->names('admin.token');
+
+/*  Geographic */
+    Route::resource('countries', AdminCountriesController::class)->names('admin.countries');
+    Route::resource('states', AdminStateController::class)->names('admin.states');
+    Route::resource('towns', CitiesController::class)->names('admin.towns');
 
 });

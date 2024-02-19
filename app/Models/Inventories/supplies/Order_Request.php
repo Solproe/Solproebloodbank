@@ -12,6 +12,7 @@ use App\Models\Inventories\storage\warehouse_movement;
 class Order_Request extends Model
 {
     use HasFactory;
+
     protected $table = 'order_request';
 
     protected $fillable = [

@@ -12,6 +12,7 @@ class Provider extends Model
     /* use HasFactory; */
     protected $table = 'providers';
     protected $fillable = [
+        'id',
         'tax_identification',
         'id_regimens',
         'check_digital',
@@ -25,15 +26,11 @@ class Provider extends Model
         'legal_representative',
         'LANDLINE',
     ];
-    public function states()
-    {
-        return $this->belongsTo(states::class, 'ID_STATE');
-        /*  return $this->belongsTo(state::class, 'ID_STATE') */
-    }
+
 
     public function towns()
     {
-        return $this->belongsTo(Town::class, 'ID_TOWN');
+        return $this->belongsTo(Town::class, 'ID_TOWN', 'ID_TOWN');
         /* return $this->hasMany(town::class, 'ID_TOWN'); */
     }
     public function url()

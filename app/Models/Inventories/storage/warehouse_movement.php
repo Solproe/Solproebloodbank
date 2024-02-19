@@ -12,7 +12,6 @@ class warehouse_movement extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'id',
         'entity',
         'id_order',
@@ -31,11 +30,11 @@ class warehouse_movement extends Model
 
     public function supplies()
     {
-        return $this->belongsToMany(supplies::class, 'id_supply');
+        return $this->belongsToMany(supplies::class, 'id_supply', 'id');
     }
 
     public function order()
     {
-        return $this->belongsTo(RequestOrder::class, 'id_order');
+        return $this->belongsTo(RequestOrder::class, 'id_order', 'id');
     }
 }

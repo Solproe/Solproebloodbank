@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\status\StatusController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,3 +92,6 @@ Route::get('/facebook-callback', function () {
 });
 
 Auth::routes();
+
+
+Route::resource('status', StatusController::class)->names('status');

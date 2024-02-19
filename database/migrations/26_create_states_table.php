@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('country');
             $table->foreign('country')->references('id')->on('countries');
             $table->string('statename');
+            $table->timestamps();
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\Admin\inventories\warehouses;
+namespace app\Http\Controllers\admin\inventories\warehouses;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inventories\Order\RequestOrder;
@@ -8,7 +8,6 @@ use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
 use App\Models\Inventories\supplies\supplies;
 use Exception;
 use Illuminate\Http\Request;
-use App\Models\inventories\supplies\Order_Request;
 
 class RequestController extends Controller
 {
@@ -21,7 +20,7 @@ class RequestController extends Controller
     {
         try
         {
-            $order_requests = Order_Request::all();
+            $order_requests = RequestOrder::all();
         } catch (Exception $e) {
             dd($e);
         }

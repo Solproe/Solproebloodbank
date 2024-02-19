@@ -3,7 +3,7 @@
 namespace App\Models\Inventories\Order;
 
 use App\Models\Inventories\supplies\supplies;
-use App\Models\Inventorie\Order\RequestOrder;
+use App\Models\Inventories\Order\RequestOrder as OrderRequestOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,7 +25,7 @@ class SuppliesOrder extends Model
 
     public function requestorder()
     {
-        return $this->belongsTo(RequestOrder::class, 'id_order');
+        return $this->belongsTo(OrderRequestOrder::class, 'id_order');
     }
 
     public function supplies()

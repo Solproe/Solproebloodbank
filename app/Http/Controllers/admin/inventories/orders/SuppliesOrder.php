@@ -26,8 +26,6 @@ class SuppliesOrder extends Controller
 
         $suppliesorder = OrderSuppliesOrder::all();
 
-        return $suppliesorder;
-
         return view('admin.inventories.orders.index', compact('orders', 'suppliesorder'));
     }
 
@@ -38,7 +36,8 @@ class SuppliesOrder extends Controller
      */
     public function create()
     {
-        $supplies = supplies::where('status', '=', 1)->get();
+        $supplies = supplies::where('status.status_name', 'active')
+            ->join('supplies.status', '=', 'status.id')->get();
 
         $data = array();
 
@@ -65,7 +64,8 @@ class SuppliesOrder extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request->provider) && $request->provider != null) {
+        if (isset($request->provider) && $request->provider != null) 
+        {
             $requestorder = RequestOrder::create([
                 'id_applicant' => Auth::user()->id,
                 'status' => 'pendiente',

@@ -33,9 +33,24 @@
             </div>
 
             <div class="mt-4 ml-4 form-row">
+                <div class="ml-5 col form-group">
+                    {!! Form::label('provider') !!}
+                    <select name="provider" id="">
+                        @foreach ($providers as $provider)
+                            <option value="{{ $provider->id}}">{{ $provider->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+            </div>
+
+            
+        </div>
+        <div class="mt-4 ml-4 form-row">
+            <div class="mt-4 ml-4 form-row">
                 <div class="ml-5 col form-group ">
                     {!! Form::label('status', '') !!}
-                    <select class="from-control" name="status[]">
+                    <select class="from-control" name="status">
                         @foreach ($status as $statuses)
                             <option value={{ $statuses->id }}>{{ $statuses->status_name }}</option>
                         @endforeach

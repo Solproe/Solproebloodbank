@@ -107,18 +107,17 @@ class ClickEvent extends Component
         $ch = curl_init();
         $headers = array(
             'Content-Type:application/json',
-            'Authorization: Basic QnNuYWNpb25hbHNhczE1OnBhc3MxMzYq',
+            'Authorization: Basic YnNuYWNpb25hbHNhczk6cGFzczM2Nyo=',
         );
 
         curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification
             . '&tipo_doc=' . $this->documenttype);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         $sihevi = json_decode(curl_exec($ch));
         $info = curl_getinfo($ch);
         curl_close($ch);
-        /*  dd($sihevi); */
 
         if (isset($sihevi->HistoricoDonaciones) and $sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;

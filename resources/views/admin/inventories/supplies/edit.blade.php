@@ -46,9 +46,9 @@
 
                 <div class=" col form-group ml-5 ">
                     <label>Status</label>
-                    <select class=" from-control" name="statuses">
+                    <select class=" from-control" name="status">
                         @foreach ($status as $statuses)
-                        <option value={{ $statuses }}>{{ $statuses->status_name }}</option>
+                        <option value={{ $statuses->id }}>{{ $statuses->status_name }}</option>
                         @endforeach
                     </select>
                 </div>

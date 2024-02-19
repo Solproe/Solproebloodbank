@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_request', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_applicant');
-            $table->foreign('id_applicant')->references('id')->on('users');
-            $table->unsignedBigInteger('status');
-            $table->foreign('status')->references('id')->on('status');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_request');
+        Schema::dropIfExists('teams');
     }
 };

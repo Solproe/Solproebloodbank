@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ID_STATE');
             $table->foreign('ID_STATE')->references('ID_STATE')->on('states');
             $table->string('name');
+            $table->timestamps();
         });
     }
 

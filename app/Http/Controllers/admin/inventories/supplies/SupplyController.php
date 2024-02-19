@@ -110,7 +110,7 @@ class SupplyController extends Controller
         if (request('description') != null) {
             $supply->supply_description = request('description');
         }
-        if (request('status' != null)) {
+        if (request('status') != null) {
             $supply->status = request('status');
         }
         $supply->save();

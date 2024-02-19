@@ -27,11 +27,11 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('admin.states.store') }}" method="POST">
+                                        <form action="{{ route('admin.towns.store') }}" method="POST">
                                             @csrf
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" id="name" name="statename"
+                                                <input type="text" id="name" name="name"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                                  focus:ring-blue-500 focus:border-blue-500 block w-48
                                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -39,15 +39,15 @@
                                                     placeholder="Name" required>
                                             </div>
                                             <div class="input-group ms-3">
-                                                <select id="state" wire:model='selectedState' name="country"
+                                                <select id="state" wire:model='selectedState' name="ID_STATE"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                                          focus:ring-blue-500 focus:border-blue-500 block w-24 min-w-full
                                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                                          dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 form-control"
                                                     placeholder="state" required>
-                                                    <option selected>Choose Town</option>
-                                                    @foreach ($countries as $country)
-                                                        <option value="{{ $country->id}}">{{ $country->countryname }}</option>
+                                                    <option selected>Choose State</option>
+                                                    @foreach ($states as $state)
+                                                        <option value="{{ $state->ID_STATE}}">{{ $state->statename }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -70,18 +70,18 @@
                     <thead>
                         <tr>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Country</th>
+                            <th class="text-center">State</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($states as $state)
+                        @foreach ($cities as $city)
                         <tr>
-                            <td class="text-center">{{ $state->statename }}</td>
-                            <td class="col-md-6 text-center" width="10px" class="text-left">{{ $state->countries->countryname }}</td>        
+                            <td class="text-center">{{ $city->name }}</td>
+                            <td class="col-md-6 text-center" width="10px" class="text-left">{{ $city->states->statename }}</td>        
                             <td>
                                 <div class="text-center col flex">
-                                    <form action="{{ route('admin.states.edit', $state->ID_STATE)}}">
+                                    <form action="{{ route('admin.towns.edit', $city->ID_TOWN)}}">
                                         @csrf
                                         <button type="submit" class="btn btn-outline-warning">
                                             edit

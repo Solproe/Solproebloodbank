@@ -30,7 +30,7 @@ class supplies extends Model
 
    public function suppliesorder()
    {
-        return $this->hasMany(SuppliesOrder::class, 'id');
+        return $this->hasMany(SuppliesOrder::class, 'id', 'id_suppliess');
    }
 
    public function warehouse()
@@ -40,6 +40,6 @@ class supplies extends Model
 
    public function provider()
    {
-    return $this->belongsTo(Provider::class, 'id');
+    return $this->belongsTo(Provider::class, 'provider', 'id');
    }
 }
