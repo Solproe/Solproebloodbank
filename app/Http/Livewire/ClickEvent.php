@@ -119,6 +119,8 @@ class ClickEvent extends Component
         $info = curl_getinfo($ch);
         curl_close($ch);
 
+        dd($sihevi);
+
         if (isset($sihevi->HistoricoDonaciones) and $sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;
         }
@@ -128,7 +130,9 @@ class ClickEvent extends Component
             
         }
 
-        $this->diferido = (array) $sihevi->InformacionDiferido;
+        if (isset($sihevi->InformacionDiferido) and $sihevi->InformacionDiferido != null) {
+            $this->diferido = (array) $sihevi->InformacionDiferido;
+        }
 
         
         /*   dd($sihevi); */
