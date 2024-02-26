@@ -31,7 +31,7 @@
 
                         <td width="10px">{{ $supply->supply_name }}</td>
                         <td class="col-md-4" width="12px">{{ $supply->supply_description }}</td>
-                        <td width="10px">{{ $supply->status_id->status_name }}</td>
+                        <td width="10px">{{ $supply->statuses->status_name }}</td>
 
                         <div class="text-center col">
                             <td width="10%" align="center">

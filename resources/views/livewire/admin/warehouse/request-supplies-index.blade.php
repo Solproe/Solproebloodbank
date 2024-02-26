@@ -32,9 +32,11 @@
 
 
                                 {{--  @dd($order_request) --}}
-                                <td class="col-md-4" width="12px">{{ $order_request->users->name }}</td>
+                                <td class="col-md-4" width="12px" style="text-align: center">
+                                    {{ $order_request->users->name }}</td>
                                 <td width="10px">{{ $order_request->created_at }}</td>
-                                <td width="10px">{{ $order_request->status }}</td>
+                                <td width="10px" style="text-align: center">
+                                    {{ $order_request->statuses->status_name }}</td>
 
                                 <div class="text-center col">
                                     <td width="10%" align="center">
@@ -48,7 +50,8 @@
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="far fa-trash-alt btn btn-outline-danger btn-med">
+                                            <button type="submit"
+                                                class="far fa-trash-alt btn btn-outline-danger btn-med">
                                                 Remove</button>
                                         </form>
                                     </td>

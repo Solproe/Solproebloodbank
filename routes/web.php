@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\status\StatusController;
+use App\Http\Controllers\teams\TeamController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,3 +96,14 @@ Auth::routes();
 
 
 Route::resource('status', StatusController::class)->names('status');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::post('teams/deleteUser', [TeamController::class, 'deleteUser'])->name('teams.deleteUser');
+
+    Route::post('teams/addUser', [TeamController::class, 'addUser'])->name('teams.addUser');
+
+    Route::resource('teams', TeamController::class)->names('teams');
+
+
+});

@@ -13,7 +13,7 @@ class warehouse_movement extends Model
 
     protected $fillable = [
         'id',
-        'entity',
+        'id_team',
         'id_order',
         'id_supply',
         'movement_type',

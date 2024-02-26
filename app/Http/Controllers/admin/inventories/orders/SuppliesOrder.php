@@ -8,7 +8,7 @@ use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
 use App\Models\Inventories\storage\warehouse_movement;
 use App\Models\Inventories\supplies\supplies;
-use App\Models\provider\Provider;
+use App\Models\teams\Teams;
 use App\Models\status\status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,24 +36,18 @@ class SuppliesOrder extends Controller
      */
     public function create()
     {
-        $supplies = supplies::where('status.status_name', 'active')
-            ->join('supplies.status', '=', 'status.id')->get();
+        $supplies = supplies::select('id', 'supply_name', 'supply_cod', 'supply_description', 'status')
+            ->where('status', status::where('status_name', 'active')
+            ->first()->id)
+            ->get();
 
         $data = array();
 
-        foreach ($supplies as $supply) {
-            $warehouse = warehouse_movement::where('id_supply', '=', $supply->id)->first();
+        $movements = warehouse_movement::all();
 
-            if (isset($warehouse) and $warehouse->id != null) {
-                $data[] = [$supply->supply_name => $warehouse->balance];
-            } else {
-                $data[] = [$supply->supply_name => 0];
-            }
-        }
+        $teams = Teams::all();
 
-        $providers = Provider::all();
-
-        return view('admin.inventories.orders.create', compact('providers', 'data', 'supplies'));
+        return view('admin.inventories.orders.create', compact('teams', 'movements', 'supplies'));
     }
 
     /**
@@ -64,41 +58,22 @@ class SuppliesOrder extends Controller
      */
     public function store(Request $request)
     {
-        if (isset($request->provider) && $request->provider != null) 
-        {
-            $requestorder = RequestOrder::create([
-                'id_applicant' => Auth::user()->id,
-                'status' => 'pendiente',
-                'id_provider' => $request->provider,
-                'ordertype' => $request->ordertype
-            ]);
-        }
-        else
-        {
-            $requestorder = RequestOrder::create([
-                'id_applicant' => Auth::user()->id,
-                'status' => 'pendiente',
-                'ordertype' => $request->ordertype
-            ]);
-        }
+        $team = $request->user()->id_team;
+        
+        $requestorder = RequestOrder::create([
+            'id_applicant' => $request->user()->id,
+            'id_team' => $request->user()->id_team,
+            'status' => status::where('status_name', 'active')->first()->id,
+        ]);
 
-        foreach ($request->quantity as $key => $value) {
-            if ($value != null) 
+        foreach ($request->quantity as $key => $value)
+        {
+            if ($value != null)
             {
-                $data = null;
-
-                foreach ($request->price as $price)
-                {
-                    if (isset($price[$key]) && $price[$key] != null)
-                    {
-                        $data = $price[$key];
-                    }
-                }
                 $supplies = OrderSuppliesOrder::create([
                     'id_order' => $requestorder->id,
                     'id_supplies' => $key,
-                    'quantity' => $value,
-                    'price' => $data
+                    'quantity' => $value
                 ]);
             }
         }
@@ -173,6 +148,10 @@ class SuppliesOrder extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = RequestOrder::where('id', $id)->first();
+
+        $order->delete();
+
+        return redirect()->route('admin.inventories.suppliesorder.index');
     }
 }

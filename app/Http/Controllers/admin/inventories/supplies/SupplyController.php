@@ -54,15 +54,15 @@ class SupplyController extends Controller
             'status' => 'required',
         ]);
 
-        $supplys = new supplies();
+        $supply = new supplies();
         $status = $request->status[0];
-        $supplys->supply_cod = $request->supply_cod;
-        $supplys->supply_name = $request->supply_name;
-        $supplys->supply_description = $request->supply_description;
-        $supplys->status = $status;
-        $supplys->created_by = $request->user()->id;
+        $supply->supply_cod = $request->supply_cod;
+        $supply->supply_name = $request->supply_name;
+        $supply->supply_description = $request->supply_description;
+        $supply->status = $status;
+        $supply->created_by = $request->user()->id;
 
-        $supplys->save();
+        $supply->save();
 
         return redirect()->route('admin.inventories.supplies.index');
 

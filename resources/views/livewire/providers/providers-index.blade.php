@@ -19,7 +19,6 @@
                         {{--  <th class="text-center">ID</th> --}}
                         <th class="text-center">TAX ID</th>
                         <th class="text-center">PROVIDERS</th>
-                        <th class="text-center">STATE</th>
                         <th class="text-center">CITY</th>
                         <th class="text-center" colspan="3">ACTION</th>
                     </tr>
@@ -31,7 +30,6 @@
                             {{--   @dd($provider) --}}
                             <td width="10px">{{ $provider->tax_identification }}</td>
                             <td class="col-md-4" width="12px">{{ $provider->name }}</td>
-                            <td width="10px">{{ $provider->states->name }}</td>
                             <td width="10px">
                                 @php
                                     if (isset($provider->ID_TOWN) and $provider->ID_TOWN != null) {

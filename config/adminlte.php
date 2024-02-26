@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -256,6 +256,12 @@ return [
                     'text' => 'Status',
                     'route' => 'status.index',
                     'icon' => 'fas fa-check'
+                ],
+
+                [
+                    'text' => 'Teams',
+                    'icon' => 'fas fa-file',
+                    'route' => 'teams.index'
                 ],
 
                 [

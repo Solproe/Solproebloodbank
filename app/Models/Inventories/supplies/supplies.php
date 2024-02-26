@@ -23,7 +23,7 @@ class supplies extends Model
         'provider',
         'status'
     ];
-    public function status_id()
+    public function statuses()
    {
        return $this->belongsTo(status::class, 'status');
    }

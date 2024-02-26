@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Center;
 use App\Models\Remote\DatabaseModel;
 use App\Models\sihevi\consult\Consult;
+use Exception;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use PDO;
@@ -135,61 +136,71 @@ class ClickEvent extends Component
         
         /*   dd($sihevi); */
 
-        $person = new DatabaseModel();
+        
 
         $center = Center::where("ID_CENTRE", "=", 5)->first();
 
-        $person->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER, $center->PASSWD);
+        try
+        {
+            $person = new DatabaseModel();
 
-        $matriz = $person->requestPatientData($this->identification);
+            $person->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER, $center->PASSWD);
 
-        $this->today = (array) Carbon::now();
+            $matriz = $person->requestPatientData($this->identification);
 
-        $this->today = $this->today["date"];
+            $this->today = (array) Carbon::now();
 
-        #validamos que haya registros en la base de datos local
+            $this->today = $this->today["date"];
 
-        if (isset($matriz[0]) && $matriz[0] != false) {
-            $this->localDataDonor = (array) $matriz[0];
-            $this->localDataDonor = (array) $this->localDataDonor[0];
-            $pdo = $matriz[0][1];
-            $stmt = $pdo->query('SELECT DES_CENTRE FROM CENTRE;');
-            $this->localBloodBank = $stmt->fetchAll(PDO::FETCH_OBJ);
-            $stmt->closeCursor();
-            $stmt = null;
-            $pdo = null;
-            $this->localBloodBank = (array) $this->localBloodBank[0];
-        } else {
-            $this->status = ['Aceptado'];
-        }
+            #validamos que haya registros en la base de datos local
 
-        if (isset($matriz[1][0]->COD_DEFERREDTYPE)) {
-
-            $this->status = ['Rechazado', $matriz[1][0]->DES_DEFERREDREASON];
-            $this->date = $this->localDataDonor['DAT_OFFER'];
-            if (isset($matriz[2])) {
-                $this->localDeferredDonor = [$matriz[1][0]->COD_DEFERREDTYPE, $matriz[2]['date']];
-                $this->date = $this->localDataDonor['DAT_OFFER'];
-            }
-        } elseif (isset($matriz[1][0]->COD_VALIDATED)) {
-
-            if ($matriz[1][0]->COD_VALIDATED == 'A') {
-
-                $this->donationtype = (array) $matriz[1];
-                $this->donationtype = (array) $this->donationtype[0];
-                $this->status = ['Aceptado'];
-                $this->date = $this->donationtype['DAT_DONATION'];
-                $this->nextdonationdate = $this->date;
-                $this->date = Carbon::createFromFormat('Y-m-d h:i:s', $this->date)->format('d-m-Y');
-
-                /*  dd($nextdonationdate); */
+            if (isset($matriz[0]) && $matriz[0] != false) {
+                $this->localDataDonor = (array) $matriz[0];
+                $this->localDataDonor = (array) $this->localDataDonor[0];
+                $pdo = $matriz[0][1];
+                $stmt = $pdo->query('SELECT DES_CENTRE FROM CENTRE;');
+                $this->localBloodBank = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $stmt->closeCursor();
+                $stmt = null;
+                $pdo = null;
+                $this->localBloodBank = (array) $this->localBloodBank[0];
             } else {
-                $this->status = ['Rechazado'];
-                $this->localDonationDonor = (array) $matriz[1];
-                $this->localDonationDonor = (array) $this->localDonationDonor[0];
-                $this->date = $this->localDonationDonor['DAT_DONATION'];
+                $this->status = ['Aceptado'];
+            }
+
+            if (isset($matriz[1][0]->COD_DEFERREDTYPE)) {
+
+                $this->status = ['Rechazado', $matriz[1][0]->DES_DEFERREDREASON];
+                $this->date = $this->localDataDonor['DAT_OFFER'];
+                if (isset($matriz[2])) {
+                    $this->localDeferredDonor = [$matriz[1][0]->COD_DEFERREDTYPE, $matriz[2]['date']];
+                    $this->date = $this->localDataDonor['DAT_OFFER'];
+                }
+            } elseif (isset($matriz[1][0]->COD_VALIDATED)) {
+    
+                if ($matriz[1][0]->COD_VALIDATED == 'A') {
+    
+                    $this->donationtype = (array) $matriz[1];
+                    $this->donationtype = (array) $this->donationtype[0];
+                    $this->status = ['Aceptado'];
+                    $this->date = $this->donationtype['DAT_DONATION'];
+                    $this->nextdonationdate = $this->date;
+                    $this->date = Carbon::createFromFormat('Y-m-d h:i:s', $this->date)->format('d-m-Y');
+    
+                    /*  dd($nextdonationdate); */
+                } else {
+                    $this->status = ['Rechazado'];
+                    $this->localDonationDonor = (array) $matriz[1];
+                    $this->localDonationDonor = (array) $this->localDonationDonor[0];
+                    $this->date = $this->localDonationDonor['DAT_DONATION'];
+                }
             }
         }
+        catch (Exception $e)
+        {
+            //code
+        }
+        
 
         #validamos que sihevi responda con registros del donante
 
@@ -213,7 +224,10 @@ class ClickEvent extends Component
 
             if ($this->data['TIPO_DONANTE'] == 'Aceptado' or $this->data['TIPO_DONANTE'] == null) {
 
-                if ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status[0] == 'Aceptado') {
+                if ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status == null) {
+                    $this->status = ['Aceptado'];
+                }
+                elseif ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status[0] == 'Aceptado') {
                     $this->status = ['Aceptado'];
                 }
             }

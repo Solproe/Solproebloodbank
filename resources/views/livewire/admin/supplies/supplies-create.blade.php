@@ -34,7 +34,7 @@
 
             <div class="mt-4 ml-4 form-row">
                 <div class="ml-5 col form-group">
-                    {!! Form::label('provider') !!}
+                    {!! Form::label('Provider', '') !!}
                     <select name="provider" id="">
                         @foreach ($providers as $provider)
                             <option value="{{ $provider->id}}">{{ $provider->name }}</option>

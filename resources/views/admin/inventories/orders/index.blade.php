@@ -30,7 +30,6 @@
                             <th class="text-center">N° Order</th>
                             <th class="text-center">Applicant</th>
                             <th class="text-center">Status</th>
-                            <th class="text-center">Provider</th>
                             <th class="text-center" colspan="2">ACTION</th>
                         </tr>
                     </thead>
@@ -39,13 +38,23 @@
                             <tr>
                                 <td class="text-right">{{ $order->id }}</td>
                                 <td class="col-sm-2" width="10px" class="text-left">{{ $order->users->name }}</td>
-                                <td class="text-left">{{ $order->status }}</td>
-                                <td class="text-left">{{ $order->provider->name }}</td>
+                                <td class="text-left">{{ $order->statuses->status_name }}</td>
                                 <td>
                                     <div>
                                         <form action="{{ route('admin.inventories.suppliesorder.edit', $order->id) }}">
                                             @csrf
                                             <x-order-details :order="$order" :suppliesorder="$suppliesorder"></x-order-details>
+                                        </form>
+                                    </div>
+
+                                    <div>
+                                        <form action="{{ route('admin.inventories.suppliesorder.destroy', $order->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-outline-danger" type="submit">
+                                                Delete
+                                            </button>
                                         </form>
                                     </div>
                                 </td>

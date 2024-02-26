@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('warehouse_movements', function (Blueprint $table) {
             $table->id();
-            $table->string('entity');
+            $table->unsignedBigInteger('id_team');
+            $table->foreign('id_team')->references('id')->on('teams');
             $table->unsignedBigInteger('id_order');
             $table->foreign('id_order')->references('id')->on('order_request');
             $table->unsignedBigInteger('id_supply');

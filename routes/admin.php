@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\inventories\delivery\ShippingReportController;
 use App\Http\Controllers\admin\inventories\delivery\ValidateReceivedController;
 use App\Http\Controllers\admin\inventories\orders\SuppliesOrder;
 use App\Http\Controllers\admin\inventories\supplies\SupplyController;
+use App\Http\Controllers\Admin\inventories\warehouse\warehouse_movement;
 use App\Http\Controllers\admin\inventories\warehouses\RequestController;
 use App\Http\Controllers\admin\providers\ProveedorController;
 use App\Http\Controllers\admin\RequestoringController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    /* Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer'); */
+    Route::resource('warehouse', warehouse_movement::class)->names('admin.warehouse.transfer');
 
     Route::post('data', [RegisterSecondLevel::class, 'create'])->name('admin.data');
 

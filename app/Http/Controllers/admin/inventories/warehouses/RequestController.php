@@ -5,7 +5,9 @@ namespace app\Http\Controllers\admin\inventories\warehouses;
 use App\Http\Controllers\Controller;
 use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
+use App\Models\Inventories\storage\warehouse_movement;
 use App\Models\Inventories\supplies\supplies;
+use App\Models\teams\Teams;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -35,9 +37,11 @@ class RequestController extends Controller
      */
     public function create()
     {
-        $message = null;
         $supplies = supplies::all();
-        return view('admin.inventories.warehouses.create', compact('supplies', 'message'));
+        $orders = RequestOrder::all();
+        $teams = Teams::all();
+        $movements = warehouse_movement::all();
+        return view('admin.inventories.warehouses.create', compact('supplies', 'orders', 'teams', 'movements'));
     }
 
     /**

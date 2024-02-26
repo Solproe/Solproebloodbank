@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'id_team',
         'socialmedia_id',
         'avatar',
         'socialmedia_auth',
@@ -89,5 +90,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function usersValidation()
     {
         return $this->hasOne(usersValidationBloodBank::class, 'id', 'id');
+    }
+
+    public function teams()
+    {
+        return $this->belongsTo(Team::class, 'id_team');
     }
 }

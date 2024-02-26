@@ -14,7 +14,6 @@ class SuppliesOrder extends Model
     protected $table = 'order_supplies';
 
     protected $fillable = [
-
         'id',
         'id_order',
         'id_supplies',
@@ -25,7 +24,7 @@ class SuppliesOrder extends Model
 
     public function requestorder()
     {
-        return $this->belongsTo(OrderRequestOrder::class, 'id_order');
+        return $this->belongsTo(OrderRequestOrder::class, 'id_order', 'id');
     }
 
     public function supplies()

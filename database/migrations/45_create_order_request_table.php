@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_applicant');
             $table->foreign('id_applicant')->references('id')->on('users');
+            $table->unsignedBigInteger('id_team');
+            $table->foreign('id_team')->references('id')->on('teams');
             $table->unsignedBigInteger('status');
             $table->foreign('status')->references('id')->on('status');
             $table->timestamps();
