@@ -113,7 +113,7 @@ class ClickEvent extends Component
 
         curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification
             . '&tipo_doc=' . $this->documenttype);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         $sihevi = json_decode(curl_exec($ch));
@@ -124,26 +124,24 @@ class ClickEvent extends Component
             $this->historico = $sihevi->HistoricoDonaciones;
         }
 
-        if (isset($sihevi->InformacionDiferimientoTemporal) && $sihevi->InformacionDiferimientoTemporal->NUM_IDENTIFICACION != null)
-        {
-            
+        if (isset($sihevi->InformacionDiferimientoTemporal) && $sihevi->InformacionDiferimientoTemporal->NUM_IDENTIFICACION != null) {
         }
 
         if (isset($sihevi->InformacionDiferido) and $sihevi->InformacionDiferido != null) {
             $this->diferido = (array) $sihevi->InformacionDiferido;
         }
 
-        
+
         /*   dd($sihevi); */
 
-        
+
 
         $center = Center::where("ID_CENTRE", "=", 5)->first();
 
-        try
-        {
-            $person = new DatabaseModel();
 
+        $person = new DatabaseModel();
+
+        if (isset($person->PUBLIC_IP) and $person->PUBLIC_IP != null) {
             $person->createConnection($center->PUBLIC_IP, $center->DB_NAME, $center->DB_USER, $center->PASSWD);
 
             $matriz = $person->requestPatientData($this->identification);
@@ -177,18 +175,19 @@ class ClickEvent extends Component
                     $this->date = $this->localDataDonor['DAT_OFFER'];
                 }
             } elseif (isset($matriz[1][0]->COD_VALIDATED)) {
-    
+
                 if ($matriz[1][0]->COD_VALIDATED == 'A') {
-    
+
                     $this->donationtype = (array) $matriz[1];
                     $this->donationtype = (array) $this->donationtype[0];
                     $this->status = ['Aceptado'];
                     $this->date = $this->donationtype['DAT_DONATION'];
                     $this->nextdonationdate = $this->date;
                     $this->date = Carbon::createFromFormat('Y-m-d h:i:s', $this->date)->format('d-m-Y');
-    
+
                     /*  dd($nextdonationdate); */
                 } else {
+
                     $this->status = ['Rechazado'];
                     $this->localDonationDonor = (array) $matriz[1];
                     $this->localDonationDonor = (array) $this->localDonationDonor[0];
@@ -196,11 +195,8 @@ class ClickEvent extends Component
                 }
             }
         }
-        catch (Exception $e)
-        {
-            //code
-        }
-        
+
+
 
         #validamos que sihevi responda con registros del donante
 
@@ -226,8 +222,7 @@ class ClickEvent extends Component
 
                 if ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status == null) {
                     $this->status = ['Aceptado'];
-                }
-                elseif ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status[0] == 'Aceptado') {
+                } elseif ($this->data['CAUSA_DIFERIMIENTO'] == 'No aplica' and $this->status[0] == 'Aceptado') {
                     $this->status = ['Aceptado'];
                 }
             }
@@ -250,7 +245,6 @@ class ClickEvent extends Component
             } else {
                 $this->nextdonationdate = '123';
             }
-
         } else {
 
             if ($this->status[0] == 'Aceptado' or $this->status == null) {
