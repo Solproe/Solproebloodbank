@@ -7,6 +7,7 @@ use App\Models\Center;
 use App\Models\countriesstatestowns\countries;
 use App\Models\countriesstatestowns\states;
 use App\Models\countriesstatestowns\Town;
+use App\Models\status\status;
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
@@ -33,7 +34,6 @@ class CenterController extends Controller
     public function create(Request $request)
     {
         $center = new Center();
-
     }
 
     public function store(Request $request)
@@ -44,31 +44,28 @@ class CenterController extends Controller
         $center->COD_CENTRE = $request->COD_CENTRE;
         $center->DES_CENTRE = $request->DES_CENTRE;
         $center->ADDRESS = $request->ADDRESS;
-        
-        if (isset($request->PUBLIC_IP) and $request->PUBLIC_IP != null)
-        {
+
+        if (isset($request->PUBLIC_IP) and $request->PUBLIC_IP != null) {
             $center->PUBLIC_IP = $request->PUBLIC_IP;
         }
-        if (isset($request->DOMAIN) and $request->DOMAIN != null)
-        {
+        if (isset($request->DOMAIN) and $request->DOMAIN != null) {
             $center->DOMAIN_NAME = $request->DOMAIN;
         }
-        if (isset($request->DB_NAME) and $request->DB_NAME != null)
-        {
+        if (isset($request->DB_NAME) and $request->DB_NAME != null) {
             $center->DB_NAME = $request->DB_NAME;
         }
-        if (isset($request->DB_USER) and $request->DB_USER != null)
-        {
+        if (isset($request->DB_USER) and $request->DB_USER != null) {
             $center->DB_USER = $request->DB_USER;
         }
-        if (isset($request->PASSWD) and $request->PASSWD)
-        {
+        if (isset($request->PASSWD) and $request->PASSWD) {
             $center->PASSWD = $request->PASSWD;
         }
-        if (isset($request->TOWN) and $request->TOWN != null)
-        {
+        if (isset($request->TOWN) and $request->TOWN != null) {
             $center->TOWN = $request->TOWN;
-        }     
+        }
+
+        $status = status::where('status_name', 'active')->first();
+        $center->DB_ACTIVE = $status->id;
 
         $center->save();
 
@@ -134,6 +131,5 @@ class CenterController extends Controller
     public function updatedselectedState()
     {
         $this->states = states::where('ID_STATE', $this->selectedState)->get();
-
     }
 }

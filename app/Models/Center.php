@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\countriesstatestowns\Town;
 use App\Models\Inventories\delivery\validatereceived;
+use App\Models\status\status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +25,8 @@ class Center extends Model
         'DB_NAME',
         'DB_USER',
         'PASSWD',
-        'town'
+        'town',
+        'DB_STATUS',
     ];
 
     protected $primaryKey = 'ID_CENTRE';
@@ -44,5 +46,10 @@ class Center extends Model
     public function towns()
     {
         return $this->belongsTo(Town::class, 'town', 'ID_TOWN');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(status::class, 'DB_STATUS', 'id');
     }
 }

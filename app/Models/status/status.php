@@ -2,6 +2,7 @@
 
 namespace App\Models\status;
 
+use App\Models\Center;
 use App\Models\Inventories\delivery\validatereceived;
 use App\Models\Inventories\supplies\supplies;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,5 +27,10 @@ class status extends Model
     public function validatereceived()
     {
         return $this->hasMany(validatereceived::class, 'id');
+    }
+
+    public function center()
+    {
+        return $this->hasMany(Center::class);
     }
 }
