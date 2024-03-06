@@ -16,7 +16,7 @@ class Requestsuppliescreate extends Component
 
     public function render()
     {
-        $supplies = supplies::select('id', 'supply_name')->paginate(10)->links();
+        $this->supplies = supplies::select('id', 'supply_name')->paginate(10)->links();
         return view('livewire.admin.warehouse.requestsuppliescreate');
     }
 }

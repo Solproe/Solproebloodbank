@@ -55,6 +55,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::resource('warehouses', RequestController::class)->names('admin.inventories.warehouses');
 
+    Route::post('process/', [RequestController::class, 'process'])->name('admin.warehouse.process');
+
     Route::resource('suppliesorder', SuppliesOrder::class)->names('admin.inventories.suppliesorder');
 
     Route::post('deletePermissions', [Roles::class, 'deletePermissions'])->name('admin.deletePermissions');
@@ -80,19 +82,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('reports/modalvariable', [ReportController::class, 'modalvariable'])->name('donor.Reports.modalvariable');
     Route::post('reports/export-post', [ReportController::class, 'exportPost'])->name('donor.Reports.exportPost');
 
-/* Delivery reporting routes */
+    /* Delivery reporting routes */
     Route::get('shippingreports/export/', [ShippingReportController::class, 'export'])->name('admin.inventories.delivery.export');
     Route::get('shippingreports/import', [ShippingReportController::class, 'import'])->name('admin.inventories.delivery.import');
     Route::post('shippingreportsreports/export-post', [ShippingReportController::class, 'exportPost'])->name('admin.inventories.delivery.exportPost');
 
-/* Report pdf */
+    /* Report pdf */
     Route::get('shippingreports/pdf/', [ShippingReportController::class, 'reportPDF'])->name('admin.inventories.delivery.reports.shippingPDF');
     Route::resource('center', CenterController::class)->names('admin.center');
     Route::resource('token', TokenController::class)->names('admin.token');
 
-/*  Geographic */
+    /*  Geographic */
     Route::resource('countries', AdminCountriesController::class)->names('admin.countries');
     Route::resource('states', AdminStateController::class)->names('admin.states');
     Route::resource('towns', CitiesController::class)->names('admin.towns');
-
 });

@@ -4,6 +4,7 @@ namespace App\Models\Inventories\storage;
 
 use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\supplies\supplies;
+use App\Models\teams\Teams;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,11 +31,16 @@ class warehouse_movement extends Model
 
     public function supplies()
     {
-        return $this->belongsToMany(supplies::class, 'id_supply', 'id');
+        return $this->belongsTo(supplies::class, 'id_supply', 'id');
     }
 
     public function order()
     {
         return $this->belongsTo(RequestOrder::class, 'id_order', 'id');
+    }
+
+    public function teams()
+    {
+        return $this->belongsTo(Teams::class, 'id_team', 'id');
     }
 }

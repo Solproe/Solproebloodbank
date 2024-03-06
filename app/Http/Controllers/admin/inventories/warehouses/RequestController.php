@@ -7,9 +7,11 @@ use App\Models\Inventories\Order\RequestOrder;
 use App\Models\Inventories\Order\SuppliesOrder as OrderSuppliesOrder;
 use App\Models\Inventories\storage\warehouse_movement;
 use App\Models\Inventories\supplies\supplies;
+use App\Models\status\status;
 use App\Models\teams\Teams;
 use Exception;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class RequestController extends Controller
 {
@@ -20,8 +22,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-        try
-        {
+        try {
             $order_requests = RequestOrder::all();
         } catch (Exception $e) {
             dd($e);
@@ -52,31 +53,70 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        $count = 0;
-        $order = new RequestOrder();
-        $order->id_applicant = auth()->user()->id;
-        $order->status = 'earring';
+        $request->validate([
+            'groupFrom' => 'required',
+            'order' => 'required',
+            'groupTo' => 'required',
+            'quantity' => 'required',
+        ]);
 
-        foreach ($request->supplies as $key => $value) {
-            $suppliesOrder = new OrderSuppliesOrder();
 
-            $suppliesOrder->id_supplies = $key;
-            if ($value == null) {
-                $supply = supplies::where('id', $key)->first();
-                $message = "please specify quantity for: " . $supply->supply_name;
-                $supplies = supplies::all();
-                return view('admin.inventories.warehouses.create', compact('supplies', 'message'));
-            } else {
-                $suppliesOrder->quantity = $value;
-                $order->save();
-                $suppliesOrder->id_order = $order->id;
-            }
-            $suppliesOrder->save();
+        foreach ($request->quantity as $key => $value) {
+
+            //output supply record
+
+            $wOut = new warehouse_movement();
+
+            $wOut->id_team = $request->groupFrom;
+
+            $wOut->id_order = $request->order;
+
+            $wOut->id_supply = intval($key);
+
+            $wOut->movement_type = "out";
+
+            $wOut->quantity = intval($value);
+
+            $wOut->balance = 0;
+
+            $wOut->save();
+
+            //input supply record
+
+            $wIn = new warehouse_movement();
+
+            $wIn->id_team = $request->groupTo;
+
+            $wIn->id_order = $request->order;
+
+            $wIn->id_supply = intval($key);
+
+            $wIn->movement_type = "in";
+
+            $wIn->quantity = intval($value);
+
+            $wIn->balance = 0;
+
+            $wIn->save();
+
+            $order = RequestOrder::where('id', $request->order);
+
+            $order->update([
+                'status' => status::where('status_name', 'done')->first()->id,
+            ]);
+
+            /*$wIn = warehouse_movement::create([
+                'id_team' => $request->groupTo,
+                'id_order' => $request->order,
+                'id_supply' => $value,
+                'movement_type' => 'in',
+                'quantity' => intval($key),
+                'balance' => 0,
+            ]);*/
         }
 
-        if ($suppliesOrder->save()) {
+        if (true) {
             return redirect()->route('admin.inventories.warehouses.index');
-
         } else {
             return redirect()->route('admin.providers.create');
         }
@@ -124,6 +164,18 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movement = warehouse_movement::where('id', $id)->first();
+
+        $movement->delete();
+
+        return redirect()->route('admin.inventories.warehouses.index');
+    }
+
+    public function process()
+    {
+        $supplies = supplies::all();
+        $teams = Teams::all();
+        $movements = warehouse_movement::all();
+        return view('admin.inventories.warehouses.create', compact('supplies', 'order', 'movements'));
     }
 }

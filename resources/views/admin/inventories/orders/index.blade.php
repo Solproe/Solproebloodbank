@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Solproe')
+@section('title', 'Orders')
 
 @section('content_header')
     <h1>Orders List</h1>
@@ -41,9 +41,10 @@
                                 <td class="text-left">{{ $order->statuses->status_name }}</td>
                                 <td>
                                     <div>
-                                        <form action="{{ route('admin.inventories.suppliesorder.edit', $order->id) }}">
-                                            @csrf
-                                            <x-order-details :order="$order" :suppliesorder="$suppliesorder"></x-order-details>
+                                        <form action="{{ route('admin.inventories.suppliesorder.show', $order->id) }}">
+                                            <button class="btn btn-outline-success">
+                                                Details
+                                            </button>
                                         </form>
                                     </div>
 

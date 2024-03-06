@@ -22,7 +22,9 @@ class SuppliesOrder extends Controller
      */
     public function index()
     {
-        $orders = RequestOrder::all();
+        $orders = RequestOrder::where('status', status::where('status_name', 'active')
+            ->first()->id)
+            ->get();
 
         $suppliesorder = OrderSuppliesOrder::all();
 
@@ -38,7 +40,7 @@ class SuppliesOrder extends Controller
     {
         $supplies = supplies::select('id', 'supply_name', 'supply_cod', 'supply_description', 'status')
             ->where('status', status::where('status_name', 'active')
-            ->first()->id)
+                ->first()->id)
             ->get();
 
         $data = array();
@@ -59,21 +61,19 @@ class SuppliesOrder extends Controller
     public function store(Request $request)
     {
         $team = $request->user()->id_team;
-        
+
         $requestorder = RequestOrder::create([
             'id_applicant' => $request->user()->id,
             'id_team' => $request->user()->id_team,
             'status' => status::where('status_name', 'active')->first()->id,
         ]);
 
-        foreach ($request->quantity as $key => $value)
-        {
-            if ($value != null)
-            {
+        foreach ($request->quantity as $key => $value) {
+            if ($value != null) {
                 $supplies = OrderSuppliesOrder::create([
                     'id_order' => $requestorder->id,
-                    'id_supplies' => $key,
-                    'quantity' => $value
+                    'id_supplies' => intval($key),
+                    'quantity' => intval($value)
                 ]);
             }
         }
@@ -89,7 +89,15 @@ class SuppliesOrder extends Controller
      */
     public function show($id)
     {
-        //
+        $order = RequestOrder::where('id', $id)->first();
+
+        $suppliesorder = OrderSuppliesOrder::where('id_order', $id)->get();
+
+        $teams = Teams::all();
+
+        $movements = warehouse_movement::all();
+
+        return view('admin.inventories.warehouses.create', compact('order', 'suppliesorder', 'teams', 'movements'));
     }
 
     /**
@@ -118,18 +126,15 @@ class SuppliesOrder extends Controller
     {
         $requestsupplies = OrderSuppliesOrder::where('id_order', '=', $id)->get();
 
-        foreach ($requestsupplies as $requestsupply) 
-        {
-            if (isset($request->quantity[$requestsupply->id_supplies])) 
-            {
+        foreach ($requestsupplies as $requestsupply) {
+            if (isset($request->quantity[$requestsupply->id_supplies])) {
                 $requestsupply->quantity = $request->quantity[$requestsupply->id_supplies];
 
                 $requestsupply->save();
             }
         }
 
-        if ($request->status[$id] != null) 
-        {
+        if ($request->status[$id] != null) {
             $requestorder = RequestOrder::find($id);
 
             $requestorder->status = $request->status[$id];

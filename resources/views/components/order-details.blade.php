@@ -10,7 +10,7 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('admin.warehouse.transfer.store') }}" method="POST">
+            <form action="{{ route('admin.warehouse.process', $order->id) }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Create Movement</h5>
@@ -35,7 +35,7 @@
                                         </td>
                                         <td width="15%">
                                             <div class="input-group-btn">
-                                                {{$supplyorder->quantity}}
+                                                {{ $supplyorder->quantity }}
                                             </div>
                                         </td>
                                     </tr>
@@ -46,7 +46,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button name="id_order" value="{{ $order->id }}" type="submit"
+                        class="btn btn-primary">Process</button>
                 </div>
             </form>
         </div>
