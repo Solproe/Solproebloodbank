@@ -249,10 +249,8 @@
             </div>
 
             @if (isset($status[0]))
-                @if ($status[0] == 'Aceptado' or $status[0] == null)
-
+                @if ($status[0] == 'Aceptado')
                     @if (!isset($localDataDonor['COD_GENDER']) and $historico == null)
-
                         <x-gender></x-gender>
                         @if ($gender != null)
                             @component('components.insert-patient')
@@ -497,7 +495,7 @@
                             @endif
                         @endcomponent
                     @endif
-                @else
+                @elseif ($status[0] == 'Rechazado')
                     <div class="alert alert-warning" role="alert">
                         <label>Por favor remitir al banco de sangre</label>
                     </div>
