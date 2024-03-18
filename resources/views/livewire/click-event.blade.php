@@ -103,9 +103,9 @@
                         </tr>
                     </table>
                 </div>
-            @elseif (isset($status[0]) and $status[0] == 'no data')
+            @elseif (isset($status[0]) and $status[0] == 401)
                 <div class="alert alert-warning" role="alert">
-                    <label>No Data</label>
+                    <label>Error Connection</label>
                 </div>
             @endif
         </div>

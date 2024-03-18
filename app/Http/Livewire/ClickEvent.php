@@ -6,6 +6,7 @@ use App\Models\Center;
 use App\Models\Remote\DatabaseModel;
 use App\Models\sihevi\consult\Consult;
 use Exception;
+use FFI\CData;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use PDO;
@@ -117,8 +118,12 @@ class ClickEvent extends Component
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         $sihevi = json_decode(curl_exec($ch));
-        $info = curl_getinfo($ch);
+        $info = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+        if ($info == 401) {
+            $this->status[0] = 401;
+        }
 
         if (isset($sihevi->HistoricoDonaciones) and $sihevi->HistoricoDonaciones != null) {
             $this->historico = $sihevi->HistoricoDonaciones;
