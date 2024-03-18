@@ -247,8 +247,8 @@ class ClickEvent extends Component
             }
         } else {
 
-            if ($this->status[0] == 'Aceptado' or $this->status == null) {
-                $this->status = ['Aceptado'];
+            if ($this->status == null) {
+                $this->status = ["no data"];
             }
 
             $this->band_consult = '1';

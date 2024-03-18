@@ -89,7 +89,6 @@
                                     style="border:4px solid red; border-radius: 12px; padding: 5px;">
                                     {{ $diferido['TIPO_DIFERIMIENTO'] }}
                                 </td>
-                            @else
                                 <td
                                     class="text-left table-danger text-uppercase font-weight-bold p-1 mb-1 bg-yellow text-white">
                                     {{ $data['CAUSA_DIFERIMIENTO'] }}
@@ -104,7 +103,10 @@
                         </tr>
                     </table>
                 </div>
-
+            @elseif (isset($status[0]) and $status[0] == 'no data')
+                <div class="alert alert-warning" role="alert">
+                    <label>No Data</label>
+                </div>
             @endif
         </div>
         {{-- We consult the data in the local blood bank database --}}
@@ -216,13 +218,15 @@
                                 @endif
                             @elseif (isset($localDeferredDonor[0]))
                                 @if ($localDeferredDonor[0] == 'T')
-                                    <td class="text-left table-warning text-uppercase font-weight-bold p-1 mb-1 bg-warning text-white">
-                                        {{$status[1]}}
+                                    <td
+                                        class="text-left table-warning text-uppercase font-weight-bold p-1 mb-1 bg-warning text-white">
+                                        {{ $status[1] }}
                                     </td>
                                 @endif
                             @else
-                                <td class="text-left table-danger text-uppercase font-weight-bold p-1 mb-1 bg-danger text-white">
-                                    {{$status[0]}}
+                                <td
+                                    class="text-left table-danger text-uppercase font-weight-bold p-1 mb-1 bg-danger text-white">
+                                    {{ $status[0] }}
                                 </td>
                             @endif
                         </tr>
@@ -247,7 +251,7 @@
             @if (isset($status[0]))
                 @if ($status[0] == 'Aceptado' or $status[0] == null)
 
-                    @if (! isset($localDataDonor['COD_GENDER']) and $historico == null)
+                    @if (!isset($localDataDonor['COD_GENDER']) and $historico == null)
 
                         <x-gender></x-gender>
                         @if ($gender != null)
@@ -277,7 +281,7 @@
                             <?php $band_consult = null; ?>
                         @endif
                     @elseif ($data['TIPO_DONANTE'] == 'Aceptado' and $diferido['TIPO_DIFERIMIENTO'] == null)
-                    <x-gender></x-gender>
+                        <x-gender></x-gender>
                         @if ($gender != null)
                             @component('components.insert-patient')
                                 @if ($size != null and $weight != null)
@@ -307,7 +311,7 @@
                     @else
                         <h3 style="text-align:center;">Next donation date</h3>
                         <div class="text-center-justify">
-                            {{$nextdonationdate}}
+                            {{ $nextdonationdate }}
                         </div>
 
                         @if ($nextdonationdate != null and isset($sihevinextdate[1]))
@@ -316,24 +320,24 @@
                                     <h3 style="text-align:center;">Outside the donation range</h3>
                                 @else
                                     @component('components.insert-patient')
-                                    @if ($size != null and $weight != null)
-                                        <?php
-                                        $size = (float) $size / 100;
-                                        $IMC = (float) $weight / (float) $size ** 2;
-                                        $volemiaM = 70 * (float) $weight;
-                                        $volemiaF = 65 * (float) $weight;
-                                        ?>
-                                        @section('imc')
-                                            {{ round($IMC, 2) }}
-                                        @endsection
-                                        @section('volemia')
-                                            {{ @round($volemiaF) }}
-                                        @endsection
-                                        @section('hematocrito')
-                                            {{ (float) $hemoglobin * 3 }}
-                                        @endsection
-                                    @endif
-                                @endcomponent
+                                        @if ($size != null and $weight != null)
+                                            <?php
+                                            $size = (float) $size / 100;
+                                            $IMC = (float) $weight / (float) $size ** 2;
+                                            $volemiaM = 70 * (float) $weight;
+                                            $volemiaF = 65 * (float) $weight;
+                                            ?>
+                                            @section('imc')
+                                                {{ round($IMC, 2) }}
+                                            @endsection
+                                            @section('volemia')
+                                                {{ @round($volemiaF) }}
+                                            @endsection
+                                            @section('hematocrito')
+                                                {{ (float) $hemoglobin * 3 }}
+                                            @endsection
+                                        @endif
+                                    @endcomponent
                                 @endif
                             @elseif (isset($localDataDonor) && $localDataDonor['COD_GENDER'] == 'M')
                                 @if (strtotime($nextdonationdate) >= strtotime($today) and strtotime($sihevinextdate[1]) >= strtotime($today))
@@ -415,8 +419,8 @@
                             @if ($localDataDonor['COD_GENDER'] == 'F')
                                 @if (strtotime($nextdonationdate) > strtotime($today))
                                     <h3 style="text-align:center;">Outside the donation range</h3>
-                                    @else
-                                        @component('components.insert-patient')
+                                @else
+                                    @component('components.insert-patient')
                                         @if ($size != null and $weight != null)
                                             <?php
                                             $size = (float) $size / 100;
@@ -439,8 +443,8 @@
                             @elseif ($localDataDonor['COD_GENDER'] == 'M')
                                 @if (strtotime($nextdonationdate) > strtotime($today))
                                     <h3 style="text-align:center;">Outside the donation range</h3>
-                                    @else
-                                        @component('components.insert-patient')
+                                @else
+                                    @component('components.insert-patient')
                                         @if ($size != null and $weight != null)
                                             <?php
                                             $size = (float) $size / 100;
@@ -463,7 +467,7 @@
                             @endif
                         @else
                             <center>
-                                <h2>{{ $nextdonationdate}}</h2>
+                                <h2>{{ $nextdonationdate }}</h2>
                                 <?php $open = 'si'; ?>
                             </center>
                         @endif
