@@ -109,7 +109,7 @@ class ClickEvent extends Component
         $ch = curl_init();
         $headers = array(
             'Content-Type:application/json',
-            'Authorization: Basic YnNuYWNpb25hbHNhczk6cGFzczM2Nyo=',
+            'Authorization: Basic YnNuYWNpb25hbHNhczI2OnBhc3MxNDYq',
         );
 
         curl_setopt($ch, CURLOPT_URL, "https://apps.ins.gov.co/SiheviAPI/Donacion/ConsultaDonante?doc=" . $this->identification

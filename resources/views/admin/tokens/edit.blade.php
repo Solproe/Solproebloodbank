@@ -83,7 +83,6 @@
                     <tr>
                         <th class="text-center">TOKEN</th>
                         <th class="text-center">NAME</th>
-                        <th class="text-center">OPTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,15 +90,6 @@
                         <tr>
                             <td class="text-center">{{ $token->token }}</td>
                             <td class="col-md-6 text-center" width="10px" class="text-left">{{ $token->name }}</td>
-                            <td class="col-md-6 text-center" width="10px" class="text-left">
-                                <form action="{{ route('admin.token.destroy', $token->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button btn class="btn btn-outline-danger" type="submit">
-                                        Deleted
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class TokenController extends Controller
 {
-    
+
     public function index()
     {
         $centers = Center::all();
@@ -20,15 +20,13 @@ class TokenController extends Controller
 
     public function create()
     {
-        
     }
 
     public function store(Request $request)
     {
 
         $token = new Token();
-        if (isset($request->type) and $request->type == "center")
-        {
+        if (isset($request->type) and $request->type == "center") {
             $token->name = $request->COD_CENTER;
             $token->token = $request->token;
         }
@@ -40,16 +38,21 @@ class TokenController extends Controller
 
     public function edit()
     {
+    }
 
+    public function show($id)
+    {
+        dd($id);
     }
 
     public function update(Request $request, $id)
     {
-
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-
+        $token = Token::where('id', $id)->first();
+        $token->delete();
+        return redirect()->route('admin.token.index');
     }
 }
