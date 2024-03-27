@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\teams\Teams;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,4 +19,14 @@ class BloodUnitReportModel extends Model
         'quantity',
         'center_id',
     ];
+
+    public function team()
+    {
+        return $this->belongsTo(Teams::class);
+    }
+
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
+    }
 }

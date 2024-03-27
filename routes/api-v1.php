@@ -5,6 +5,7 @@ use App\Http\Controllers\APIs\inventories\SuppliesManage;
 use App\Http\Controllers\APIs\requestapi\LocalDataController;
 use App\Http\Controllers\APIs\requestapi\RequestController;
 use App\Http\Controllers\APIs\requestapi\validate;
+use App\Http\Controllers\BloodUnitReport;
 use App\Models\usersValidationBloodBank;
 use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
@@ -43,4 +44,6 @@ Route::group(['middleware:api'], function () {
     Route::get('getListCenter', [RequestController::class, 'getCentersList'])->name('v1.getListCenter');
 
     Route::post('getAllSupplies', [SuppliesManage::class, 'getAllSupplies'])->name('v1.getAllSupplies');
+
+    Route::post('sendReportBloodUnits', [BloodUnitReport::class, 'saveReport'])->name('v1.sendReportBloodUnits');
 });
