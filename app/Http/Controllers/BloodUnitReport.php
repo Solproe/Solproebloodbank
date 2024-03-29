@@ -15,7 +15,7 @@ class BloodUnitReport extends Controller
         try {
             $report = new BloodUnitReportModel();
 
-            $report->team_id = $request->user()->id_team;
+            $report->team_id = $request->id_team;
 
             $report->quantity = $request->quantity;
 
