@@ -15,13 +15,15 @@ class BloodUnitReport extends Controller
         try {
             $report = new BloodUnitReportModel();
 
-            $report->team_id = 1;
+            $report->team_id = $request->user()->id_team;
 
-            $report->quantity = 30;
+            $report->quantity = $request->quantity;
 
-            $report->center_id = 10;
+            $report->center_id = $request->idCenter;
 
             $report->save();
+
+            return "ok";
         } catch (Exception $e) {
             return $e;
         }
