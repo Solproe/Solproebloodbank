@@ -21,20 +21,14 @@ class BloodUnitReport extends Controller
 
             $geo = json_encode($geo);
 
-            $report = new BloodUnitReportModel();
+            $report = BloodUnitReportModel::create([
+                'geolocation' => $geo,
+                'team_id' => $request->id_team,
+                'quantity' => $request->quantity,
+                'center_id' => $request->idCenter,
+            ]);
 
-            $report->geolocation = $geo;
-
-            $report->team_id = $request->id_team;
-
-            $report->quantity = $request->quantity;
-
-            $report->center_id = $request->idCenter;
-
-
-            $report->save();
-
-            return "ok";
+            return 200;
         } catch (Exception $e) {
             return $e;
         }
@@ -42,6 +36,13 @@ class BloodUnitReport extends Controller
 
     public function getLastReport()
     {
-        //code
+        try {
+            $lastReport = BloodUnitReportModel::first();
+        } catch (Exception $e) {
+            return $e;
+        }
+
+
+        return $lastReport;
     }
 }

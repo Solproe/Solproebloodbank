@@ -22,7 +22,7 @@ class BloodUnitReportModel extends Model
 
     public function team()
     {
-        return $this->belongsTo(Teams::class);
+        return $this->belongsTo(Teams::class, 'team_id');
     }
 
     public function center()

@@ -46,4 +46,6 @@ Route::group(['middleware:api'], function () {
     Route::post('getAllSupplies', [SuppliesManage::class, 'getAllSupplies'])->name('v1.getAllSupplies');
 
     Route::post('sendReportBloodUnits', [BloodUnitReport::class, 'saveReport'])->name('v1.sendReportBloodUnits');
+
+    Route::get('getLastReports', [BloodUnitReport::class, 'saveReport'])->name('v1.getLastReports');
 });
