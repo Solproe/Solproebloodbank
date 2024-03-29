@@ -37,12 +37,13 @@ class BloodUnitReport extends Controller
     public function getLastReport()
     {
         try {
-            $lastReport = BloodUnitReportModel::first();
+            $lastReport = BloodUnitReportModel::latest()
+                ->take(3)
+                ->get();
+
+            return $lastReport;
         } catch (Exception $e) {
             return $e;
         }
-
-
-        return $lastReport;
     }
 }
