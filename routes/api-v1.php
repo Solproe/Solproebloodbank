@@ -47,5 +47,5 @@ Route::group(['middleware:api'], function () {
 
     Route::post('sendReportBloodUnits', [BloodUnitReport::class, 'saveReport'])->name('v1.sendReportBloodUnits');
 
-    Route::get('getLastReports', [BloodUnitReport::class, 'saveReport'])->name('v1.getLastReports');
+    Route::get('getLastReports', [BloodUnitReport::class, 'getLastReport'])->name('v1.getLastReports');
 });
