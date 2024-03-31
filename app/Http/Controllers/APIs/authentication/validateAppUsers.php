@@ -20,9 +20,8 @@ class validateAppUsers extends Controller
     public function isLogged(Request $request)
     {
         $response = [];
-        
-        if (isset(auth()->user()->email) and strtolower(auth()->user()->email) == strtolower($request->email))
-        {
+
+        if (isset(auth()->user()->email) and strtolower(auth()->user()->email) == strtolower($request->email)) {
             $user = User::where("email", $request->email)->first();
 
             $validateUser = usersValidationBloodBank::where("id_user", $user->id)->first();
@@ -35,6 +34,8 @@ class validateAppUsers extends Controller
 
             $user1->name = $user->name;
 
+            $user1->id_team = $user->id_team;
+
             $center = $validateUser->center;
 
             $center->token = $token->token;
@@ -45,10 +46,10 @@ class validateAppUsers extends Controller
                 "user" => $user1,
                 "center" => $center,
             ];
-        }
-        else {
+        } else {
             $response = [
-                "logged" => false];
+                "logged" => false
+            ];
             session()->flush();
         }
 
@@ -65,20 +66,18 @@ class validateAppUsers extends Controller
 
         $response = ["success"];
 
-        if (isset($validateUser->id_user) and $validateUser->id_user != null)
-        {
-            if (isset($user->email) and isset($request->password))
-            {
+        if (isset($validateUser->id_user) and $validateUser->id_user != null) {
+            if (isset($user->email) and isset($request->password)) {
                 $credentials = $request->validate([
                     'email' => ['required', 'email'],
                     'password' => ['required'],
                 ]);
-    
-                if (Auth::attempt($credentials)) 
-                {
+
+                if (Auth::attempt($credentials)) {
                     $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
                     $validateUser->user->email = $request->email;
                     $validateUser->user->name = $user->name;
+                    $validateUser->user->id_team = $user->id_team;
 
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
@@ -88,28 +87,24 @@ class validateAppUsers extends Controller
                         "success" => true,
                         "user" => $validateUser->user,
                         "center" => $validateUser->center,
+                        "id_team" => $user->id_team
                     ];
 
                     $request->session()->regenerate();
-    
+
                     $recording = new RecordingGetIn();
-    
+
                     $recording->email = $request->email;
-    
+
                     $recording->save();
-                }
-                else
-                {
+                } else {
                     $response = [
                         "success" => false,
                         "message" => "Invalid Credentials",
                     ];
                 }
-            }
-            else
-            {
-                if (isset($validateUser->id_centre) and $validateUser->id_centre != null)
-                {
+            } else {
+                if (isset($validateUser->id_centre) and $validateUser->id_centre != null) {
                     $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
                     $center = $validateUser->center;
                     $center->token = $token->token;
@@ -120,25 +115,21 @@ class validateAppUsers extends Controller
                     ];
 
                     $request->session()->regenerate();
-    
+
                     $recording = new RecordingGetIn();
-    
+
                     $recording->email = $request->email;
-    
+
                     $recording->save();
-                }
-                else
-                {
+                } else {
                     $response = ["success" => false];
                 }
             }
-    
+
             $response = json_encode($response);
-    
+
             return $response;
-        }
-        else
-        {
+        } else {
             $response = [
                 "logged" => false,
                 "message" => "no exist user"
