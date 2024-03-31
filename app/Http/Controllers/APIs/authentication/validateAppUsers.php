@@ -87,7 +87,6 @@ class validateAppUsers extends Controller
                         "success" => true,
                         "user" => $validateUser->user,
                         "center" => $validateUser->center,
-                        "id_team" => $user->id_team
                     ];
 
                     $request->session()->regenerate();
