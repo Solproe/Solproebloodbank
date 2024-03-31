@@ -21,6 +21,8 @@ class BloodUnitReport extends Controller
 
             $geo = json_encode($geo);
 
+            return $geo;
+
             $report = BloodUnitReportModel::create([
                 'geolocation' => $geo,
                 'team_id' => $request->id_team,
@@ -34,11 +36,13 @@ class BloodUnitReport extends Controller
         }
     }
 
-    public function getLastReport()
+    public function getLastReport(Request $request)
     {
         try {
+
             $lastReports = BloodUnitReportModel::latest()
                 ->take(3)
+                ->where('team_id', $request->id_team)
                 ->get();
 
             $lastReports = json_encode($lastReports);
