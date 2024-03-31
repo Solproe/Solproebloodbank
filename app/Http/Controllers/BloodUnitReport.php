@@ -45,9 +45,13 @@ class BloodUnitReport extends Controller
                 ->where('team_id', $request->id_team)
                 ->get();
 
-            $lastReports = json_encode($lastReports);
+            $lastReports = [
+                "getThreeLastlist" => $lastReports,
+            ];
 
-            return $lastReports;
+            $json = json_encode($lastReports);
+
+            return $json;
         } catch (Exception $e) {
             return $e;
         }
