@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BloodUnitReportModel;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -40,9 +41,14 @@ class BloodUnitReport extends Controller
     {
         try {
 
+            $date = Carbon::now();
+
+            $date = $date->format('m');
+
             $lastReports = BloodUnitReportModel::latest()
                 ->take(3)
                 ->where('team_id', $request->id_team)
+                ->whereMonth('created_at', $date)
                 ->get();
 
             $lastReports = [
