@@ -22,8 +22,6 @@ class BloodUnitReport extends Controller
 
             $geo = json_encode($geo);
 
-            return $geo;
-
             $report = BloodUnitReportModel::create([
                 'geolocation' => $geo,
                 'team_id' => $request->id_team,
@@ -51,13 +49,20 @@ class BloodUnitReport extends Controller
                 ->whereMonth('created_at', $date)
                 ->get();
 
+            $reports = [];
+
+            foreach ($lastReports as $report) {
+
+                $geo = json_decode($report->geolocation);
+                $report->geolocation = $geo;
+                array_push($reports, $report);
+            }
+
             $lastReports = [
-                "lastList" => $lastReports,
+                "lastList" => $reports,
             ];
 
-            $json = json_encode($lastReports);
-
-            return $json;
+            return $lastReports;
         } catch (Exception $e) {
             return $e;
         }
