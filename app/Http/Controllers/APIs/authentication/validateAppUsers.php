@@ -77,7 +77,7 @@ class validateAppUsers extends Controller
                     $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
                     $validateUser->user->email = $request->email;
                     $validateUser->user->name = $user->name;
-                    $validateUser->user->id_team = $user->id_team;
+                    $validateUser->user->team = $user->id_team;
 
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
