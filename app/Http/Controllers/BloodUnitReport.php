@@ -52,7 +52,7 @@ class BloodUnitReport extends Controller
                 ->get();
 
             $lastReports = [
-                "getThreeLastlist" => $lastReports,
+                "lastList" => $lastReports,
             ];
 
             $json = json_encode($lastReports);
