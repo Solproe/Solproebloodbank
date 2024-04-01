@@ -49,17 +49,33 @@ class BloodUnitReport extends Controller
                 ->whereMonth('created_at', $date)
                 ->get();
 
+            $carbon = Carbon::now();
+
+            $date = $carbon->format('Ymd');
+
+            $date = $date[4] + $date[5];
+
+            $allUnits = BloodUnitReportModel::whereMonth('created_at', $date)->get();
+
+            $acumulation = 0;
+
+            foreach ($allUnits as $unit) {
+                $acumulation += $unit->quantity;
+            }
+
             $reports = [];
 
             foreach ($lastReports as $report) {
 
                 $geo = json_decode($report->geolocation);
                 $report->geolocation = $geo;
+                $report->acumulation = $acumulation;
                 array_push($reports, $report);
             }
 
             $lastReports = [
                 "lastList" => $reports,
+                "acumulation" => $acumulation,
             ];
 
             return $lastReports;
