@@ -75,7 +75,6 @@ class BloodUnitReport extends Controller
 
             $lastReports = [
                 "lastList" => $reports,
-                "acumulation" => $acumulation,
             ];
 
             return $lastReports;
