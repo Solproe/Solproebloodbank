@@ -70,6 +70,8 @@ class BloodUnitReport extends Controller
                 $geo = json_decode($report->geolocation);
                 $report->geolocation = $geo;
                 $report->acumulation = $acumulation;
+                $date = Carbon::create($report->created_at);
+                $report->created_at = $date;
                 array_push($reports, $report);
             }
 
