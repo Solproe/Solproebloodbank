@@ -81,7 +81,11 @@ class validateAppUsers extends Controller
 
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
-                    $center->token = $token->token;
+
+                    if ($token->token != null) {
+
+                        $center->token = $token->token;
+                    }
 
                     $response = [
                         "success" => true,
