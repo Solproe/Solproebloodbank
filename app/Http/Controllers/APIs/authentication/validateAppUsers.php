@@ -82,7 +82,7 @@ class validateAppUsers extends Controller
                     $center = $validateUser->center;
                     $center->town = $center->towns->name;
 
-                    if ($token->token != null) {
+                    if (isset($token->token) and $token->token != null) {
 
                         $center->token = $token->token;
                     }
