@@ -11,7 +11,6 @@
         "dompdf/dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "jeroennoten/laravel-adminlte": "^3.9",
-        "joelbutcher/socialstream": "^4.4",
         "kreait/firebase-bundle": "^5.0",
         "kreait/firebase-php": "^7.2",
         "kreait/laravel-firebase": "^5.2",

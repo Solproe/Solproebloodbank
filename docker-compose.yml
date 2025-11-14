@@ -1,9 +1,8 @@
-version: '3.8'
-
 services:
   app:
     build: .
-    container_name: cnt-laravel
+    image: backend-solproe:laravel
+    container_name: cnt-backend
     ports:
       - "8080:80"
     volumes:
