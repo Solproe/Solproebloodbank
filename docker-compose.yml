@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: cnt-laravel
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      

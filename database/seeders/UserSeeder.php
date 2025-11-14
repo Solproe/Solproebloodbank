@@ -19,18 +19,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
-        User::create([
-            'name' => 'prueba',
-            'email' => 'prueba@gmail.com',
-            'password' => Hash::make('123456789'),
-        ])->assignRole('Promoter');
-
         User::create([
             'name' => 'Systems',
             'email' => 'Systems@solproe.com',
             'password' => Hash::make('gerenciasolproe'),
-        ])->assignRole('System');
+        ]);
 
     }
 }

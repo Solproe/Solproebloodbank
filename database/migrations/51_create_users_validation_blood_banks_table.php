@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('users_validation_blood_banks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_centre');
-            $table->foreign('id_centre')->references('ID_CENTRE')->on('centre');
+            //$table->unsignedBigInteger('id_centre');
+            //$table->foreign('id_centre')->references('ID_CENTRE')->on('centre');
             $table->unsignedBigInteger("id_user");
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('token')->nullable();
-            $table->foreign('token')->references('id')->on('token');
+            //$table->unsignedBigInteger('token')->nullable();
+            //$table->foreign('token')->references('id')->on('token');
             $table->timestamps();
         });
     }
