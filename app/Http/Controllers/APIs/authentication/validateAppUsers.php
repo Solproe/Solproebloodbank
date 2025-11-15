@@ -77,6 +77,7 @@ class validateAppUsers extends Controller
                     $token = Token::where('name', $validateUser->center->COD_CENTRE)->first();
                     $validateUser->user->email = $request->email;
                     $validateUser->user->name = $user->name;
+                    /*
                     $validateUser->user->team = $user->id_team;
 
                     $center = $validateUser->center;
@@ -86,20 +87,23 @@ class validateAppUsers extends Controller
 
                         $center->token = $token->token;
                     }
+                        */
 
                     $response = [
                         "success" => true,
                         "user" => $validateUser->user,
-                        "center" => $validateUser->center,
+                        //"center" => $validateUser->center,
                     ];
 
                     $request->session()->regenerate();
 
+                    /*
                     $recording = new RecordingGetIn();
 
                     $recording->email = $request->email;
 
                     $recording->save();
+                    */
                 } else {
                     $response = [
                         "success" => false,

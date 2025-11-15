@@ -19,21 +19,15 @@ COPY . .
 
 RUN git config --global --add safe.directory /var/www/html
 
-RUN mv .env.example .env
-
 RUN composer install
 
 RUN apt-get install npm -y
-    
-RUN php artisan key:generate
 
 RUN npm install
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-RUN chown -R 775 /var/www/html \
-    sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
 # Exponer el puerto del servidor Apache
 EXPOSE 80
