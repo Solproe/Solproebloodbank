@@ -10,6 +10,7 @@ use App\Models\usersValidationBloodBank;
 use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,17 @@ Route::group(['middleware:api'], function () {
     Route::post('sendReportBloodUnits', [BloodUnitReport::class, 'saveReport'])->name('v1.sendReportBloodUnits');
 
     Route::post('getLastReports', [BloodUnitReport::class, 'getLastReport'])->name('v1.getLastReports');
+
+    Route::post('/api-login', function (Request $request) {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return ['message' => 'Login exitoso', 'user' => Auth::user()];
+        }
+
+        return response()->json(['error' => 'Credenciales inválidas'], 401);
+    })->name('v1.api-login');
 });
+
+
