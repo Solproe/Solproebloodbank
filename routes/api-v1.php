@@ -60,6 +60,15 @@ Route::group(['middleware:api'], function () {
 
         return response()->json(['error' => 'Credenciales inválidas'], 401);
     })->name('v1.api-login');
+
+    Route::post('/api-logout', function (Request $request) {
+        Auth::logout(); // no retorna nada
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json(['error' => $_COOKIE]);
+    })->name("v1.api-logout");
 });
 
 
